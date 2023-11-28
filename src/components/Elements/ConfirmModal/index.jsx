@@ -16,6 +16,7 @@ export default function ConfirmModal(props) {
         onClick={() => {
           const elmt = document.querySelector("div[modal-backdrop]");
           if (elmt) {
+            elmt.style.backgroundColor = "rgb(107 114 128 / 0.5)";
             elmt.classList.replace("z-40", "z-50");
           }
         }}

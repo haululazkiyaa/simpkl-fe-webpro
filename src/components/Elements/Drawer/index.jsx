@@ -16,6 +16,7 @@ export default function Drawer(props) {
         onClick={() => {
           const elmt = document.querySelector("div[drawer-backdrop]");
           if (elmt) {
+            elmt.style.backgroundColor = "rgb(107 114 128 / 0.5)";
             elmt.classList.replace("z-30", "z-50");
           }
         }}

@@ -25,10 +25,6 @@ export default function YearSettingsDrawerView() {
   // handle message
   const [message, setMessage] = useState("");
 
-  const initDrawer = () => {
-    document.getElementById("init-drawer").click();
-  };
-
   const handleTambahTahunAjaran = (e) => {
     e.preventDefault();
     setProgress(30);
@@ -73,6 +69,10 @@ export default function YearSettingsDrawerView() {
       setProgress(100);
       setLoading(false);
     });
+  };
+
+  const initDrawer = () => {
+    document.getElementById("init-drawer").click();
   };
 
   return (

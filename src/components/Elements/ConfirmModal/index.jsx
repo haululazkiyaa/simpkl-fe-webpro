@@ -1,11 +1,24 @@
 import PropTypes from "prop-types";
+import { initFlowbite } from "flowbite";
+import { useEffect } from "react";
 
 export default function ConfirmModal(props) {
   const { desc, labelOk, labelCancel, onClick } = props;
+
+  useEffect(() => {
+    initFlowbite();
+  }, []);
+
   return (
     <>
       <button
         id="init-modal"
+        onClick={() => {
+          const elmt = document.querySelector("div[modal-backdrop]");
+          if (elmt) {
+            elmt.classList.replace("z-40", "z-50");
+          }
+        }}
         data-modal-target="confirm-modal"
         data-modal-toggle="confirm-modal"
         hidden
@@ -16,7 +29,7 @@ export default function ConfirmModal(props) {
         id="confirm-modal"
         tabIndex="-1"
         data-modal-backdrop="static"
-        className="hidden bg-gray-500/50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[60] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+        className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[60] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
       >
         <div className="relative p-4 w-full max-w-md max-h-full">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">

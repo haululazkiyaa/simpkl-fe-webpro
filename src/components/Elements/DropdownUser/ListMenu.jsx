@@ -16,6 +16,12 @@ export default function ListMenu(props) {
       ))}
       <li>
         <button
+          onClick={() => {
+            const elmt = document.querySelector("div[modal-backdrop]");
+            if (elmt) {
+              elmt.classList.replace("z-40", "z-50");
+            }
+          }}
           data-modal-target="logout-modal"
           data-modal-toggle="logout-modal"
           className={`w-full text-left px-4 py-2 text-sm text-red-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white`}

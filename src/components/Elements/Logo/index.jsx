@@ -7,11 +7,11 @@ export default function Logo() {
       className="flex items-center text-2xl font-semibold text-gray-900 dark:text-white"
     >
       <img
-        className="w-8 h-8 mr-2"
-        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+        className="w-auto h-8 mr-2"
+        src={import.meta.env.VITE_APP_LOGO_URL}
         alt="logo"
       />
-      Sispensim
+      {import.meta.env.VITE_APP_LOGO_TITLE}
     </Link>
   );
 }

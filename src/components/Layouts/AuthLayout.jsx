@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCallback, useContext, useEffect } from "react";
 
 import { AuthContext } from "../../context/AuthContext";
-import Logo from "../Elements/Brands/Logo";
+import Credit from "../Elements/Credit";
+import Logo from "../Elements/Logo";
 import PropTypes from "prop-types";
 import { refreshToken } from "../../services/auth/auth.service";
 
@@ -28,11 +29,11 @@ export default function AuthLayout(props) {
 
   return (
     <>
-      <section className="bg-center bg-no-repeat bg-cover bg-[url('https://is3.cloudhost.id/tplum/bg-2.jpg')]">
+      <section className="bg-center bg-no-repeat bg-cover sm:bg-[url('https://is3.cloudhost.id/tplum/bg-2.jpg')] h-screen sm:h-auto">
         <div className="flex flex-col items-end justify-center mx-auto lg:py-0">
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 h-screen">
             <div className="w-full h-full flex flex-col overflow-y-auto">
-              <div className="flex-1"></div>
+              <div className="flex-none sm:flex-1 bg-center bg-no-repeat bg-cover bg-[url('https://is3.cloudhost.id/tplum/bg-2.jpg')] sm:bg-none h-1/4"></div>
               <div className="flex-none">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                   <Logo />
@@ -42,7 +43,10 @@ export default function AuthLayout(props) {
                   {children}
                 </div>
               </div>
-              <div className="flex-1"></div>
+              <div className="sm:flex-1"></div>
+              <div className="flex-none">
+                <Credit />
+              </div>
             </div>
           </div>
         </div>

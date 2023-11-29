@@ -43,7 +43,7 @@ export default function AuthLayout(props) {
                   {children}
                 </div>
               </div>
-              <div className="sm:flex-1"></div>
+              <div className="flex-1"></div>
               <div className="flex-none">
                 <Credit />
               </div>

@@ -33,7 +33,7 @@ export const addJurusan = async (data, token, callback) => {
 
 export const updateJurusan = async (data, token, callback) => {
   await axiosReq
-    .post(`${import.meta.env.VITE_API_URL}/jurusan/update`, data, {
+    .put(`${import.meta.env.VITE_API_URL}/jurusan/update`, data, {
       headers: {
         Authorization: "Bearer " + token,
       },

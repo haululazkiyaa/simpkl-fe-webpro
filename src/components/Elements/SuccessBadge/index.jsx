@@ -1,10 +1,13 @@
 import Button from "../Button";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
 
 export default function SuccessBadge(props) {
-  const { children } = props;
-  const navigate = useNavigate();
+  const { children, id = "" } = props;
+
+  const initDrawer = () => {
+    document.getElementById("reset-drawer" + id).click();
+  };
+
   return (
     <div className="p-4 w-full text-center">
       <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900 p-2 flex items-center justify-center mx-auto mb-3.5">
@@ -26,7 +29,7 @@ export default function SuccessBadge(props) {
       <p className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
         {children}
       </p>
-      <Button outline={true} onClick={() => navigate(0)}>
+      <Button outline={true} onClick={() => initDrawer()}>
         Tutup
       </Button>
     </div>
@@ -35,4 +38,5 @@ export default function SuccessBadge(props) {
 
 SuccessBadge.propTypes = {
   children: PropTypes.node,
+  id: PropTypes.string,
 };

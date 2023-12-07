@@ -1,5 +1,6 @@
-import { axiosReq } from "../../axios.service";
+import { axiosReq } from "../axios.service";
 
+// services setting tahun ajaran
 export const getTahunAjaran = async (token, callback) => {
   await axiosReq
     .get(`${import.meta.env.VITE_API_URL}/tahun-ajaran/all`, {

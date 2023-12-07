@@ -14,12 +14,12 @@ export const NavList = [
       },
       {
         label: "Kelola Jurusan",
-        href: "/school-admin/profile",
+        href: "/school-admin/major-management",
         icon: "fa-list-ul",
       },
       {
         label: "Data Pembimbing",
-        href: "/school-admin/profile",
+        href: "/school-admin/supervisor-data",
         icon: "fa-user-tie",
       },
       {

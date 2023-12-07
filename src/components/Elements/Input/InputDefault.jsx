@@ -6,7 +6,7 @@ export default function InputDefault(props) {
     name,
     id,
     placeholder,
-    value,
+    value = "",
     onChange,
     required = false,
     error = false,

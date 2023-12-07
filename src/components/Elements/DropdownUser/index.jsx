@@ -12,7 +12,7 @@ export default function DropdownUser(props) {
         <div>
           <button
             type="button"
-            className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+            className="flex text-sm items-center text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
             aria-expanded="false"
             data-dropdown-toggle="dropdown-user"
           >
@@ -22,6 +22,10 @@ export default function DropdownUser(props) {
               src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
               alt="user photo"
             />
+            <span className="hidden sm:inline sm:mx-3">
+              {profile?.dataPengguna?.nama || "Loading..."}{" "}
+              <i className="ms-2 fa-solid fa-caret-down"></i>
+            </span>
           </button>
         </div>
         <div

@@ -3,21 +3,23 @@ import { useContext, useState } from "react";
 import Alert from "../../../../components/Elements/Alert/index.jsx";
 import { AuthContext } from "../../../../context/AuthContext.jsx";
 import Button from "../../../../components/Elements/Button/index.jsx";
-import Drawer from "../../../../components/Elements/Drawer";
+import Drawer from "../../../../components/Elements/Drawer/index.jsx";
 import Input from "../../../../components/Elements/Input/index.jsx";
 import Logout from "../../../../components/Elements/Logout/index.js";
+import PropTypes from "prop-types";
 import SuccessBadge from "../../../../components/Elements/SuccessBadge/index.jsx";
-import { addTahunAjaran } from "../../../../services/school-admin/settings/year-settings.service.js";
+import { addTahunAjaran } from "../../../../services/school-admin/year-settings.service.js";
 import { refreshToken } from "../../../../services/auth/auth.service.js";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-export default function YearSettingsDrawerView() {
+export default function YearSettingsAddDrawerView(props) {
+  const { handleTahunAjaran } = props;
+  const { setProgress } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // handle loading
   const [loading, setLoading] = useState(false);
-  const { setProgress } = useContext(AuthContext);
 
   // handle input
   const [tahunAjaran, setTahunAjaran] = useState("");
@@ -46,7 +48,8 @@ export default function YearSettingsDrawerView() {
               draggable: true,
               progress: undefined,
             });
-            setMessage("sucess");
+            handleTahunAjaran();
+            setMessage("success");
           } else {
             setMessage(message);
             toast.error("Gagal menambahkan tahun ajaran!", {
@@ -72,6 +75,7 @@ export default function YearSettingsDrawerView() {
   };
 
   const initDrawer = () => {
+    setMessage("");
     document.getElementById("init-drawer").click();
   };
 
@@ -81,7 +85,7 @@ export default function YearSettingsDrawerView() {
         Tambah Tahun Ajaran Baru
       </Button>
       <Drawer title="Tambah Tahun Ajaran Baru">
-        {message != "sucess" ? (
+        {message != "success" ? (
           <form
             className="space-y-4 md:space-y-6"
             onSubmit={(e) => handleTambahTahunAjaran(e)}
@@ -137,3 +141,7 @@ export default function YearSettingsDrawerView() {
     </>
   );
 }
+
+YearSettingsAddDrawerView.propTypes = {
+  handleTahunAjaran: PropTypes.func,
+};

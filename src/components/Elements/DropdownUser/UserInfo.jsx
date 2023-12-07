@@ -1,7 +1,7 @@
 import { PropTypes } from "prop-types";
 
 export default function UserInfo(props) {
-  const { name = "~ No name ~", role = "~ No role ~" } = props;
+  const { name = "Loading...", role = "Loading..." } = props;
   return (
     <div className="px-4 py-3" role="none">
       <p

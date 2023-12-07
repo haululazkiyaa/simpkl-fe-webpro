@@ -1,7 +1,6 @@
 import { useCallback, useContext, useEffect } from "react";
 
 import { AuthContext } from "../../context/AuthContext";
-import Credit from "../Elements/Credit";
 import DropdownUser from "../Elements/DropdownUser";
 import Logo from "../Elements/Logo";
 import Logout from "../Elements/Logout";
@@ -101,10 +100,8 @@ export default function DashboardLayout(props) {
         className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidebar"
       >
-        <div className="flex flex-col h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+        <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
           <Navigation />
-          <div className="flex-1"></div>
-          <Credit />
         </div>
       </aside>
 

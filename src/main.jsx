@@ -12,8 +12,10 @@ import LoginPage from "./pages/auth/login.jsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import RegisterPage from "./pages/auth/regsiter.jsx";
+import SchoolAdminMajorManagementPage from "./pages/school-admin/major-management/index.jsx";
 import SchoolAdminPage from "./pages/school-admin/index.jsx";
 import SchoolAdminSettingsPage from "./pages/school-admin/settings.jsx/index.jsx";
+import SchoolAdminSupervisorDataPage from "./pages/school-admin/supervisor-data/index.jsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <DashboardPage />, errorElement: <ErrorPage /> },
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
       {
         path: "school-admin/settings",
         element: <SchoolAdminSettingsPage />,
+      },
+      {
+        path: "school-admin/major-management",
+        element: <SchoolAdminMajorManagementPage />,
+      },
+      {
+        path: "school-admin/supervisor-data",
+        element: <SchoolAdminSupervisorDataPage />,
       },
     ],
   },

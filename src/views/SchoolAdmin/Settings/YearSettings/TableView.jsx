@@ -1,58 +1,26 @@
-import {
-  getTahunAjaran,
-  setTahunAjaran,
-} from "../../../../services/school-admin/settings/year-settings.service";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 
-import { AuthContext } from "../../../../context/AuthContext";
-import ConfirmModal from "../../../../components/Elements/ConfirmModal";
-import Logout from "../../../../components/Elements/Logout";
+import { AuthContext } from "../../../../context/AuthContext.jsx";
+import Button from "../../../../components/Elements/Button/index.jsx";
+import ConfirmModal from "../../../../components/Elements/ConfirmModal/index.jsx";
+import Logout from "../../../../components/Elements/Logout/index.js";
 import PropTypes from "prop-types";
-import { refreshToken } from "../../../../services/auth/auth.service";
+import { refreshToken } from "../../../../services/auth/auth.service.js";
+import { setTahunAjaran } from "../../../../services/school-admin/year-settings.service.js";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-export default function YearSettingsTableView() {
+export default function YearSettingsTableView(props) {
+  const { data, handleTahunAjaran } = props;
   const { setProgress } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const [data, setData] = useState([]);
-  const [selected, setSelected] = useState("");
-
-  const getDetails = () => {
-    const find = data.find((item) => item.id === selected);
-    return find;
-  };
-
-  const handleTahunAjaran = useCallback(() => {
-    setProgress(30);
-    refreshToken((status, token) => {
-      if (status) {
-        setProgress(60);
-        getTahunAjaran(token, (status, data) => {
-          if (status) {
-            setData(data);
-          }
-        });
-      } else {
-        Logout((status) => {
-          if (status) {
-            navigate("/login");
-          }
-        });
-      }
-      setProgress(100);
-    });
-  }, [setProgress, navigate]);
-
-  useEffect(() => {
-    handleTahunAjaran();
-  }, [handleTahunAjaran]);
+  const [selected, setSelected] = useState({});
 
   const handleUpdateTahunAjaran = () => {
     setProgress(30);
     const data = {
-      id: selected,
+      id: selected.id,
       status: true,
     };
     refreshToken((status, token) => {
@@ -61,7 +29,7 @@ export default function YearSettingsTableView() {
         setTahunAjaran(data, token, (status) => {
           if (status) {
             toast.success(
-              `Sukses! Tahun ajaran ${getDetails()?.tahun_ajaran} sudah aktif.`,
+              `Sukses! Tahun ajaran ${selected?.tahun_ajaran} sudah aktif.`,
               {
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -94,7 +62,8 @@ export default function YearSettingsTableView() {
     });
   };
 
-  const initModal = () => {
+  const initModal = (item) => {
+    setSelected(item);
     document.getElementById("init-modal").click();
   };
 
@@ -132,7 +101,7 @@ export default function YearSettingsTableView() {
                     <div className="flex items-center justify-center">
                       {item.status ? (
                         <>
-                          <div className="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>{" "}
+                          <div className="h-2.5 w-2.5 rounded-full bg-green-500 me-2 animate-pulse"></div>{" "}
                           Aktif
                         </>
                       ) : (
@@ -143,18 +112,16 @@ export default function YearSettingsTableView() {
                       )}
                     </div>
                   </td>
-                  <td className="flex items-center justify-center px-6 py-4">
+                  <td className="flex items-center justify-center px-3 pt-2">
                     {!item.status ? (
                       <>
-                        <button
+                        <Button
                           onClick={() => {
-                            initModal();
-                            setSelected(item.id);
+                            initModal(item);
                           }}
-                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                         >
                           Aktifkan
-                        </button>
+                        </Button>
                       </>
                     ) : (
                       <></>
@@ -171,9 +138,7 @@ export default function YearSettingsTableView() {
         </table>
       </div>
       <ConfirmModal
-        desc={`Apakah anda yakin ingin mengubah tahun berjalan menjadi ${
-          getDetails()?.tahun_ajaran
-        }?`}
+        desc={`Apakah anda yakin ingin mengubah tahun berjalan menjadi ${selected?.tahun_ajaran}?`}
         labelOk="Ya"
         labelCancel="Tidak"
         onClick={() => handleUpdateTahunAjaran()}
@@ -183,5 +148,6 @@ export default function YearSettingsTableView() {
 }
 
 YearSettingsTableView.propTypes = {
-  handleLogout: PropTypes.func,
+  data: PropTypes.any,
+  handleTahunAjaran: PropTypes.func,
 };

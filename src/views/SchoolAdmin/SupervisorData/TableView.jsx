@@ -20,7 +20,6 @@ export default function SupervisorDataTableView(props) {
       id: selected.id,
       status_aktif: !selected?.status_aktif,
     };
-    console.log(data);
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);

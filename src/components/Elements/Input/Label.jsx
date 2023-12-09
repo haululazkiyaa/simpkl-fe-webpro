@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 
 export default function Label(props) {
-  const { children, htmlFor, error } = props;
+  const { children, id, error } = props;
   return (
     <label
-      htmlFor={htmlFor}
+      htmlFor={id}
       className={`block mb-2 text-sm font-medium ${
         error ? "text-red-700" : "text-gray-900"
       } dark:text-white`}
@@ -16,6 +16,6 @@ export default function Label(props) {
 
 Label.propTypes = {
   children: PropTypes.node,
-  htmlFor: PropTypes.string,
+  id: PropTypes.string,
   error: PropTypes.bool,
 };

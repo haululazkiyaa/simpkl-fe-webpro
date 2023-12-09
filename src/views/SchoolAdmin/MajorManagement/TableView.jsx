@@ -100,9 +100,15 @@ export default function MajorManagementTableView(props) {
                   >
                     {index + 1}
                   </th>
-                  <td className="px-6 py-4">{item.bidang_keahlian}</td>
-                  <td className="px-6 py-4">{item.program_keahlian}</td>
-                  <td className="px-6 py-4">{item.kompetensi_keahlian}</td>
+                  <td className="px-6 py-4 truncate text-left">
+                    {item.bidang_keahlian}
+                  </td>
+                  <td className="px-6 py-4 truncate text-left">
+                    {item.program_keahlian}
+                  </td>
+                  <td className="px-6 py-4 truncate text-left">
+                    {item.kompetensi_keahlian}
+                  </td>
                   <td className="flex items-center justify-center px-3 py-2">
                     <Dropdown
                       index={index}

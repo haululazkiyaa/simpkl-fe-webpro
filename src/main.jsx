@@ -12,9 +12,11 @@ import LoginPage from "./pages/auth/login.jsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import RegisterPage from "./pages/auth/regsiter.jsx";
+import SchoolAdminGuidanceGroupPage from "./pages/school-admin/guidance-group/index.jsx";
 import SchoolAdminMajorManagementPage from "./pages/school-admin/major-management/index.jsx";
 import SchoolAdminPage from "./pages/school-admin/index.jsx";
 import SchoolAdminSettingsPage from "./pages/school-admin/settings.jsx/index.jsx";
+import SchoolAdminStudentDataPage from "./pages/school-admin/student-data/index.jsx";
 import SchoolAdminSupervisorDataPage from "./pages/school-admin/supervisor-data/index.jsx";
 
 const router = createBrowserRouter([
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
       {
         path: "school-admin/supervisor-data",
         element: <SchoolAdminSupervisorDataPage />,
+      },
+      {
+        path: "school-admin/student-data",
+        element: <SchoolAdminStudentDataPage />,
+      },
+      {
+        path: "school-admin/guidance-group",
+        element: <SchoolAdminGuidanceGroupPage />,
       },
     ],
   },

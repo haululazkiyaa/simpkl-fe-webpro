@@ -24,12 +24,12 @@ export const NavList = [
       },
       {
         label: "Data Siswa",
-        href: "/school-admin/profile",
+        href: "/school-admin/student-data",
         icon: "fa-user",
       },
       {
         label: "Kelompok Bimbingan",
-        href: "/school-admin/profile",
+        href: "/school-admin/guidance-group",
         icon: "fa-users",
       },
     ],

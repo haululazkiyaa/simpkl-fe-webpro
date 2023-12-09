@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import Button from "../Button";
 import PropTypes from "prop-types";
 import { initFlowbite } from "flowbite";
 

@@ -24,21 +24,31 @@ export default function RegisterForm() {
   const { setProgress } = useContext(AuthContext);
 
   // handle input
+  const [perusahaan, setPerusahaan] = useState("");
   const [nama, setNama] = useState("");
   const [username, setUsername] = useState("");
   const [alamat, setAlamat] = useState("");
   const [noHP, setNoHP] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [web, setWeb] = useState("");
 
   // handle validation
+  const [errPerusahaan, setErrPerusahaan] = useState("");
   const [errNama, setErrNama] = useState("");
   const [errUsername, setErrUsername] = useState("");
   const [errAlamat, setErrAlamat] = useState("");
   const [errNoHP, setErrNoHP] = useState("");
   const [errPassword, setErrPassword] = useState("");
+  const [errEmail, setErrEmail] = useState("");
+  const [errWeb, setErrWeb] = useState("");
 
   // handle message
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    setErrPerusahaan("");
+  }, [nama]);
 
   useEffect(() => {
     setErrNama(nameValidation(nama));
@@ -60,17 +70,28 @@ export default function RegisterForm() {
     setErrPassword(passwordValidation(password));
   }, [password]);
 
+  useEffect(() => {
+    setErrEmail("");
+  }, [email]);
+
+  useEffect(() => {
+    setErrWeb("");
+  }, [web]);
+
   const handleRegister = (e) => {
     e.preventDefault();
     setProgress(30);
     setLoading(true);
     setMessage("");
     const data = {
+      nama_perusahaan: perusahaan,
       username: username,
       password: password,
-      nama: nama,
+      pimpinan: nama,
       alamat: alamat,
       no_hp: noHP,
+      email: email,
+      website: web,
     };
     setProgress(60);
     register(data, (status, message) => {
@@ -96,10 +117,21 @@ export default function RegisterForm() {
     <>
       <form className="space-y-4 md:space-y-6" onSubmit={handleRegister}>
         <Input
-          label="Nama"
+          label="Nama Perusahaan"
+          name="perusahaan"
+          id="perusahaan"
+          placeholder="Masukan nama lengkap perusahaan anda"
+          value={perusahaan}
+          onChange={(e) => setPerusahaan(e.target.value)}
+          required={true}
+          error={errPerusahaan !== ""}
+          errMessage={errPerusahaan}
+        />
+        <Input
+          label="Nama Pimpinan"
           name="nama"
           id="nama"
-          placeholder="Masukan nama lengkap anda"
+          placeholder="Masukan nama lengkap pimpinan anda"
           value={nama}
           onChange={(e) => setNama(e.target.value)}
           required={true}
@@ -110,7 +142,7 @@ export default function RegisterForm() {
           label="Username"
           name="username"
           id="username"
-          placeholder="Masukan username anda"
+          placeholder="Masukan username akun"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required={true}
@@ -121,7 +153,7 @@ export default function RegisterForm() {
           label="Alamat"
           name="alamat"
           id="alamat"
-          placeholder="Masukan alamat lengkap anda"
+          placeholder="Masukan alamat lengkap perusahaan anda"
           value={alamat}
           onChange={(e) => setAlamat(e.target.value)}
           required={true}
@@ -133,7 +165,7 @@ export default function RegisterForm() {
           type="tel"
           name="no_hp"
           id="no_hp"
-          placeholder="Masukan nomor HP aktif anda"
+          placeholder="Masukan nomor HP aktif"
           value={noHP}
           onChange={(e) => setNoHP(e.target.value)}
           required={true}
@@ -141,11 +173,35 @@ export default function RegisterForm() {
           errMessage={errNoHP}
         />
         <Input
+          label="Email"
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Masukan email aktif"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required={true}
+          error={errEmail !== ""}
+          errMessage={errEmail}
+        />
+        <Input
+          label="Website"
+          type="text"
+          name="web"
+          id="web"
+          placeholder="Masukan web perusahaan anda"
+          value={web}
+          onChange={(e) => setWeb(e.target.value)}
+          required={true}
+          error={errWeb !== ""}
+          errMessage={errWeb}
+        />
+        <Input
           label="Kata Sandi"
           type="password"
           name="password"
           id="password"
-          placeholder="Masukan kata sandi anda"
+          placeholder="Masukan kata sandi akun"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required={true}

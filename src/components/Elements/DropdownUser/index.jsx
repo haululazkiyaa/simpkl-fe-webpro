@@ -33,7 +33,11 @@ export default function DropdownUser(props) {
           id="dropdown-user"
         >
           <UserInfo
-            name={profile?.dataPengguna?.nama}
+            name={
+              profile?.role === "PERUSAHAAN"
+                ? profile?.dataPengguna?.nama_perusahaan
+                : profile?.dataPengguna?.nama
+            }
             role={identifyRole(profile?.role)}
           />
           <ListMenu menu={[{ href: "/", label: "Edit Profil" }]} />

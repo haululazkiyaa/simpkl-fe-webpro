@@ -1,11 +1,11 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../../../context/AuthContext";
+import GuidanceGroupAddDrawerView from "../../../views/SchoolAdmin/GudanceGroup/AddDrawerView";
+import GuidanceGroupTableView from "../../../views/SchoolAdmin/GudanceGroup/TableView";
+import GuidanceGroupUpdateDrawerView from "../../../views/SchoolAdmin/GudanceGroup/UpdateDrawerView";
 import Logout from "../../../components/Elements/Logout";
-import SupervisorDataAddDrawerView from "../../../views/SchoolAdmin/SupervisorData/AddDrawerView";
-import SupervisorDataTableView from "../../../views/SchoolAdmin/SupervisorData/TableView";
-import SupervisorDataUpdateDrawerView from "../../../views/SchoolAdmin/SupervisorData/UpdateDrawerView";
-import { getPembimbing } from "../../../services/school-admin/supervisor-data.service";
+import { getKelBimbingan } from "../../../services/school-admin/guidance-group.service";
 import { refreshToken } from "../../../services/auth/auth.service";
 import { useNavigate } from "react-router-dom";
 
@@ -16,12 +16,12 @@ export default function SchoolAdminGuidanceGroupPage() {
   const [data, setData] = useState([]);
   const [selected, setSelected] = useState("");
 
-  const handleDataPembimbing = useCallback(() => {
+  const handleKelBimbingan = useCallback(() => {
     setProgress(30);
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        getPembimbing(token, (status, data) => {
+        getKelBimbingan(token, (status, data) => {
           if (status) {
             setData(data);
           }
@@ -38,33 +38,33 @@ export default function SchoolAdminGuidanceGroupPage() {
   }, [setProgress, navigate]);
 
   useEffect(() => {
-    handleDataPembimbing();
-  }, [handleDataPembimbing]);
+    handleKelBimbingan();
+  }, [handleKelBimbingan]);
 
   return (
     <>
       <div className="format max-w-none mb-5">
-        <h1>Data Pembimbing</h1>
+        <h1>Kelompok Bimbingan</h1>
         <p>
-          Anda dapat meilhat data pembimbing yang ada atau menambahkan data
-          pembimbing baru atau mengubah data pembimbing yang ada. Namun, anda
-          tidak dapat menghapus data pembimbing yang sudah ditambahkan.
+          Anda dapat meilhat kelompok bimbingan yang ada atau menambahkan data
+          pembimbing baru atau mengubah kelompok bimbingan yang ada. Namun, anda
+          tidak dapat menghapus kelompok bimbingan yang sudah ditambahkan.
         </p>
         <div className="not-format">
           <div className="mb-5">
-            <SupervisorDataAddDrawerView
-              handleDataPembimbing={handleDataPembimbing}
+            <GuidanceGroupAddDrawerView
+              handleKelBimbingan={handleKelBimbingan}
               id="0"
             />
           </div>
-          <SupervisorDataTableView
+          <GuidanceGroupTableView
             data={data}
             selected={selected}
             setSelected={setSelected}
-            handleDataPembimbing={handleDataPembimbing}
+            handleKelBimbingan={handleKelBimbingan}
           />
-          <SupervisorDataUpdateDrawerView
-            handleDataPembimbing={handleDataPembimbing}
+          <GuidanceGroupUpdateDrawerView
+            handleKelBimbingan={handleKelBimbingan}
             selected={selected}
             id="1"
           />

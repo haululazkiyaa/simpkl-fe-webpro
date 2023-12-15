@@ -5,8 +5,11 @@ import { Flip, ToastContainer } from "react-toastify";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import AuthContextProvider from "./context/AuthContext.jsx";
+import CompanyAdminGuidanceGroupPage from "./pages/company-admin/guidance-group/index.jsx";
+import CompanyAdminInstructorDataPage from "./pages/company-admin/instructor-data/index.jsx";
+import CompanyAdminInstructorStudentDataPage from "./pages/company-admin/instructor-data/students/index.jsx";
 import CompanyAdminPage from "./pages/company-admin/index.jsx";
-import CompanyAdminSettingsPage from "./pages/company-admin/settings.jsx/index.jsx";
+import CompanyAdminProfilePage from "./pages/company-admin/profile.jsx/index.jsx";
 import DashboardPage from "./pages/dashboard/index.jsx";
 import ErrorPage from "./pages/error.jsx";
 import LoginPage from "./pages/auth/login.jsx";
@@ -54,7 +57,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "company-admin/profile",
-        element: <CompanyAdminSettingsPage />,
+        element: <CompanyAdminProfilePage />,
+      },
+      {
+        path: "company-admin/instructor-data",
+        element: <CompanyAdminInstructorDataPage />,
+      },
+      {
+        path: "company-admin/instructor-data/:InstructorId",
+        element: <CompanyAdminInstructorStudentDataPage />,
+      },
+      {
+        path: "company-admin/guidance-group",
+        element: <CompanyAdminGuidanceGroupPage />,
       },
     ],
   },

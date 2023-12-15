@@ -2,14 +2,14 @@ import { useCallback, useContext, useEffect } from "react";
 
 import { AuthContext } from "../../../context/AuthContext";
 import Button from "../../../components/Elements/Button";
-import CompanyProfileTableView from "../../../views/CompanyAdmin/Settings/ProfileSettings/TableView";
-import CompanyProfileUpdateDrawerView from "../../../views/CompanyAdmin/Settings/ProfileSettings/UpdateDrawerView";
+import CompanyProfileTableView from "../../../views/CompanyAdmin/Profile/GeneralInfo/TableView";
+import CompanyProfileUpdateDrawerView from "../../../views/CompanyAdmin/Profile/GeneralInfo/UpdateDrawerView";
 import Logout from "../../../components/Elements/Logout";
 import { getProfile } from "../../../services/dashboard/profile.service";
 import { refreshToken } from "../../../services/auth/auth.service";
 import { useNavigate } from "react-router-dom";
 
-export default function CompanyAdminSettingsPage() {
+export default function CompanyAdminProfilePage() {
   const { profile, setProfile, setProgress } = useContext(AuthContext);
   const navigate = useNavigate();
 

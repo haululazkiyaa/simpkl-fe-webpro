@@ -9,16 +9,13 @@ import PropTypes from "prop-types";
 import SelectInput from "../../../components/Elements/SelectInput/index.jsx";
 import SuccessBadge from "../../../components/Elements/SuccessBadge/index.jsx";
 import { getInstruktur } from "../../../services/instructor/instructor.service.js";
-import { getPembimbing } from "../../../services/school-admin/supervisor-data.service.js";
-import { getPerusahaan } from "../../../services/company-admin/company-data.service.js";
-import { getSiswa } from "../../../services/school-admin/student-data.service.js";
 import { refreshToken } from "../../../services/auth/auth.service.js";
 import { toast } from "react-toastify";
 import { updateKelBimbingan } from "../../../services/school-admin/guidance-group.service.js";
 import { useNavigate } from "react-router-dom";
 
-export default function GuidanceGroupUpdateDrawerView(props) {
-  const { handleKelBimbingan, selected, id } = props;
+export default function CompanyGuidanceGroupUpdateDrawerView(props) {
+  const { handleKelBimbinganPerusahaan, selected, id } = props;
   const { setProgress } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -26,18 +23,12 @@ export default function GuidanceGroupUpdateDrawerView(props) {
   const [loading, setLoading] = useState(false);
 
   // handle input
-  const [idSiswa, setIDSiswa] = useState("");
-  const [idPembimbing, setIDPembimbing] = useState("");
-  const [idPerusahaan, setIDPerusahaan] = useState("");
   const [idInstruktur, setIDInstruktur] = useState("");
 
   // handle message
   const [message, setMessage] = useState("");
 
   // handle data
-  const [opsiSiswa, setOpsiSiswa] = useState([]);
-  const [opsiPembimbing, setOpsiPembimbing] = useState([]);
-  const [opsiPerusahaan, setOpsiPerusahaan] = useState([]);
   const [opsiInstruktur, setOpsiInstruktur] = useState([]);
 
   const handleDataJurusan = () => {
@@ -45,49 +36,13 @@ export default function GuidanceGroupUpdateDrawerView(props) {
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        getSiswa(token, (status, data) => {
-          if (status) {
-            let options = [];
-            for (let item of data) {
-              options.push({
-                value: item.id,
-                label: `[${item.nis}] ${item.nama}`,
-              });
-            }
-            setOpsiSiswa(options);
-          }
-        });
-        getPembimbing(token, (status, data) => {
-          if (status) {
-            let options = [];
-            for (let item of data) {
-              options.push({
-                value: item.id,
-                label: `[${item.nip}] ${item.nama}`,
-              });
-            }
-            setOpsiPembimbing(options);
-          }
-        });
-        getPerusahaan(token, (status, data) => {
-          if (status) {
-            let options = [];
-            for (let item of data) {
-              options.push({
-                value: item.id,
-                label: item.nama_perusahaan,
-              });
-            }
-            setOpsiPerusahaan(options);
-          }
-        });
         getInstruktur(token, (status, data) => {
           if (status) {
             let options = [];
             for (let item of data) {
               options.push({
                 value: item.id,
-                label: `[${item.perusahaan.nama_perusahaan}] ${item.nama}`,
+                label: `${item.nama}`,
               });
             }
             setOpsiInstruktur(options);
@@ -104,16 +59,13 @@ export default function GuidanceGroupUpdateDrawerView(props) {
     });
   };
 
-  const handleUpdateSiswa = (e) => {
+  const handleUpdateKelBimbinganPerusahaan = (e) => {
     e.preventDefault();
     setProgress(30);
     setLoading(true);
     setMessage("");
     const data = {
       id: selected.id,
-      id_siswa: idSiswa,
-      id_guru_pembimbing: idPembimbing,
-      id_perusahaan: idPerusahaan,
       id_instruktur: idInstruktur == "" ? null : idInstruktur,
     };
     refreshToken((status, token) => {
@@ -121,7 +73,7 @@ export default function GuidanceGroupUpdateDrawerView(props) {
         setProgress(60);
         updateKelBimbingan(data, token, (status, message) => {
           if (status) {
-            toast.success(`Sukses! Data kelompok bimbingan siswa diperbarui.`, {
+            toast.success(`Sukses! Instruktur siswa diperbarui.`, {
               autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -129,11 +81,11 @@ export default function GuidanceGroupUpdateDrawerView(props) {
               draggable: true,
               progress: undefined,
             });
-            handleKelBimbingan();
+            handleKelBimbinganPerusahaan();
             setMessage("success");
           } else {
             setMessage(message);
-            toast.error("Gagal memperbarui data kelompok bimbingan siswa!", {
+            toast.error("Gagal memperbarui instruktur siswa!", {
               autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -156,9 +108,6 @@ export default function GuidanceGroupUpdateDrawerView(props) {
   };
 
   useEffect(() => {
-    setIDSiswa(selected?.siswa?.id);
-    setIDPembimbing(selected?.guru_pembimbing?.id);
-    setIDPerusahaan(selected?.perusahaan?.id);
     setIDInstruktur(selected?.instruktur?.id);
   }, [selected]);
 
@@ -172,61 +121,18 @@ export default function GuidanceGroupUpdateDrawerView(props) {
         id={"update-drawer" + id}
         hidden={true}
         onClick={() => {
-          setOpsiSiswa([]);
-          setOpsiPembimbing([]);
-          setOpsiPerusahaan([]);
           setOpsiInstruktur([]);
           handleDataJurusan();
           setMessage("");
           getDetails();
         }}
       ></button>
-      <Drawer title="Perbarui Data Kelompok Bimbingan Siswa" id={id}>
+      <Drawer title="Pilih Instruktur Siswa" id={id}>
         {message != "success" ? (
           <form
             className="space-y-4 md:space-y-6"
-            onSubmit={(e) => handleUpdateSiswa(e)}
+            onSubmit={(e) => handleUpdateKelBimbinganPerusahaan(e)}
           >
-            {opsiSiswa.length != 0 ? (
-              <SelectInput
-                options={opsiSiswa}
-                label="Pilih Siswa"
-                id="pilih_siswa"
-                onChange={(e) => setIDSiswa(e.value)}
-                defaultValue={opsiSiswa.find(
-                  ({ value }) => value === selected?.siswa?.id
-                )}
-                isDisabled={true}
-              />
-            ) : (
-              <p>memuat data...</p>
-            )}
-            {opsiPembimbing.length != 0 ? (
-              <SelectInput
-                options={opsiPembimbing}
-                label="Pilih Pembimbing"
-                id="pilih_pembimbing"
-                onChange={(e) => setIDPembimbing(e.value)}
-                defaultValue={opsiPembimbing.find(
-                  ({ value }) => value === selected?.guru_pembimbing?.id
-                )}
-              />
-            ) : (
-              <p>memuat data...</p>
-            )}
-            {opsiPerusahaan.length != 0 ? (
-              <SelectInput
-                options={opsiPerusahaan}
-                label="Pilih Perusahaan"
-                id="pilih_perusahaan"
-                onChange={(e) => setIDPerusahaan(e.value)}
-                defaultValue={opsiPerusahaan.find(
-                  ({ value }) => value === selected?.perusahaan?.id
-                )}
-              />
-            ) : (
-              <p>memuat data...</p>
-            )}
             {opsiInstruktur.length != 0 ? (
               <SelectInput
                 options={opsiInstruktur}
@@ -278,9 +184,9 @@ export default function GuidanceGroupUpdateDrawerView(props) {
   );
 }
 
-GuidanceGroupUpdateDrawerView.propTypes = {
+CompanyGuidanceGroupUpdateDrawerView.propTypes = {
   data: PropTypes.any,
-  handleKelBimbingan: PropTypes.func,
+  handleKelBimbinganPerusahaan: PropTypes.func,
   selected: PropTypes.any,
   id: PropTypes.string,
 };

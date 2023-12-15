@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import AuthContextProvider from "./context/AuthContext.jsx";
 import CompanyAdminPage from "./pages/company-admin/index.jsx";
+import CompanyAdminSettingsPage from "./pages/company-admin/settings.jsx/index.jsx";
 import DashboardPage from "./pages/dashboard/index.jsx";
 import ErrorPage from "./pages/error.jsx";
 import LoginPage from "./pages/auth/login.jsx";
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "company-admin/profile",
-        element: <DashboardPage />,
+        element: <CompanyAdminSettingsPage />,
       },
     ],
   },

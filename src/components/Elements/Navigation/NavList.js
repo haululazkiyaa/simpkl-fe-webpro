@@ -44,12 +44,12 @@ export const NavList = [
       },
       {
         label: "Data Instruktur",
-        href: "/company-admin/profile",
+        href: "/company-admin/instructor-data",
         icon: "fa-building-user",
       },
       {
         label: "Kelompok Bimbingan",
-        href: "/company-admin/profile",
+        href: "/company-admin/guidance-group",
         icon: "fa-users",
       },
     ],

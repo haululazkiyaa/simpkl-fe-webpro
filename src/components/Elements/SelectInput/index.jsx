@@ -3,7 +3,14 @@ import { PropTypes } from "prop-types";
 import Select from "react-select";
 
 export default function SelectInput(props) {
-  const { options = [], label, onChange, defaultValue } = props;
+  const {
+    options = [],
+    label,
+    onChange,
+    defaultValue,
+    isDisabled = false,
+    required = true,
+  } = props;
 
   return (
     <>
@@ -48,7 +55,8 @@ export default function SelectInput(props) {
         options={options}
         onChange={onChange}
         defaultValue={defaultValue}
-        required
+        required={required}
+        isDisabled={isDisabled}
       />
     </>
   );
@@ -59,4 +67,6 @@ SelectInput.propTypes = {
   label: PropTypes.string,
   onChange: PropTypes.func,
   defaultValue: PropTypes.any,
+  required: PropTypes.bool,
+  isDisabled: PropTypes.bool,
 };

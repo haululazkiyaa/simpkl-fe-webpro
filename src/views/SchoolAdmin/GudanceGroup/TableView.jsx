@@ -4,8 +4,8 @@ import Dropdown from "../../../components/Elements/Dropdown/index.jsx";
 import Logout from "../../../components/Elements/Logout/index.js";
 import PropTypes from "prop-types";
 import { refreshToken } from "../../../services/auth/auth.service.js";
-import { setSiswa } from "../../../services/school-admin/student-data.service.js";
 import { toast } from "react-toastify";
+import { updateKelBimbingan } from "../../../services/school-admin/guidance-group.service.js";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,17 +18,17 @@ export default function GuidanceGroupTableView(props) {
     setProgress(30);
     const data = {
       id: selected.id,
-      status_aktif: !selected?.status_aktif,
+      status: !selected?.status,
     };
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        setSiswa(data, token, (status) => {
+        updateKelBimbingan(data, token, (status) => {
           if (status) {
             toast.success(
-              `Sukses! Siswa a.n. ${selected?.nama} telah berstatus ${
-                selected?.status_aktif ? "non-akitf" : "aktif"
-              }`,
+              `Sukses! Siswa a.n. ${selected.siswa?.nama} telah di ${
+                selected?.status ? "non-akitfkan" : "aktifkan"
+              } dari kelompok bimbingan`,
               {
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -43,7 +43,7 @@ export default function GuidanceGroupTableView(props) {
             toast.error(
               `Gagal ${
                 selected?.status_aktif ? "menon-aktifkan" : "mengaktifkan"
-              } siswa a.n. ${selected?.nama}!`,
+              } siswa a.n. ${selected.siswa?.nama}!`,
               {
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -89,25 +89,16 @@ export default function GuidanceGroupTableView(props) {
                 NIS / NISN
               </th>
               <th scope="col" className="px-6 py-3">
-                Nama
+                Nama Siswa
               </th>
               <th scope="col" className="px-6 py-3">
-                Jurusan
+                Guru Pembimbing
               </th>
               <th scope="col" className="px-6 py-3">
-                TTL
+                Perusahaan
               </th>
               <th scope="col" className="px-6 py-3">
-                Alamat
-              </th>
-              <th scope="col" className="px-6 py-3">
-                No. HP
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Username
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Kata Sandi Sementara
+                Instruktur
               </th>
               <th scope="col" className="px-6 py-3">
                 Status
@@ -131,31 +122,23 @@ export default function GuidanceGroupTableView(props) {
                     {index + 1}
                   </th>
                   <td className="px-6 py-4">
-                    {item.nis} / {item.nisn}
+                    {item.siswa?.nis} / {item.siswa?.nisn}
                   </td>
-                  <td className="px-6 py-4 truncate text-left">{item.nama}</td>
                   <td className="px-6 py-4 truncate text-left">
-                    {item.jurusan?.kompetensi_keahlian}
+                    {item.siswa.nama}
+                  </td>
+                  <td className="px-6 py-4 truncate text-left">
+                    {item.guru_pembimbing?.nama}
                   </td>
                   <td className="px-6 py-4 truncate">
-                    {item.tempat_lahir},{" "}
-                    {new Date(item.tanggal_lahir).toLocaleString("id-ID", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })}
+                    {item.perusahaan?.nama_perusahaan}
                   </td>
                   <td className="px-6 py-4 truncate text-left">
-                    {item.alamat}
-                  </td>
-                  <td className="px-6 py-4">{item.no_hp}</td>
-                  <td className="px-6 py-4">{item.user?.username}</td>
-                  <td className="px-6 py-4">
-                    {item.user?.temp_password || "-"}
+                    {item.instruktur?.nama}
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-center">
-                      {item.status_aktif ? (
+                      {item.status ? (
                         <>
                           <div className="h-2.5 w-2.5 rounded-full bg-green-500 me-2 animate-pulse"></div>{" "}
                           Aktif
@@ -178,13 +161,9 @@ export default function GuidanceGroupTableView(props) {
                           label: "Edit",
                         },
                         {
-                          variant: `${
-                            item.status_aktif ? "danger" : "default"
-                          }`,
+                          variant: `${item.status ? "danger" : "default"}`,
                           onClick: () => initModal(item),
-                          label: `${
-                            item.status_aktif ? "Non-aktifkan" : "Aktifkan"
-                          }`,
+                          label: `${item.status ? "Non-aktifkan" : "Aktifkan"}`,
                         },
                       ]}
                     >
@@ -203,8 +182,8 @@ export default function GuidanceGroupTableView(props) {
       </div>
       <ConfirmModal
         desc={`Apakah anda yakin ingin ${
-          selected?.status_aktif ? "menon-aktifkan" : "mengaktifkan"
-        } siswa a.n. ${selected?.nama}?`}
+          selected?.status ? "menon-aktifkan" : "mengaktifkan"
+        } siswa a.n. ${selected.siswa?.nama}?`}
         labelOk="Ya"
         labelCancel="Tidak"
         onClick={() => handleStatusSiswa()}

@@ -4,15 +4,17 @@ import Alert from "../../../components/Elements/Alert/index.jsx";
 import { AuthContext } from "../../../context/AuthContext.jsx";
 import Button from "../../../components/Elements/Button/index.jsx";
 import Drawer from "../../../components/Elements/Drawer/index.jsx";
-import Input from "../../../components/Elements/Input/index.jsx";
 import Logout from "../../../components/Elements/Logout/index.js";
 import PropTypes from "prop-types";
 import SelectInput from "../../../components/Elements/SelectInput/index.jsx";
 import SuccessBadge from "../../../components/Elements/SuccessBadge/index.jsx";
-import { getJurusan } from "../../../services/school-admin/major-management.service.js";
+import { getInstruktur } from "../../../services/instructure/instructure.service.js";
+import { getPembimbing } from "../../../services/school-admin/supervisor-data.service.js";
+import { getPerusahaan } from "../../../services/company-admin/company-data.service.js";
+import { getSiswa } from "../../../services/school-admin/student-data.service.js";
 import { refreshToken } from "../../../services/auth/auth.service.js";
 import { toast } from "react-toastify";
-import { updateSiswa } from "../../../services/school-admin/student-data.service.js";
+import { updateKelBimbingan } from "../../../services/school-admin/guidance-group.service.js";
 import { useNavigate } from "react-router-dom";
 
 export default function GuidanceGroupUpdateDrawerView(props) {
@@ -24,36 +26,71 @@ export default function GuidanceGroupUpdateDrawerView(props) {
   const [loading, setLoading] = useState(false);
 
   // handle input
-  const [idJurusan, setIDJurusan] = useState("");
-  const [nis, setNis] = useState("");
-  const [nisn, setNisn] = useState("");
-  const [nama, setNama] = useState("");
-  const [alamat, setAlamat] = useState("");
-  const [noHP, setNoHP] = useState("");
-  const [tempatLahir, setTempatLahir] = useState("");
-  const [tanggalLahir, setTanggalLahir] = useState("");
+  const [idSiswa, setIDSiswa] = useState("");
+  const [idPembimbing, setIDPembimbing] = useState("");
+  const [idPerusahaan, setIDPerusahaan] = useState("");
+  const [idInstruktur, setIDInstruktur] = useState("");
 
   // handle message
   const [message, setMessage] = useState("");
 
-  // handle data jurusan
-  const [opsiJurusan, setOpsiJurusan] = useState([]);
+  // handle data
+  const [opsiSiswa, setOpsiSiswa] = useState([]);
+  const [opsiPembimbing, setOpsiPembimbing] = useState([]);
+  const [opsiPerusahaan, setOpsiPerusahaan] = useState([]);
+  const [opsiInstruktur, setOpsiInstruktur] = useState([]);
 
   const handleDataJurusan = () => {
     setProgress(30);
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        getJurusan(token, (status, data) => {
+        getSiswa(token, (status, data) => {
           if (status) {
             let options = [];
             for (let item of data) {
               options.push({
                 value: item.id,
-                label: item.kompetensi_keahlian,
+                label: `[${item.nis}] ${item.nama}`,
               });
             }
-            setOpsiJurusan(options);
+            setOpsiSiswa(options);
+          }
+        });
+        getPembimbing(token, (status, data) => {
+          if (status) {
+            let options = [];
+            for (let item of data) {
+              options.push({
+                value: item.id,
+                label: `[${item.nip}] ${item.nama}`,
+              });
+            }
+            setOpsiPembimbing(options);
+          }
+        });
+        getPerusahaan(token, (status, data) => {
+          if (status) {
+            let options = [];
+            for (let item of data) {
+              options.push({
+                value: item.id,
+                label: item.nama_perusahaan,
+              });
+            }
+            setOpsiPerusahaan(options);
+          }
+        });
+        getInstruktur(token, (status, data) => {
+          if (status) {
+            let options = [];
+            for (let item of data) {
+              options.push({
+                value: item.id,
+                label: `[${item.perusahaan.nama_perusahaan}] ${item.nama}`,
+              });
+            }
+            setOpsiInstruktur(options);
           }
         });
       } else {
@@ -74,21 +111,17 @@ export default function GuidanceGroupUpdateDrawerView(props) {
     setMessage("");
     const data = {
       id: selected.id,
-      id_jurusan: idJurusan,
-      nis: nis,
-      nisn: nisn,
-      nama: nama,
-      alamat: alamat,
-      no_hp: noHP,
-      tempat_lahir: tempatLahir,
-      tanggal_lahir: tanggalLahir,
+      id_siswa: idSiswa,
+      id_guru_pembimbing: idPembimbing,
+      id_perusahaan: idPerusahaan,
+      id_instruktur: idInstruktur == "" ? null : idInstruktur,
     };
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        updateSiswa(data, token, (status, message) => {
+        updateKelBimbingan(data, token, (status, message) => {
           if (status) {
-            toast.success(`Sukses! Data siswa a.n. ${nama} diperbarui.`, {
+            toast.success(`Sukses! Data kelompok bimbingan siswa diperbarui.`, {
               autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -100,7 +133,7 @@ export default function GuidanceGroupUpdateDrawerView(props) {
             setMessage("success");
           } else {
             setMessage(message);
-            toast.error("Gagal memperbarui data siswa!", {
+            toast.error("Gagal memperbarui data kelompok bimbingan siswa!", {
               autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -123,18 +156,10 @@ export default function GuidanceGroupUpdateDrawerView(props) {
   };
 
   useEffect(() => {
-    setIDJurusan(selected?.id_jurusan);
-    setNis(selected?.nis);
-    setNisn(selected?.nisn);
-    setNama(selected?.nama);
-    setAlamat(selected?.alamat);
-    setNoHP(selected?.no_hp);
-    setTempatLahir(selected?.tempat_lahir);
-    setTanggalLahir(
-      selected
-        ? new Date(selected.tanggal_lahir).toISOString().slice(0, 10)
-        : null
-    );
+    setIDSiswa(selected?.siswa?.id);
+    setIDPembimbing(selected?.guru_pembimbing?.id);
+    setIDPerusahaan(selected?.perusahaan?.id);
+    setIDInstruktur(selected?.instruktur?.id);
   }, [selected]);
 
   const getDetails = () => {
@@ -147,102 +172,76 @@ export default function GuidanceGroupUpdateDrawerView(props) {
         id={"update-drawer" + id}
         hidden={true}
         onClick={() => {
-          setOpsiJurusan([]);
+          setOpsiSiswa([]);
+          setOpsiPembimbing([]);
+          setOpsiPerusahaan([]);
+          setOpsiInstruktur([]);
           handleDataJurusan();
           setMessage("");
           getDetails();
         }}
       ></button>
-      <Drawer title="Perbarui Data Siswa" id={id}>
+      <Drawer title="Perbarui Data Kelompok Bimbingan Siswa" id={id}>
         {message != "success" ? (
           <form
             className="space-y-4 md:space-y-6"
             onSubmit={(e) => handleUpdateSiswa(e)}
           >
-            {opsiJurusan.length != 0 ? (
+            {opsiSiswa.length != 0 ? (
               <SelectInput
-                options={opsiJurusan}
-                label="Pilih Jurusan"
-                id="pilih_jurusan"
-                onChange={(e) => setIDJurusan(e.value)}
-                defaultValue={opsiJurusan.find(
-                  ({ value }) => value === selected?.id_jurusan
+                options={opsiSiswa}
+                label="Pilih Siswa"
+                id="pilih_siswa"
+                onChange={(e) => setIDSiswa(e.value)}
+                defaultValue={opsiSiswa.find(
+                  ({ value }) => value === selected?.siswa?.id
+                )}
+                isDisabled={true}
+              />
+            ) : (
+              <p>memuat data...</p>
+            )}
+            {opsiPembimbing.length != 0 ? (
+              <SelectInput
+                options={opsiPembimbing}
+                label="Pilih Pembimbing"
+                id="pilih_pembimbing"
+                onChange={(e) => setIDPembimbing(e.value)}
+                defaultValue={opsiPembimbing.find(
+                  ({ value }) => value === selected?.guru_pembimbing?.id
                 )}
               />
             ) : (
               <p>memuat data...</p>
             )}
-            <Input
-              className="text-sm"
-              type="text"
-              label="NIS"
-              name="nis"
-              id="nis"
-              placeholder="Masukan NIS siswa"
-              value={nis}
-              onChange={(e) => setNis(e.target.value)}
-              required={true}
-            />
-            <Input
-              type="text"
-              label="NISN"
-              name="nisn"
-              id="nisn"
-              placeholder="Masukan NISN siswa"
-              value={nisn}
-              onChange={(e) => setNisn(e.target.value)}
-              required={true}
-            />
-            <Input
-              type="text"
-              label="Nama"
-              name="nama"
-              id="nama"
-              placeholder="Masukan nama siswa"
-              value={nama}
-              onChange={(e) => setNama(e.target.value)}
-              required={true}
-            />
-            <Input
-              type="text"
-              label="Alamat"
-              name="alamat"
-              id="alamat"
-              placeholder="Masukan alamat siswa"
-              value={alamat}
-              onChange={(e) => setAlamat(e.target.value)}
-              required={true}
-            />
-            <Input
-              type="text"
-              label="No. HP"
-              name="no_hp"
-              id="no_hp"
-              placeholder="Masukan nomor HP siswa"
-              value={noHP}
-              onChange={(e) => setNoHP(e.target.value)}
-              required={true}
-            />
-            <Input
-              type="text"
-              label="Tempat Lahir"
-              name="tempat_lahir"
-              id="tempat_lahir"
-              placeholder="Masukan tempat lahir siswa"
-              value={tempatLahir}
-              onChange={(e) => setTempatLahir(e.target.value)}
-              required={true}
-            />
-            <Input
-              type="date"
-              label="Tanggal Lahir"
-              name="tanggal_lahir"
-              id="tanggal_lahir"
-              placeholder="Masukan tanggal lahir siswa"
-              value={tanggalLahir}
-              onChange={(e) => setTanggalLahir(e.target.value)}
-              required={true}
-            />
+            {opsiPerusahaan.length != 0 ? (
+              <SelectInput
+                options={opsiPerusahaan}
+                label="Pilih Perusahaan"
+                id="pilih_perusahaan"
+                onChange={(e) => setIDPerusahaan(e.value)}
+                defaultValue={opsiPerusahaan.find(
+                  ({ value }) => value === selected?.perusahaan?.id
+                )}
+              />
+            ) : (
+              <p>memuat data...</p>
+            )}
+            {opsiInstruktur.length != 0 ? (
+              <SelectInput
+                options={opsiInstruktur}
+                ur
+                label="Pilih Instruktur"
+                id="pilih_instruktur"
+                onChange={(e) => setIDInstruktur(e.value)}
+                defaultValue={opsiInstruktur.find(
+                  ({ value }) => value === selected?.instruktur?.id
+                )}
+                required={false}
+              />
+            ) : (
+              <p>memuat data...</p>
+            )}
             <Alert>{message}</Alert>
             <Button type="submit" width="full" disabled={loading}>
               {loading ? (

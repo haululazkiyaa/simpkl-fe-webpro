@@ -5,9 +5,9 @@ function RegisterPage() {
   return (
     <AuthLayout title="Masuk ke akun anda">
       <RegisterForm />
-      <AuthLayout.GuideLink href="/login" label="Masuk">
+      {/* <AuthLayout.GuideLink href="/login" label="Masuk">
         Sudah punya akun?
-      </AuthLayout.GuideLink>
+      </AuthLayout.GuideLink> */}
     </AuthLayout>
   );
 }

@@ -2,7 +2,7 @@ import { axiosReq } from "../axios.service";
 export const register = async (data, callback) => {
   try {
     await axiosReq.post(
-      `${import.meta.env.VITE_API_URL}/auth/register-admin-sekolah`,
+      `${import.meta.env.VITE_API_URL}/perusahaan/registrasi`,
       data
     );
     callback(true);

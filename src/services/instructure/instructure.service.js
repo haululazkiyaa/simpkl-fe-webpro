@@ -1,9 +1,9 @@
 import { axiosReq } from "../axios.service";
 
 // services setting tahun ajaran
-export const getJurusan = async (token, callback) => {
+export const getInstruktur = async (token, callback) => {
   await axiosReq
-    .get(`${import.meta.env.VITE_API_URL}/jurusan/all`, {
+    .get(`${import.meta.env.VITE_API_URL}/instruktur/all`, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -16,9 +16,9 @@ export const getJurusan = async (token, callback) => {
     });
 };
 
-export const addJurusan = async (data, token, callback) => {
+export const updateInstruktur = async (data, token, callback) => {
   await axiosReq
-    .post(`${import.meta.env.VITE_API_URL}/jurusan/create`, data, {
+    .put(`${import.meta.env.VITE_API_URL}/instruktur/update`, data, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -31,9 +31,9 @@ export const addJurusan = async (data, token, callback) => {
     });
 };
 
-export const updateJurusan = async (data, token, callback) => {
+export const addInstruktur = async (data, token, callback) => {
   await axiosReq
-    .put(`${import.meta.env.VITE_API_URL}/jurusan/update`, data, {
+    .post(`${import.meta.env.VITE_API_URL}/instruktur/create`, data, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -42,6 +42,7 @@ export const updateJurusan = async (data, token, callback) => {
       callback(true);
     })
     .catch((error) => {
-      callback(false, error.response.data.message);
+      callback(false, error.response?.data.message);
+      console.log(error);
     });
 };

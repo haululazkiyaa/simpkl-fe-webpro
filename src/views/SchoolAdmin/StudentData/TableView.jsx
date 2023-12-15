@@ -4,17 +4,17 @@ import Dropdown from "../../../components/Elements/Dropdown/index.jsx";
 import Logout from "../../../components/Elements/Logout/index.js";
 import PropTypes from "prop-types";
 import { refreshToken } from "../../../services/auth/auth.service.js";
-import { setPembimbing } from "../../../services/school-admin/supervisor-data.service.js";
+import { setSiswa } from "../../../services/school-admin/student-data.service.js";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function SupervisorDataTableView(props) {
-  const { handleDataPembimbing, data, selected, setSelected } = props;
+export default function StudentDataTableView(props) {
+  const { handleDataSiswa, data, selected, setSelected } = props;
   const { setProgress } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleStatusPembimbing = () => {
+  const handleStatusSiswa = () => {
     setProgress(30);
     const data = {
       id: selected.id,
@@ -23,10 +23,10 @@ export default function SupervisorDataTableView(props) {
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        setPembimbing(data, token, (status) => {
+        setSiswa(data, token, (status) => {
           if (status) {
             toast.success(
-              `Sukses! Pembimbing a.n. ${selected?.nama} telah berstatus ${
+              `Sukses! Siswa a.n. ${selected?.nama} telah berstatus ${
                 selected?.status_aktif ? "non-akitf" : "aktif"
               }`,
               {
@@ -38,12 +38,12 @@ export default function SupervisorDataTableView(props) {
                 progress: undefined,
               }
             );
-            handleDataPembimbing();
+            handleDataSiswa();
           } else {
             toast.error(
               `Gagal ${
                 selected?.status_aktif ? "menon-aktifkan" : "mengaktifkan"
-              } pembimbing a.n. ${selected?.nama}!`,
+              } siswa a.n. ${selected?.nama}!`,
               {
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -86,10 +86,16 @@ export default function SupervisorDataTableView(props) {
                 No.
               </th>
               <th scope="col" className="px-6 py-3">
-                NIP
+                NIS / NISN
               </th>
               <th scope="col" className="px-6 py-3">
                 Nama
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Jurusan
+              </th>
+              <th scope="col" className="px-6 py-3">
+                TTL
               </th>
               <th scope="col" className="px-6 py-3">
                 Alamat
@@ -124,8 +130,21 @@ export default function SupervisorDataTableView(props) {
                   >
                     {index + 1}
                   </th>
-                  <td className="px-6 py-4">{item.nip}</td>
+                  <td className="px-6 py-4">
+                    {item.nis} / {item.nisn}
+                  </td>
                   <td className="px-6 py-4 truncate text-left">{item.nama}</td>
+                  <td className="px-6 py-4 truncate text-left">
+                    {item.jurusan?.kompetensi_keahlian}
+                  </td>
+                  <td className="px-6 py-4 truncate">
+                    {item.tempat_lahir},{" "}
+                    {new Date(item.tanggal_lahir).toLocaleString("id-ID", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </td>
                   <td className="px-6 py-4 truncate text-left">
                     {item.alamat}
                   </td>
@@ -185,18 +204,18 @@ export default function SupervisorDataTableView(props) {
       <ConfirmModal
         desc={`Apakah anda yakin ingin ${
           selected?.status_aktif ? "menon-aktifkan" : "mengaktifkan"
-        } pembimbing a.n. ${selected?.nama}?`}
+        } siswa a.n. ${selected?.nama}?`}
         labelOk="Ya"
         labelCancel="Tidak"
-        onClick={() => handleStatusPembimbing()}
+        onClick={() => handleStatusSiswa()}
       />
     </>
   );
 }
 
-SupervisorDataTableView.propTypes = {
+StudentDataTableView.propTypes = {
   data: PropTypes.any,
-  handleDataPembimbing: PropTypes.func,
+  handleDataSiswa: PropTypes.func,
   selected: PropTypes.any,
   setSelected: PropTypes.any,
   id: PropTypes.string,

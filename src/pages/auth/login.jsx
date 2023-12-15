@@ -15,8 +15,8 @@ function LoginPage() {
   return (
     <AuthLayout title="Masuk ke akun anda">
       <LoginForm onSubmit={handleLogin} />
-      <AuthLayout.GuideLink href="/register" label="Daftar">
-        Belum punya akun?
+      <AuthLayout.GuideLink href="/register" label="Daftar disini">
+        Apakah anda admin perusahaan?
       </AuthLayout.GuideLink>
     </AuthLayout>
   );

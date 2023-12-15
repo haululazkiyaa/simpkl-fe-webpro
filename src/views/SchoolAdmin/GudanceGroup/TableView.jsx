@@ -4,29 +4,31 @@ import Dropdown from "../../../components/Elements/Dropdown/index.jsx";
 import Logout from "../../../components/Elements/Logout/index.js";
 import PropTypes from "prop-types";
 import { refreshToken } from "../../../services/auth/auth.service.js";
-import { setTahunAjaran } from "../../../services/school-admin/year-settings.service.js";
 import { toast } from "react-toastify";
+import { updateKelBimbingan } from "../../../services/school-admin/guidance-group.service.js";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function MajorManagementTableView(props) {
-  const { data, handleJurusan, selected, setSelected } = props;
+export default function GuidanceGroupTableView(props) {
+  const { handleKelBimbingan, data, selected, setSelected } = props;
   const { setProgress } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleDeleteJurusan = () => {
+  const handleStatusSiswa = () => {
     setProgress(30);
     const data = {
       id: selected.id,
-      status: true,
+      status: !selected?.status,
     };
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        setTahunAjaran(data, token, (status) => {
+        updateKelBimbingan(data, token, (status) => {
           if (status) {
             toast.success(
-              `Sukses! Tahun ajaran ${selected?.tahun_ajaran} sudah aktif.`,
+              `Sukses! Siswa a.n. ${selected.siswa?.nama} telah di ${
+                selected?.status ? "non-akitfkan" : "aktifkan"
+              } dari kelompok bimbingan`,
               {
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -36,16 +38,21 @@ export default function MajorManagementTableView(props) {
                 progress: undefined,
               }
             );
-            handleJurusan();
+            handleKelBimbingan();
           } else {
-            toast.error("Gagal mengganti tahun ajaran!", {
-              autoClose: 3000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
+            toast.error(
+              `Gagal ${
+                selected?.status_aktif ? "menon-aktifkan" : "mengaktifkan"
+              } siswa a.n. ${selected.siswa?.nama}!`,
+              {
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              }
+            );
           }
         });
       } else {
@@ -59,6 +66,11 @@ export default function MajorManagementTableView(props) {
     });
   };
 
+  const initModal = (item) => {
+    setSelected(item);
+    document.getElementById("init-modal").click();
+  };
+
   const updateDrawer = (item) => {
     setSelected(item);
     document.getElementById("update-drawer1").click();
@@ -67,20 +79,29 @@ export default function MajorManagementTableView(props) {
   return (
     <>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400">
+        <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
                 No.
               </th>
               <th scope="col" className="px-6 py-3">
-                Bidang Keahlian
+                NIS / NISN
               </th>
               <th scope="col" className="px-6 py-3">
-                Program Keahlian
+                Nama Siswa
               </th>
               <th scope="col" className="px-6 py-3">
-                Kompetensi Keahlian (INTI)
+                Guru Pembimbing
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Perusahaan
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Instruktur
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Status
               </th>
               <th scope="col" className="px-6 py-3">
                 Aksi
@@ -100,14 +121,35 @@ export default function MajorManagementTableView(props) {
                   >
                     {index + 1}
                   </th>
-                  <td className="px-6 py-4 truncate text-left">
-                    {item.bidang_keahlian}
+                  <td className="px-6 py-4">
+                    {item.siswa?.nis} / {item.siswa?.nisn}
                   </td>
                   <td className="px-6 py-4 truncate text-left">
-                    {item.program_keahlian}
+                    {item.siswa.nama}
                   </td>
                   <td className="px-6 py-4 truncate text-left">
-                    {item.kompetensi_keahlian}
+                    {item.guru_pembimbing?.nama}
+                  </td>
+                  <td className="px-6 py-4 truncate">
+                    {item.perusahaan?.nama_perusahaan}
+                  </td>
+                  <td className="px-6 py-4 truncate text-left">
+                    {item.instruktur?.nama}
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center justify-center">
+                      {item.status ? (
+                        <>
+                          <div className="h-2.5 w-2.5 rounded-full bg-green-500 me-2 animate-pulse"></div>{" "}
+                          Aktif
+                        </>
+                      ) : (
+                        <>
+                          <div className="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div>{" "}
+                          Nonaktif
+                        </>
+                      )}
+                    </div>
                   </td>
                   <td className="flex items-center justify-center px-3 py-2">
                     <Dropdown
@@ -119,9 +161,9 @@ export default function MajorManagementTableView(props) {
                           label: "Edit",
                         },
                         {
-                          variant: "danger",
-                          onClick: () => {},
-                          label: "Hapus",
+                          variant: `${item.status ? "danger" : "default"}`,
+                          onClick: () => initModal(item),
+                          label: `${item.status ? "Non-aktifkan" : "Aktifkan"}`,
                         },
                       ]}
                     >
@@ -139,18 +181,20 @@ export default function MajorManagementTableView(props) {
         </table>
       </div>
       <ConfirmModal
-        desc={`Apakah anda yakin ingin menghapus jurusan ${selected?.bidang_keahlian}?`}
+        desc={`Apakah anda yakin ingin ${
+          selected?.status ? "menon-aktifkan" : "mengaktifkan"
+        } siswa a.n. ${selected.siswa?.nama}?`}
         labelOk="Ya"
         labelCancel="Tidak"
-        onClick={() => handleDeleteJurusan()}
+        onClick={() => handleStatusSiswa()}
       />
     </>
   );
 }
 
-MajorManagementTableView.propTypes = {
+GuidanceGroupTableView.propTypes = {
   data: PropTypes.any,
-  handleJurusan: PropTypes.func,
+  handleKelBimbingan: PropTypes.func,
   selected: PropTypes.any,
   setSelected: PropTypes.any,
   id: PropTypes.string,

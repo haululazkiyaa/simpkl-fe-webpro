@@ -61,3 +61,13 @@ export function passwordValidation(value) {
   }
   return "";
 }
+
+export function emailValidation(value) {
+  if (value !== "") {
+    if (!validator.isEmail(value)) {
+      return "Email tidak valid";
+    }
+    return "";
+  }
+  return "";
+}

@@ -59,17 +59,17 @@ export const NavList = [
     child: [
       {
         label: "Monitoring Harian",
-        href: "/instructor/profile",
+        href: "/instructor/daily-monitoring",
         icon: "fa-calendar-days",
       },
       {
         label: "Monitoring Bulanan",
-        href: "/instructor/profile",
+        href: "/instructor/monthly-monitoring",
         icon: "fa-calendar-check",
       },
       {
         label: "Penilaian Bulanan",
-        href: "/instructor/profile",
+        href: "/instructor/monthly-assesment",
         icon: "fa-chart-simple",
       },
     ],

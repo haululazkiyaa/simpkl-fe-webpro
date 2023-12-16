@@ -12,6 +12,10 @@ import CompanyAdminPage from "./pages/company-admin/index.jsx";
 import CompanyAdminProfilePage from "./pages/company-admin/profile.jsx/index.jsx";
 import DashboardPage from "./pages/dashboard/index.jsx";
 import ErrorPage from "./pages/error.jsx";
+import InstructorDailyMonitoringPage from "./pages/instructor/daily-monitoring/index.jsx";
+import InstructorMonthlyAssesmentPage from "./pages/instructor/monthly-assesment/index.jsx";
+import InstructorMonthlyMonitoringPage from "./pages/instructor/monthly-monitoring/index.jsx";
+import InstructorPage from "./pages/instructor/index.jsx";
 import LoginPage from "./pages/auth/login.jsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -70,6 +74,23 @@ const router = createBrowserRouter([
       {
         path: "company-admin/guidance-group",
         element: <CompanyAdminGuidanceGroupPage />,
+      },
+    ],
+  },
+  {
+    element: <InstructorPage />,
+    children: [
+      {
+        path: "instructor/daily-monitoring",
+        element: <InstructorDailyMonitoringPage />,
+      },
+      {
+        path: "instructor/monthly-monitoring",
+        element: <InstructorMonthlyMonitoringPage />,
+      },
+      {
+        path: "instructor/monthly-assesment",
+        element: <InstructorMonthlyAssesmentPage />,
       },
     ],
   },

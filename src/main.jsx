@@ -25,8 +25,13 @@ import SchoolAdminPage from "./pages/school-admin/index.jsx";
 import SchoolAdminSettingsPage from "./pages/school-admin/settings.jsx/index.jsx";
 import SchoolAdminStudentDataPage from "./pages/school-admin/student-data/index.jsx";
 import SchoolAdminSupervisorDataPage from "./pages/school-admin/supervisor-data/index.jsx";
+import StudentDailyJournalPage from "./pages/student/daily-journal/index.jsx";
+import StudentFinalGradePage from "./pages/student/final-grade/index.jsx";
+import StudentMonthlyGradePage from "./pages/student/monthly-grade/index.jsx";
+import StudentMonthlyJournalPage from "./pages/student/monthly-journal/index.jsx";
+import StudentPage from "./pages/student/index.jsx";
 import SupervisorDailyMonitoringPage from "./pages/supervisor/daily-monitoring/index.jsx";
-import SupervisorFinalAssesmentPage from "./pages/supervisor/final-assesment copy/index.jsx";
+import SupervisorFinalAssesmentPage from "./pages/supervisor/final-assesment/index.jsx";
 import SupervisorMonthlyAssesmentPage from "./pages/supervisor/monthly-assesment/index.jsx";
 import SupervisorMonthlyMonitoringPage from "./pages/supervisor/monthly-monitoring/index.jsx";
 import SupervisorPage from "./pages/supervisor/index.jsx";
@@ -112,6 +117,27 @@ const router = createBrowserRouter([
       {
         path: "supervisor/final-assesment",
         element: <SupervisorFinalAssesmentPage />,
+      },
+    ],
+  },
+  {
+    element: <StudentPage />,
+    children: [
+      {
+        path: "student/daily-journal",
+        element: <StudentDailyJournalPage />,
+      },
+      {
+        path: "student/monthly-journal",
+        element: <StudentMonthlyJournalPage />,
+      },
+      {
+        path: "student/monthly-grade",
+        element: <StudentMonthlyGradePage />,
+      },
+      {
+        path: "student/final-grade",
+        element: <StudentFinalGradePage />,
       },
     ],
   },

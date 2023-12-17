@@ -38,6 +38,5 @@ export const addNilaiBulananPembimbing = async (data, token, callback) => {
     })
     .catch((error) => {
       callback(false, error.response?.data.message);
-      console.log(error);
     });
 };

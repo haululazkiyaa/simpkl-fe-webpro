@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Modal from "../../../components/Elements/Modal/index.jsx";
 import PropTypes from "prop-types";
 
-export default function InstructorDailyMonitorinCommentView(props) {
+export default function InstructorDailyMonitoringCommentView(props) {
   const { data, selected, id } = props;
 
   const [detail, setDetail] = useState({});
@@ -54,7 +54,7 @@ export default function InstructorDailyMonitorinCommentView(props) {
   );
 }
 
-InstructorDailyMonitorinCommentView.propTypes = {
+InstructorDailyMonitoringCommentView.propTypes = {
   data: PropTypes.any,
   selected: PropTypes.any,
   id: PropTypes.string,

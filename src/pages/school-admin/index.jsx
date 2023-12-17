@@ -7,7 +7,6 @@ import { useContext } from "react";
 export default function SchoolAdminPage() {
   const { profile } = useContext(AuthContext);
   {
-    console.log();
   }
   return (
     <DashboardLayout>

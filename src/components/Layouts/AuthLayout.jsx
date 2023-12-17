@@ -9,10 +9,11 @@ import { refreshToken } from "../../services/auth/auth.service";
 
 export default function AuthLayout(props) {
   const { children, title } = props;
-  const { setProgress } = useContext(AuthContext);
+  const { setProgress, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleRefreshToken = useCallback(() => {
+    setLoading(true);
     setProgress(30);
     refreshToken((status) => {
       setProgress(60);
@@ -20,8 +21,9 @@ export default function AuthLayout(props) {
         navigate("/");
       }
       setProgress(100);
+      setLoading(false);
     });
-  }, [setProgress, navigate]);
+  }, [setProgress, setLoading, navigate]);
 
   useEffect(() => {
     handleRefreshToken();

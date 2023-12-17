@@ -99,22 +99,22 @@ export const NavList = [
     child: [
       {
         label: "Jurnal Harian",
-        href: "/profile",
+        href: "/student/daily-journal",
         icon: "fa-calendar-days",
       },
       {
         label: "Jurnal Bulanan",
-        href: "/profile",
+        href: "/student/monthly-journal",
         icon: "fa-calendar-check",
       },
       {
-        label: "Penilaian Instruktur",
-        href: "/profile",
+        label: "Penilaian Pembimbing",
+        href: "/student/monthly-grade",
         icon: "fa-chart-simple",
       },
       {
         label: "Nilai Akhir",
-        href: "/profile",
+        href: "/student/final-grade",
         icon: "fa-book",
       },
     ],

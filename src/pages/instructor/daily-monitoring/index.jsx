@@ -1,8 +1,8 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../../../context/AuthContext";
-import InstructorDailyMonitorinCommentView from "../../../views/Instructor/DailyMonitoring/CommentView";
-import InstructorDailyMonitorinJournalView from "../../../views/Instructor/DailyMonitoring/JournalView";
+import InstructorDailyMonitoringCommentView from "../../../views/Instructor/DailyMonitoring/CommentView";
+import InstructorDailyMonitoringJournalView from "../../../views/Instructor/DailyMonitoring/JournalView";
 import InstructorDailyMonitoringTableView from "../../../views/Instructor/DailyMonitoring/TableView";
 import InstructorDailyMonitoringUpdateDrawerView from "../../../views/Instructor/DailyMonitoring/UpdateDrawerView";
 import Logout from "../../../components/Elements/Logout";
@@ -67,11 +67,11 @@ export default function InstructorDailyMonitoringPage() {
             selected={selected}
             id="1"
           />
-          <InstructorDailyMonitorinJournalView
+          <InstructorDailyMonitoringJournalView
             data={data}
             selected={selected}
           />
-          <InstructorDailyMonitorinCommentView
+          <InstructorDailyMonitoringCommentView
             data={data}
             selected={selected}
             id="1"

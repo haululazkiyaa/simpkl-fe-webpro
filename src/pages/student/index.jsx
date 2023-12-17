@@ -4,13 +4,13 @@ import { Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useContext } from "react";
 
-export default function SupervisorPage() {
+export default function StudentPage() {
   const { profile } = useContext(AuthContext);
   {
   }
   return (
     <DashboardLayout>
-      {profile.role === "PEMBIMBING" ? (
+      {profile.role === "SISWA" ? (
         <Outlet />
       ) : (
         <div>Anda tidak memiliki akses ke halaman ini!</div>
@@ -19,6 +19,6 @@ export default function SupervisorPage() {
   );
 }
 
-SupervisorPage.propTypes = {
+StudentPage.propTypes = {
   children: PropTypes.node,
 };

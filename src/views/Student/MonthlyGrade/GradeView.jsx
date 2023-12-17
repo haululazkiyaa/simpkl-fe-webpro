@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Modal from "../../../components/Elements/Modal/index.jsx";
 import PropTypes from "prop-types";
 
-export default function InstructorDailyMonitoringJournalView(props) {
+export default function StudentMonthlyGradeView(props) {
   const { data, selected } = props;
 
   const [detail, setDetail] = useState({});
@@ -133,7 +133,7 @@ export default function InstructorDailyMonitoringJournalView(props) {
   );
 }
 
-InstructorDailyMonitoringJournalView.propTypes = {
+StudentMonthlyGradeView.propTypes = {
   data: PropTypes.any,
   selected: PropTypes.any,
 };

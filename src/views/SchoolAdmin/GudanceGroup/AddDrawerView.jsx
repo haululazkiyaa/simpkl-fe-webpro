@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import SelectInput from "../../../components/Elements/SelectInput/index.jsx";
 import SuccessBadge from "../../../components/Elements/SuccessBadge/index.jsx";
 import { addKelBimbingan } from "../../../services/school-admin/guidance-group.service.js";
-import { getInstruktur } from "../../../services/instructure/instructure.service.js";
+import { getInstruktur } from "../../../services/instructor/instructor.service.js";
 import { getPembimbing } from "../../../services/school-admin/supervisor-data.service.js";
 import { getPerusahaan } from "../../../services/company-admin/company-data.service.js";
 import { getSiswa } from "../../../services/school-admin/student-data.service.js";

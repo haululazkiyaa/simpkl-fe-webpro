@@ -23,7 +23,9 @@ export default function DropdownUser(props) {
               alt="user photo"
             />
             <span className="hidden sm:inline sm:mx-3">
-              {profile?.dataPengguna?.nama || "Loading..."}{" "}
+              {profile?.role === "PERUSAHAAN"
+                ? profile?.dataPengguna?.nama_perusahaan
+                : profile?.dataPengguna?.nama || "Loading..."}{" "}
               <i className="ms-2 fa-solid fa-caret-down"></i>
             </span>
           </button>

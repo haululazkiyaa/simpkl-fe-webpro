@@ -44,12 +44,12 @@ export const NavList = [
       },
       {
         label: "Data Instruktur",
-        href: "/company-admin/profile",
+        href: "/company-admin/instructor-data",
         icon: "fa-building-user",
       },
       {
         label: "Kelompok Bimbingan",
-        href: "/company-admin/profile",
+        href: "/company-admin/guidance-group",
         icon: "fa-users",
       },
     ],
@@ -59,42 +59,37 @@ export const NavList = [
     child: [
       {
         label: "Monitoring Harian",
-        href: "/instructor/profile",
+        href: "/instructor/daily-monitoring",
         icon: "fa-calendar-days",
       },
       {
         label: "Monitoring Bulanan",
-        href: "/instructor/profile",
+        href: "/instructor/monthly-monitoring",
         icon: "fa-calendar-check",
-      },
-      {
-        label: "Penilaian Bulanan",
-        href: "/instructor/profile",
-        icon: "fa-chart-simple",
       },
     ],
   },
   {
-    group: "Guru Pembimbing",
+    group: "Pembimbing",
     child: [
       {
         label: "Monitoring Harian",
-        href: "/profile",
+        href: "/supervisor/daily-monitoring",
         icon: "fa-calendar-days",
       },
       {
         label: "Monitoring Bulanan",
-        href: "/profile",
+        href: "/supervisor/monthly-monitoring",
         icon: "fa-calendar-check",
       },
       {
-        label: "Rekap Penilaian Instruktur",
-        href: "/profile",
+        label: "Penilaian Bulanan",
+        href: "/supervisor/monthly-assesment",
         icon: "fa-chart-simple",
       },
       {
         label: "Penilaian Akhir",
-        href: "/profile",
+        href: "/supervisor/final-assesment",
         icon: "fa-book",
       },
     ],
@@ -104,22 +99,22 @@ export const NavList = [
     child: [
       {
         label: "Jurnal Harian",
-        href: "/profile",
+        href: "/student/daily-journal",
         icon: "fa-calendar-days",
       },
       {
         label: "Jurnal Bulanan",
-        href: "/profile",
+        href: "/student/monthly-journal",
         icon: "fa-calendar-check",
       },
       {
-        label: "Penilaian Instruktur",
-        href: "/profile",
+        label: "Penilaian Pembimbing",
+        href: "/student/monthly-grade",
         icon: "fa-chart-simple",
       },
       {
         label: "Nilai Akhir",
-        href: "/profile",
+        href: "/student/final-grade",
         icon: "fa-book",
       },
     ],

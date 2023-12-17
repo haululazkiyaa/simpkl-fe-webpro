@@ -1,3 +1,8 @@
+import {
+  deleteKelBimbingan,
+  updateKelBimbingan,
+} from "../../../services/school-admin/guidance-group.service.js";
+
 import { AuthContext } from "../../../context/AuthContext.jsx";
 import ConfirmModal from "../../../components/Elements/ConfirmModal/index.jsx";
 import Dropdown from "../../../components/Elements/Dropdown/index.jsx";
@@ -5,7 +10,6 @@ import Logout from "../../../components/Elements/Logout/index.js";
 import PropTypes from "prop-types";
 import { refreshToken } from "../../../services/auth/auth.service.js";
 import { toast } from "react-toastify";
-import { updateKelBimbingan } from "../../../services/school-admin/guidance-group.service.js";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +18,7 @@ export default function GuidanceGroupTableView(props) {
   const { setProgress } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleStatusSiswa = () => {
+  const handleStatusKelBimbingan = () => {
     setProgress(30);
     const data = {
       id: selected.id,
@@ -66,9 +70,61 @@ export default function GuidanceGroupTableView(props) {
     });
   };
 
+  const handleDeleteKelBimbingan = () => {
+    setProgress(30);
+    const data = {
+      id: selected.id,
+    };
+    refreshToken((status, token) => {
+      if (status) {
+        setProgress(60);
+        deleteKelBimbingan(data, token, (status) => {
+          if (status) {
+            toast.success(
+              `Sukses! Siswa a.n. ${selected.siswa?.nama} telah di hapus dari kelompok bimbingan`,
+              {
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              }
+            );
+            handleKelBimbingan();
+          } else {
+            toast.error(
+              `Gagal menghapus kelompok bimbingan siswa a.n. ${selected.siswa?.nama}!`,
+              {
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              }
+            );
+          }
+        });
+      } else {
+        Logout((status) => {
+          if (status) {
+            navigate("/login");
+          }
+        });
+      }
+      setProgress(100);
+    });
+  };
+
   const initModal = (item) => {
     setSelected(item);
     document.getElementById("init-modal").click();
+  };
+
+  const initModal1 = (item) => {
+    setSelected(item);
+    document.getElementById("init-modal1").click();
   };
 
   const updateDrawer = (item) => {
@@ -165,6 +221,11 @@ export default function GuidanceGroupTableView(props) {
                           onClick: () => initModal(item),
                           label: `${item.status ? "Non-aktifkan" : "Aktifkan"}`,
                         },
+                        {
+                          variant: "danger",
+                          onClick: () => initModal1(item),
+                          label: "Hapus",
+                        },
                       ]}
                     >
                       Aksi
@@ -183,10 +244,17 @@ export default function GuidanceGroupTableView(props) {
       <ConfirmModal
         desc={`Apakah anda yakin ingin ${
           selected?.status ? "menon-aktifkan" : "mengaktifkan"
-        } siswa a.n. ${selected.siswa?.nama}?`}
+        } kelompok bimbingan siswa a.n. ${selected.siswa?.nama}?`}
         labelOk="Ya"
         labelCancel="Tidak"
-        onClick={() => handleStatusSiswa()}
+        onClick={() => handleStatusKelBimbingan()}
+      />
+      <ConfirmModal
+        desc={`Apakah anda yakin ingin mengapus kelompok bimbingan siswa a.n. ${selected.siswa?.nama}?`}
+        labelOk="Ya"
+        labelCancel="Tidak"
+        onClick={() => handleDeleteKelBimbingan()}
+        id="1"
       />
     </>
   );

@@ -28,13 +28,28 @@ export const addKelBimbingan = async (data, token, callback) => {
     })
     .catch((error) => {
       callback(false, error.response?.data.message);
-      console.log(error);
     });
 };
 
 export const updateKelBimbingan = async (data, token, callback) => {
   await axiosReq
     .put(`${import.meta.env.VITE_API_URL}/kelompok-bimbingan/update`, data, {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+    .then(() => {
+      callback(true);
+    })
+    .catch((error) => {
+      callback(false, error.response.data.message);
+    });
+};
+
+export const deleteKelBimbingan = async (data, token, callback) => {
+  await axiosReq
+    .delete(`${import.meta.env.VITE_API_URL}/kelompok-bimbingan/delete`, {
+      data,
       headers: {
         Authorization: "Bearer " + token,
       },

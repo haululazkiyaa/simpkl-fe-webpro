@@ -43,6 +43,5 @@ export const addInstruktur = async (data, token, callback) => {
     })
     .catch((error) => {
       callback(false, error.response?.data.message);
-      console.log(error);
     });
 };

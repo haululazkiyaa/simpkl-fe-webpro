@@ -7,7 +7,6 @@ import { useContext } from "react";
 export default function CompanyAdminPage() {
   const { profile } = useContext(AuthContext);
   {
-    console.log();
   }
   return (
     <DashboardLayout>

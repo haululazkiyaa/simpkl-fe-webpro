@@ -14,7 +14,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function DashboardLayout(props) {
   const { children } = props;
-  const { profile, setProfile, setProgress } = useContext(AuthContext);
+  const { profile, setProfile, setProgress, setLoading } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,6 +35,7 @@ export default function DashboardLayout(props) {
   );
 
   const handleRefreshToken = useCallback(() => {
+    setLoading(true);
     setProgress(30);
     refreshToken((status, token) => {
       setProgress(60);
@@ -47,8 +49,9 @@ export default function DashboardLayout(props) {
         });
       }
       setProgress(100);
+      setLoading(false);
     });
-  }, [setProgress, handleGetProfile, navigate]);
+  }, [setProgress, setLoading, handleGetProfile, navigate]);
 
   useEffect(() => {
     handleRefreshToken();
@@ -94,7 +97,6 @@ export default function DashboardLayout(props) {
           </div>
         </div>
       </nav>
-
       <aside
         id="logo-sidebar"
         className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
@@ -104,7 +106,6 @@ export default function DashboardLayout(props) {
           <Navigation />
         </div>
       </aside>
-
       <div className="p-4 sm:ml-64">
         <div className="p-4 mt-14">{children}</div>
       </div>

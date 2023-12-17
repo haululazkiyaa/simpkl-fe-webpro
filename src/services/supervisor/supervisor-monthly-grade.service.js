@@ -1,12 +1,17 @@
 import { axiosReq } from "../axios.service";
 
 // services setting tahun ajaran
-export const getJurnalInstruktur = async (filterDate, token, callback) => {
+export const getNilaiBulananPembimbing = async (
+  filterMonth,
+  filterYear,
+  token,
+  callback
+) => {
   await axiosReq
     .get(
       `${
         import.meta.env.VITE_API_URL
-      }/jurnal-harian/bimbingan/get?tanggal=${filterDate}`,
+      }/nilai-bulanan?siswa=in_id_siswa&bulan=${filterMonth}&tahun=${filterYear}`,
       {
         headers: {
           Authorization: "Bearer " + token,
@@ -21,17 +26,13 @@ export const getJurnalInstruktur = async (filterDate, token, callback) => {
     });
 };
 
-export const addCatatanInstruktur = async (data, token, callback) => {
+export const addNilaiBulananPembimbing = async (data, token, callback) => {
   await axiosReq
-    .post(
-      `${import.meta.env.VITE_API_URL}/jurnal-harian/catatan/instruktur/create`,
-      data,
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    )
+    .post(`${import.meta.env.VITE_API_URL}/nilai-bulanan/create`, data, {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
     .then(() => {
       callback(true);
     })

@@ -1,7 +1,7 @@
 import Button from "../../../components/Elements/Button/index.jsx";
 import PropTypes from "prop-types";
 
-export default function InstructorDailyMonitoringTableView(props) {
+export default function SupervisorDailyMonitoringTableView(props) {
   const { data, setSelected } = props;
 
   const initStaticModal = (item) => {
@@ -35,13 +35,13 @@ export default function InstructorDailyMonitoringTableView(props) {
                 Perusahaan
               </th>
               <th scope="col" className="px-6 py-3">
-                Guru Pembimbing
+                Instruktur
               </th>
               <th scope="col" className="px-6 py-3">
                 Journal Harian
               </th>
               <th scope="col" className="px-6 py-3">
-                Catatan Pembimbing
+                Catatan Instruktur
               </th>
               <th scope="col" className="px-6 py-3">
                 Catatan Anda
@@ -71,7 +71,7 @@ export default function InstructorDailyMonitoringTableView(props) {
                     {item.kelompok_bimbingan?.perusahaan?.nama_perusahaan}
                   </td>
                   <td className="px-6 py-4 truncate text-left">
-                    {item.kelompok_bimbingan?.guru_pembimbing?.nama}
+                    {item.kelompok_bimbingan?.instruktur?.nama}
                   </td>
                   <td className="px-3 py-2">
                     <Button
@@ -80,18 +80,6 @@ export default function InstructorDailyMonitoringTableView(props) {
                     >
                       Tampilkan
                     </Button>
-                  </td>
-                  <td className="px-6 py-4">
-                    {item.catatan_pembimbing ? (
-                      <Button
-                        outline={true}
-                        onClick={() => initStaticModal1(item)}
-                      >
-                        Tampilkan
-                      </Button>
-                    ) : (
-                      "Tidak ada catatan"
-                    )}
                   </td>
                   <td className="px-6 py-4">
                     {item.catatan_instruktur ? (
@@ -105,9 +93,21 @@ export default function InstructorDailyMonitoringTableView(props) {
                       "Tidak ada catatan"
                     )}
                   </td>
+                  <td className="px-6 py-4">
+                    {item.catatan_pembimbing ? (
+                      <Button
+                        outline={true}
+                        onClick={() => initStaticModal1(item)}
+                      >
+                        Tampilkan
+                      </Button>
+                    ) : (
+                      "Tidak ada catatan"
+                    )}
+                  </td>
                   <td className="flex items-center justify-center px-3 py-2">
                     <Button onClick={() => updateDrawer(item)}>
-                      {item.catatan_instruktur
+                      {item.catatan_pembimbing
                         ? "Edit Catatan"
                         : "Berikan Catatan"}
                     </Button>
@@ -126,7 +126,7 @@ export default function InstructorDailyMonitoringTableView(props) {
   );
 }
 
-InstructorDailyMonitoringTableView.propTypes = {
+SupervisorDailyMonitoringTableView.propTypes = {
   data: PropTypes.any,
   setSelected: PropTypes.any,
   id: PropTypes.string,

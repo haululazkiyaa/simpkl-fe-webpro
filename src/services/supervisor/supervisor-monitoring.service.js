@@ -1,7 +1,7 @@
 import { axiosReq } from "../axios.service";
 
 // services setting tahun ajaran
-export const getJurnalInstruktur = async (filterDate, token, callback) => {
+export const getJurnalPembimbing = async (filterDate, token, callback) => {
   await axiosReq
     .get(
       `${
@@ -21,10 +21,10 @@ export const getJurnalInstruktur = async (filterDate, token, callback) => {
     });
 };
 
-export const addCatatanInstruktur = async (data, token, callback) => {
+export const addCatatanPembimbing = async (data, token, callback) => {
   await axiosReq
     .post(
-      `${import.meta.env.VITE_API_URL}/jurnal-harian/catatan/instruktur/create`,
+      `${import.meta.env.VITE_API_URL}/jurnal-harian/catatan/pembimbing/create`,
       data,
       {
         headers: {

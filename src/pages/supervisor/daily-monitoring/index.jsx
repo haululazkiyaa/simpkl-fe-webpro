@@ -1,16 +1,16 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../../../context/AuthContext";
-import InstructorDailyMonitorinCommentView from "../../../views/Instructor/DailyMonitoring/CommentView";
-import InstructorDailyMonitorinJournalView from "../../../views/Instructor/DailyMonitoring/JournalView";
-import InstructorDailyMonitoringTableView from "../../../views/Instructor/DailyMonitoring/TableView";
-import InstructorDailyMonitoringUpdateDrawerView from "../../../views/Instructor/DailyMonitoring/UpdateDrawerView";
 import Logout from "../../../components/Elements/Logout";
-import { getJurnalInstruktur } from "../../../services/instructor/instructor-monitoring.service";
+import SupervisorDailyMonitoringCommentView from "../../../views/Supervisor/DailyMonitoring/CommentView";
+import SupervisorDailyMonitoringJournalView from "../../../views/Supervisor/DailyMonitoring/JournalView";
+import SupervisorDailyMonitoringTableView from "../../../views/Supervisor/DailyMonitoring/TableView";
+import SupervisorDailyMonitoringUpdateDrawerView from "../../../views/Supervisor/DailyMonitoring/UpdateDrawerView";
+import { getJurnalPembimbing } from "../../../services/supervisor/supervisor-monitoring.service";
 import { refreshToken } from "../../../services/auth/auth.service";
 import { useNavigate } from "react-router-dom";
 
-export default function InstructorDailyMonitoringPage() {
+export default function SupervisorDailyMonitoringPage() {
   const { setProgress } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ export default function InstructorDailyMonitoringPage() {
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        getJurnalInstruktur(filterDate, token, (status, data) => {
+        getJurnalPembimbing(filterDate, token, (status, data) => {
           if (status) {
             setData(data);
           }
@@ -58,20 +58,20 @@ export default function InstructorDailyMonitoringPage() {
           dapat mengubah jurnal harian siswa yang ada.
         </p>
         <div className="not-format">
-          <InstructorDailyMonitoringTableView
+          <SupervisorDailyMonitoringTableView
             data={data}
             setSelected={setSelected}
           />
-          <InstructorDailyMonitoringUpdateDrawerView
+          <SupervisorDailyMonitoringUpdateDrawerView
             handleDataHarian={handleDataHarian}
             selected={selected}
             id="1"
           />
-          <InstructorDailyMonitorinJournalView
+          <SupervisorDailyMonitoringJournalView
             data={data}
             selected={selected}
           />
-          <InstructorDailyMonitorinCommentView
+          <SupervisorDailyMonitoringCommentView
             data={data}
             selected={selected}
             id="1"

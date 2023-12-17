@@ -67,34 +67,29 @@ export const NavList = [
         href: "/instructor/monthly-monitoring",
         icon: "fa-calendar-check",
       },
-      {
-        label: "Penilaian Bulanan",
-        href: "/instructor/monthly-assesment",
-        icon: "fa-chart-simple",
-      },
     ],
   },
   {
-    group: "Guru Pembimbing",
+    group: "Pembimbing",
     child: [
       {
         label: "Monitoring Harian",
-        href: "/profile",
+        href: "/supervisor/daily-monitoring",
         icon: "fa-calendar-days",
       },
       {
         label: "Monitoring Bulanan",
-        href: "/profile",
+        href: "/supervisor/monthly-monitoring",
         icon: "fa-calendar-check",
       },
       {
-        label: "Rekap Penilaian Instruktur",
-        href: "/profile",
+        label: "Penilaian Bulanan",
+        href: "/supervisor/monthly-assesment",
         icon: "fa-chart-simple",
       },
       {
         label: "Penilaian Akhir",
-        href: "/profile",
+        href: "/supervisor/final-assesment",
         icon: "fa-book",
       },
     ],

@@ -8,12 +8,12 @@ import Logout from "../../../components/Elements/Logout/index.js";
 import PropTypes from "prop-types";
 import SuccessBadge from "../../../components/Elements/SuccessBadge/index.jsx";
 import TextArea from "../../../components/Elements/TextArea/index.jsx";
-import { addCatatanInstruktur } from "../../../services/instructor/instructor-monitoring.service.js";
+import { addCatatanPembimbing } from "../../../services/supervisor/supervisor-monitoring.service.js";
 import { refreshToken } from "../../../services/auth/auth.service.js";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-export default function InstructorDailyMonitoringUpdateDrawerView(props) {
+export default function SupervisorMonthlyAssesmentUpdateDrawerView(props) {
   const { handleDataHarian, selected, id } = props;
   const { setProgress } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -34,14 +34,14 @@ export default function InstructorDailyMonitoringUpdateDrawerView(props) {
     setMessage("");
     const data = {
       id: selected.id,
-      catatan_instruktur: catatan,
+      catatan_pembimbing: catatan,
     };
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        addCatatanInstruktur(data, token, (status, message) => {
+        addCatatanPembimbing(data, token, (status, message) => {
           if (status) {
-            toast.success(`Sukses! Catatan instruktur diperbarui.`, {
+            toast.success(`Sukses! penilaian bulanan diperbarui.`, {
               autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -53,7 +53,7 @@ export default function InstructorDailyMonitoringUpdateDrawerView(props) {
             setMessage("success");
           } else {
             setMessage(message);
-            toast.error("Gagal memperbarui catatan instruktur!", {
+            toast.error("Gagal memperbarui penilaian bulanan!", {
               autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -76,7 +76,7 @@ export default function InstructorDailyMonitoringUpdateDrawerView(props) {
   };
 
   useEffect(() => {
-    setCatatan(selected?.catatan_instruktur);
+    setCatatan(selected?.catatan_pembimbing);
   }, [selected]);
 
   const getDetails = () => {
@@ -100,10 +100,10 @@ export default function InstructorDailyMonitoringUpdateDrawerView(props) {
             onSubmit={(e) => handleTambahCatatan(e)}
           >
             <TextArea
-              label="Catatan Instruktur"
+              label="Catatan Pembimbing"
               name="catatan"
               id="catatan"
-              placeholder="Masukan catatan instruktur"
+              placeholder="Masukan catatan pembimbing"
               value={catatan}
               onChange={(e) => setCatatan(e.target.value)}
               required={true}
@@ -144,7 +144,7 @@ export default function InstructorDailyMonitoringUpdateDrawerView(props) {
   );
 }
 
-InstructorDailyMonitoringUpdateDrawerView.propTypes = {
+SupervisorMonthlyAssesmentUpdateDrawerView.propTypes = {
   data: PropTypes.any,
   handleDataHarian: PropTypes.func,
   selected: PropTypes.any,

@@ -13,7 +13,6 @@ import CompanyAdminProfilePage from "./pages/company-admin/profile.jsx/index.jsx
 import DashboardPage from "./pages/dashboard/index.jsx";
 import ErrorPage from "./pages/error.jsx";
 import InstructorDailyMonitoringPage from "./pages/instructor/daily-monitoring/index.jsx";
-import InstructorMonthlyAssesmentPage from "./pages/instructor/monthly-assesment/index.jsx";
 import InstructorMonthlyMonitoringPage from "./pages/instructor/monthly-monitoring/index.jsx";
 import InstructorPage from "./pages/instructor/index.jsx";
 import LoginPage from "./pages/auth/login.jsx";
@@ -26,6 +25,11 @@ import SchoolAdminPage from "./pages/school-admin/index.jsx";
 import SchoolAdminSettingsPage from "./pages/school-admin/settings.jsx/index.jsx";
 import SchoolAdminStudentDataPage from "./pages/school-admin/student-data/index.jsx";
 import SchoolAdminSupervisorDataPage from "./pages/school-admin/supervisor-data/index.jsx";
+import SupervisorDailyMonitoringPage from "./pages/supervisor/daily-monitoring/index.jsx";
+import SupervisorFinalAssesmentPage from "./pages/supervisor/final-assesment copy/index.jsx";
+import SupervisorMonthlyAssesmentPage from "./pages/supervisor/monthly-assesment/index.jsx";
+import SupervisorMonthlyMonitoringPage from "./pages/supervisor/monthly-monitoring/index.jsx";
+import SupervisorPage from "./pages/supervisor/index.jsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <DashboardPage />, errorElement: <ErrorPage /> },
@@ -88,9 +92,26 @@ const router = createBrowserRouter([
         path: "instructor/monthly-monitoring",
         element: <InstructorMonthlyMonitoringPage />,
       },
+    ],
+  },
+  {
+    element: <SupervisorPage />,
+    children: [
       {
-        path: "instructor/monthly-assesment",
-        element: <InstructorMonthlyAssesmentPage />,
+        path: "supervisor/daily-monitoring",
+        element: <SupervisorDailyMonitoringPage />,
+      },
+      {
+        path: "supervisor/monthly-monitoring",
+        element: <SupervisorMonthlyMonitoringPage />,
+      },
+      {
+        path: "supervisor/monthly-assesment",
+        element: <SupervisorMonthlyAssesmentPage />,
+      },
+      {
+        path: "supervisor/final-assesment",
+        element: <SupervisorFinalAssesmentPage />,
       },
     ],
   },

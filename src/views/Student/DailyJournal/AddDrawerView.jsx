@@ -120,9 +120,13 @@ export default function StudentDailyJournalAddDrawerView(props) {
   };
 
   useEffect(() => {
-    const dateNow = new Date();
-    setHari(dateNow.toLocaleDateString("id-ID", { weekday: "long" }));
-    setTanggal(dateNow.toISOString().slice(0, 10));
+    const date = new Date();
+    const dd = String(date.getDate()).padStart(2, "0");
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+    const yyyy = date.getFullYear();
+    const dateString = yyyy + "-" + mm + "-" + dd;
+    setHari(date.toLocaleDateString("id-ID", { weekday: "long" }));
+    setTanggal(dateString);
   }, []);
 
   const initDrawer = () => {

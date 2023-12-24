@@ -78,32 +78,26 @@ export default function GuidanceGroupTableView(props) {
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        deleteKelBimbingan(data, token, (status) => {
+        deleteKelBimbingan(data, token, (status, message) => {
           if (status) {
-            toast.success(
-              `Sukses! Siswa a.n. ${selected.siswa?.nama} telah di hapus dari kelompok bimbingan`,
-              {
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              }
-            );
+            toast.success(message, {
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
             handleKelBimbingan();
           } else {
-            toast.error(
-              `Gagal menghapus kelompok bimbingan siswa a.n. ${selected.siswa?.nama}!`,
-              {
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              }
-            );
+            toast.error(message, {
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
           }
         });
       } else {

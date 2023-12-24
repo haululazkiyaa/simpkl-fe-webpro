@@ -45,3 +45,19 @@ export const updateJurusan = async (data, token, callback) => {
       callback(false, error.response.data.message);
     });
 };
+
+export const deleteJurusan = async (data, token, callback) => {
+  await axiosReq
+    .delete(`${import.meta.env.VITE_API_URL}/jurusan/delete`, {
+      data,
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+    .then((res) => {
+      callback(true, res.data.message);
+    })
+    .catch((error) => {
+      callback(false, error.response.data.message);
+    });
+};

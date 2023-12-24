@@ -1,10 +1,14 @@
+import {
+  deletePembimbing,
+  setPembimbing,
+} from "../../../services/school-admin/supervisor-data.service.js";
+
 import { AuthContext } from "../../../context/AuthContext.jsx";
 import Button from "../../../components/Elements/Button/index.jsx";
 import ConfirmModal from "../../../components/Elements/ConfirmModal/index.jsx";
 import Logout from "../../../components/Elements/Logout/index.js";
 import PropTypes from "prop-types";
 import { refreshToken } from "../../../services/auth/auth.service.js";
-import { setPembimbing } from "../../../services/school-admin/supervisor-data.service.js";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -66,9 +70,55 @@ export default function SupervisorDataTableView(props) {
     });
   };
 
+  const handleDeletePembimbing = () => {
+    setProgress(30);
+    const data = {
+      id: selected.id,
+    };
+    refreshToken((status, token) => {
+      if (status) {
+        setProgress(60);
+        deletePembimbing(data, token, (status, message) => {
+          if (status) {
+            toast.success(message, {
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            handleDataPembimbing();
+          } else {
+            toast.error(message, {
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
+        });
+      } else {
+        Logout((status) => {
+          if (status) {
+            navigate("/login");
+          }
+        });
+      }
+      setProgress(100);
+    });
+  };
+
   const initModal = (item) => {
     setSelected(item);
     document.getElementById("init-modal").click();
+  };
+
+  const initModal1 = (item) => {
+    setSelected(item);
+    document.getElementById("init-modal1").click();
   };
 
   const updateDrawer = (item) => {
@@ -174,7 +224,7 @@ export default function SupervisorDataTableView(props) {
                   </td>
                   <td className="w-16 px-3">
                     <div className="flex items-center justify-center">
-                      <Button variant="red" onClick={() => {}}>
+                      <Button variant="red" onClick={() => initModal1(item)}>
                         <i className="fa-solid fa-trash"></i>
                       </Button>
                     </div>
@@ -196,6 +246,13 @@ export default function SupervisorDataTableView(props) {
         labelOk="Ya"
         labelCancel="Tidak"
         onClick={() => handleStatusPembimbing()}
+      />
+      <ConfirmModal
+        desc={`Apakah anda yakin ingin mengapus pembimbing a.n. ${selected.nama}?`}
+        labelOk="Ya"
+        labelCancel="Tidak"
+        onClick={() => handleDeletePembimbing()}
+        id="1"
       />
     </>
   );

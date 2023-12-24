@@ -3,8 +3,8 @@ import Button from "../../../components/Elements/Button/index.jsx";
 import ConfirmModal from "../../../components/Elements/ConfirmModal/index.jsx";
 import Logout from "../../../components/Elements/Logout/index.js";
 import PropTypes from "prop-types";
+import { deleteJurusan } from "../../../services/school-admin/major-management.service.js";
 import { refreshToken } from "../../../services/auth/auth.service.js";
-import { setTahunAjaran } from "../../../services/school-admin/year-settings.service.js";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,27 +18,23 @@ export default function MajorManagementTableView(props) {
     setProgress(30);
     const data = {
       id: selected.id,
-      status: true,
     };
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        setTahunAjaran(data, token, (status) => {
+        deleteJurusan(data, token, (status, message) => {
           if (status) {
-            toast.success(
-              `Sukses! Tahun ajaran ${selected?.tahun_ajaran} sudah aktif.`,
-              {
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              }
-            );
+            toast.success(message, {
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
             handleJurusan();
           } else {
-            toast.error("Gagal mengganti tahun ajaran!", {
+            toast.error(message, {
               autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -62,6 +58,11 @@ export default function MajorManagementTableView(props) {
   const updateDrawer = (item) => {
     setSelected(item);
     document.getElementById("update-drawer1").click();
+  };
+
+  const initModal = (item) => {
+    setSelected(item);
+    document.getElementById("init-modal").click();
   };
 
   return (
@@ -124,7 +125,7 @@ export default function MajorManagementTableView(props) {
                   </td>
                   <td className="w-16 px-3">
                     <div className="flex items-center justify-center">
-                      <Button variant="red" onClick={() => updateDrawer(item)}>
+                      <Button variant="red" onClick={() => initModal(item)}>
                         <i className="fa-solid fa-trash"></i>
                       </Button>
                     </div>
@@ -140,7 +141,7 @@ export default function MajorManagementTableView(props) {
         </table>
       </div>
       <ConfirmModal
-        desc={`Apakah anda yakin ingin menghapus jurusan ${selected?.bidang_keahlian}?`}
+        desc={`Apakah anda yakin ingin jurusan ${selected.kompetensi_keahlian}?`}
         labelOk="Ya"
         labelCancel="Tidak"
         onClick={() => handleDeleteJurusan()}

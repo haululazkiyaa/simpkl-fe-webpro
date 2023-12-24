@@ -18,6 +18,11 @@ export const NavList = [
         icon: "fa-list-ul",
       },
       {
+        label: "Data Perusahaan",
+        href: "/school-admin/company-data",
+        icon: "fa-building",
+      },
+      {
         label: "Data Pembimbing",
         href: "/school-admin/supervisor-data",
         icon: "fa-user-tie",

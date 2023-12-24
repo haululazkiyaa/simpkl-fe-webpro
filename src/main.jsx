@@ -19,10 +19,11 @@ import LoginPage from "./pages/auth/login.jsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import RegisterPage from "./pages/auth/regsiter.jsx";
+import SchoolAdminAssesmentPage from "./pages/school-admin/assesment/index.jsx";
 import SchoolAdminGuidanceGroupPage from "./pages/school-admin/guidance-group/index.jsx";
 import SchoolAdminMajorManagementPage from "./pages/school-admin/major-management/index.jsx";
 import SchoolAdminPage from "./pages/school-admin/index.jsx";
-import SchoolAdminSettingsPage from "./pages/school-admin/settings.jsx/index.jsx";
+import SchoolAdminSettingsPage from "./pages/school-admin/settings/index.jsx";
 import SchoolAdminStudentDataPage from "./pages/school-admin/student-data/index.jsx";
 import SchoolAdminSupervisorDataPage from "./pages/school-admin/supervisor-data/index.jsx";
 import StudentDailyJournalPage from "./pages/student/daily-journal/index.jsx";
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "school-admin/guidance-group",
         element: <SchoolAdminGuidanceGroupPage />,
+      },
+      {
+        path: "school-admin/assesment",
+        element: <SchoolAdminAssesmentPage />,
       },
     ],
   },

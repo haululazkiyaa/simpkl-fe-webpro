@@ -32,6 +32,11 @@ export const NavList = [
         href: "/school-admin/guidance-group",
         icon: "fa-users",
       },
+      {
+        label: "Penilaian",
+        href: "/school-admin/assesment",
+        icon: "fa-chart-simple",
+      },
     ],
   },
   {

@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect } from "react";
 
 import { AuthContext } from "../../context/AuthContext";
+import Credit from "../Elements/Credit";
 import DropdownUser from "../Elements/DropdownUser";
 import Logo from "../Elements/Logo";
 import Logout from "../Elements/Logout";
@@ -106,8 +107,14 @@ export default function DashboardLayout(props) {
           <Navigation />
         </div>
       </aside>
-      <div className="p-4 sm:ml-64">
-        <div className="p-4 mt-14">{children}</div>
+      <div className="p-4 sm:ml-64 flex flex-col min-h-screen">
+        <div className="flex-none">
+          <div className="p-4 mt-14">{children}</div>
+        </div>
+        <div className="flex-1"></div>
+        <div className="flex-none">
+          <Credit center={false} detail={true} />
+        </div>
       </div>
       <LogoutModal />
     </>

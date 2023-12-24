@@ -1,12 +1,7 @@
-import Button from "../Button";
 import PropTypes from "prop-types";
 
 export default function SuccessBadge(props) {
-  const { children, id = "" } = props;
-
-  const initDrawer = () => {
-    document.getElementById("reset-drawer" + id).click();
-  };
+  const { children } = props;
 
   return (
     <div className="p-4 w-full text-center">
@@ -29,9 +24,6 @@ export default function SuccessBadge(props) {
       <p className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
         {children}
       </p>
-      <Button outline={true} onClick={() => initDrawer()}>
-        Tutup
-      </Button>
     </div>
   );
 }

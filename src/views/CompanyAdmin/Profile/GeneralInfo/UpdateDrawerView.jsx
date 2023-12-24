@@ -107,7 +107,7 @@ export default function CompanyProfileUpdateDrawerView(props) {
           getDetails();
         }}
       ></button>
-      <Drawer title="Perbarui Data Jurusan" id={id}>
+      <Drawer title="Update Profil Perusahaan" id={id}>
         {message != "success" ? (
           <form
             className="space-y-4 md:space-y-6"

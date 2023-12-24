@@ -4,8 +4,8 @@ import {
 } from "../../../services/school-admin/guidance-group.service.js";
 
 import { AuthContext } from "../../../context/AuthContext.jsx";
+import Button from "../../../components/Elements/Button/index.jsx";
 import ConfirmModal from "../../../components/Elements/ConfirmModal/index.jsx";
-import Dropdown from "../../../components/Elements/Dropdown/index.jsx";
 import Logout from "../../../components/Elements/Logout/index.js";
 import PropTypes from "prop-types";
 import { refreshToken } from "../../../services/auth/auth.service.js";
@@ -138,7 +138,7 @@ export default function GuidanceGroupTableView(props) {
         <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="w-16 px-3">
                 No.
               </th>
               <th scope="col" className="px-6 py-3">
@@ -159,8 +159,14 @@ export default function GuidanceGroupTableView(props) {
               <th scope="col" className="px-6 py-3">
                 Status
               </th>
-              <th scope="col" className="px-6 py-3">
-                Aksi
+              <th scope="col" className="w-16 px-3">
+                Aktif/ Non-aktifkan
+              </th>
+              <th scope="col" className="w-16 px-3">
+                Edit
+              </th>
+              <th scope="col" className="w-16 px-3">
+                Hapus
               </th>
             </tr>
           </thead>
@@ -173,7 +179,7 @@ export default function GuidanceGroupTableView(props) {
                 >
                   <th
                     scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    className="w-16 px-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     {index + 1}
                   </th>
@@ -207,29 +213,29 @@ export default function GuidanceGroupTableView(props) {
                       )}
                     </div>
                   </td>
-                  <td className="flex items-center justify-center px-3 py-2">
-                    <Dropdown
-                      index={index}
-                      listMenu={[
-                        {
-                          variant: "default",
-                          onClick: () => updateDrawer(item),
-                          label: "Edit",
-                        },
-                        {
-                          variant: `${item.status ? "danger" : "default"}`,
-                          onClick: () => initModal(item),
-                          label: `${item.status ? "Non-aktifkan" : "Aktifkan"}`,
-                        },
-                        {
-                          variant: "danger",
-                          onClick: () => initModal1(item),
-                          label: "Hapus",
-                        },
-                      ]}
-                    >
-                      Aksi
-                    </Dropdown>
+                  <td className="w-16 px-3">
+                    <div className="flex items-center justify-center">
+                      <Button variant="default" onClick={() => initModal(item)}>
+                        <i className="fa-solid fa-power-off"></i>
+                      </Button>
+                    </div>
+                  </td>
+                  <td className="w-16 px-3">
+                    <div className="flex items-center justify-center">
+                      <Button
+                        variant="yellow"
+                        onClick={() => updateDrawer(item)}
+                      >
+                        <i className="fa-solid fa-pen"></i>
+                      </Button>
+                    </div>
+                  </td>
+                  <td className="w-16 px-3">
+                    <div className="flex items-center justify-center">
+                      <Button variant="red" onClick={() => initModal1(item)}>
+                        <i className="fa-solid fa-trash"></i>
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               ))

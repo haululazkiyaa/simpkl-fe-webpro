@@ -181,7 +181,7 @@ export default function GuidanceGroupUpdateDrawerView(props) {
           getDetails();
         }}
       ></button>
-      <Drawer title="Perbarui Data Kelompok Bimbingan Siswa" id={id}>
+      <Drawer title="Update Kelompok Bimbingan" id={id}>
         {message != "success" ? (
           <form
             className="space-y-4 md:space-y-6"

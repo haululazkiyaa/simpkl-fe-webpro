@@ -53,18 +53,18 @@ export default function CompanyAdminProfilePage() {
               Anda dapat mengubah profil perusahaan melalui halaman ini. Data
               pada aplikasi akan ditampilkan sesuai data yang anda inputkan.
             </p>
-            <div className="not-format">
-              <Button width="full" onClick={() => updateDrawer()}>
-                Update Profile
-              </Button>
-              <CompanyProfileUpdateDrawerView
-                handleProfilPerusahaan={handleProfilPerusahaan}
-                id="1"
-              />
-            </div>
           </div>
           <div className="basis-4/6">
             <div className="not-format">
+              <div className="flex justify-between mb-5">
+                <Button variant="yellow" onClick={() => updateDrawer()}>
+                  <i className="fa-solid fa-pen mr-2"></i>Edit Profile
+                </Button>
+                <CompanyProfileUpdateDrawerView
+                  handleProfilPerusahaan={handleProfilPerusahaan}
+                  id="1"
+                />
+              </div>
               <CompanyProfileTableView
                 profile={profile}
                 handleProfilPerusahaan={handleProfilPerusahaan}

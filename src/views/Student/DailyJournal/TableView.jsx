@@ -1,6 +1,9 @@
+import AddDataFirst from "../../../components/Elements/EmptyState/AddDataFirst.jsx";
 import { AuthContext } from "../../../context/AuthContext.jsx";
 import Button from "../../../components/Elements/Button/index.jsx";
+import Input from "../../../components/Elements/Input/index.jsx";
 import Logout from "../../../components/Elements/Logout/index.js";
+import NotFound from "../../../components/Elements/EmptyState/NotFound.jsx";
 import PropTypes from "prop-types";
 import StudentDailyJournalAddDrawerView from "./AddDrawerView.jsx";
 import { deleteJurnalHarian } from "../../../services/student/daily-journal.service.js";
@@ -10,7 +13,15 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function StudentDailyJournalTableView(props) {
-  const { handleDataHarian, data, setSelected } = props;
+  const {
+    handleDataHarian,
+    data,
+    setData,
+    setSelected,
+    tanggal,
+    setTanggal,
+    today,
+  } = props;
   const { setProgress } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -32,6 +43,7 @@ export default function StudentDailyJournalTableView(props) {
               draggable: true,
               progress: undefined,
             });
+            setData({});
             handleDataHarian();
           } else {
             toast.error("Gagal menghapus jurnal harian!", {
@@ -67,10 +79,70 @@ export default function StudentDailyJournalTableView(props) {
 
   return (
     <>
+      {Object.keys(data).length == 0 && (
+        <div className="flex flex-col items-center justify-center">
+          {tanggal == today ? (
+            <div className="text-center">
+              <AddDataFirst />
+              <h3 className="text-xl text-black font-bold mb-5">
+                Opps! Kamu belum submit jurnal hari ini!
+              </h3>
+              <StudentDailyJournalAddDrawerView
+                handleDataHarian={handleDataHarian}
+                id="0"
+              />
+              <p className="mt-5">Ganti Tanggal:</p>
+            </div>
+          ) : (
+            <div className="text-center">
+              <NotFound />
+              <h3 className="text-xl text-black font-bold mb-5">
+                Opps! Tidak ada jurnal yang kamu submit di tanggal ini.
+              </h3>
+              <p>Ganti Tanggal:</p>
+            </div>
+          )}
+        </div>
+      )}
+      <div
+        className={`md:flex ${
+          Object.keys(data).length != 0 ? "justify-between" : "justify-center"
+        }`}
+      >
+        <div className="space-x-2 flex items-center justify-center mb-5">
+          {Object.keys(data).length != 0 && (
+            <label className="text-black font-bold">Pilih Tanggal:</label>
+          )}
+          <Input
+            type="date"
+            name="tanggal"
+            id="tanggal"
+            placeholder="Masukan tanggal jurnal"
+            value={tanggal}
+            onChange={(e) => setTanggal(e.target.value)}
+            required={true}
+          />
+        </div>
+        {Object.keys(data).length != 0 && tanggal == today && (
+          <div className="space-x-2 mb-5">
+            <Button variant="yellow" onClick={() => updateDrawer(data)}>
+              <i className="fa-solid fa-pen mr-2"></i>
+              Edit
+            </Button>
+            <Button
+              variant="red"
+              onClick={() => handleDeleteJurnalHarian(data)}
+            >
+              <i className="fa-solid fa-trash mr-2"></i>
+              Hapus
+            </Button>
+          </div>
+        )}
+      </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400 ">
           <tbody>
-            {Object.keys(data).length != 0 ? (
+            {Object.keys(data).length != 0 && (
               <>
                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                   <th
@@ -193,46 +265,14 @@ export default function StudentDailyJournalTableView(props) {
                   </th>
                   <td className="px-3 py-2 text-left">
                     <Button
-                      outline={true}
+                      variant="default"
                       onClick={() => initStaticModal(data)}
                     >
-                      Tampilkan
-                    </Button>
-                  </td>
-                </tr>
-                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 dark:text-white text-left"
-                  >
-                    Aksi
-                  </th>
-                  <td className="px-3 py-2 text-left">
-                    <Button
-                      outline={true}
-                      variant="yellow"
-                      onClick={() => updateDrawer(data)}
-                    >
-                      Edit Jurnal
-                    </Button>
-                    <Button
-                      outline={true}
-                      variant="red"
-                      onClick={() => handleDeleteJurnalHarian(data)}
-                    >
-                      Hapus Jurnal
+                      <i className="fa-solid fa-eye mr-2"></i>Lihat
                     </Button>
                   </td>
                 </tr>
               </>
-            ) : (
-              <tr className="px-6 py-4 text-left">
-                <td colSpan={3}>Tidak ada data</td>
-                <StudentDailyJournalAddDrawerView
-                  handleDataHarian={handleDataHarian}
-                  id="0"
-                />
-              </tr>
             )}
           </tbody>
         </table>
@@ -245,4 +285,8 @@ StudentDailyJournalTableView.propTypes = {
   handleDataHarian: PropTypes.any,
   data: PropTypes.any,
   setSelected: PropTypes.any,
+  setData: PropTypes.any,
+  setTanggal: PropTypes.any,
+  tanggal: PropTypes.any,
+  today: PropTypes.any,
 };

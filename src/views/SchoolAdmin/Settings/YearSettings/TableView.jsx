@@ -80,7 +80,7 @@ export default function YearSettingsTableView(props) {
                 Status
               </th>
               <th scope="col" className="px-6 py-3">
-                Aksi
+                Aktifkan
               </th>
             </tr>
           </thead>
@@ -112,20 +112,21 @@ export default function YearSettingsTableView(props) {
                       )}
                     </div>
                   </td>
-                  <td className="flex items-center justify-center px-3 pt-2">
-                    {!item.status ? (
-                      <>
+                  <td className="w-16 px-3">
+                    <div className="flex items-center justify-center">
+                      {!item.status ? (
                         <Button
+                          variant="green"
                           onClick={() => {
                             initModal(item);
                           }}
                         >
-                          Aktifkan
+                          <i className="fa-solid fa-power-off"></i>
                         </Button>
-                      </>
-                    ) : (
-                      <></>
-                    )}
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                   </td>
                 </tr>
               ))

@@ -99,7 +99,7 @@ export default function InstructorDataUpdateDrawerView(props) {
           getDetails();
         }}
       ></button>
-      <Drawer title="Perbarui Data Instruktur" id={id}>
+      <Drawer title="Update Data Instruktur" id={id}>
         {message != "success" ? (
           <form
             className="space-y-4 md:space-y-6"

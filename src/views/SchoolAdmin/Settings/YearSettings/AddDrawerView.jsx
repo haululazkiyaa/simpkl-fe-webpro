@@ -81,10 +81,10 @@ export default function YearSettingsAddDrawerView(props) {
 
   return (
     <>
-      <Button width="full" onClick={() => initDrawer()}>
-        Tambah Tahun Ajaran Baru
+      <Button onClick={() => initDrawer()}>
+        <i className="fa-solid fa-plus mr-2"></i>Tambah
       </Button>
-      <Drawer title="Tambah Tahun Ajaran Baru">
+      <Drawer title="Tambah Tahun Ajaran">
         {message != "success" ? (
           <form
             className="space-y-4 md:space-y-6"

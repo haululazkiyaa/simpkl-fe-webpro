@@ -25,7 +25,7 @@ export default function InstructorDailyMonitoringTableView(props) {
         <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="w-16 px-3">
                 No.
               </th>
               <th scope="col" className="px-6 py-3">
@@ -37,17 +37,17 @@ export default function InstructorDailyMonitoringTableView(props) {
               <th scope="col" className="px-6 py-3">
                 Guru Pembimbing
               </th>
-              <th scope="col" className="px-6 py-3">
-                Journal Harian
+              <th scope="col" className="w-32 px-3">
+                Jurnal Harian
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="w-32 px-3">
                 Catatan Pembimbing
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="w-32 px-3">
                 Catatan Anda
               </th>
-              <th scope="col" className="px-6 py-3">
-                Aksi
+              <th scope="col" className="w-16 px-3">
+                Berikan Catatan
               </th>
             </tr>
           </thead>
@@ -60,7 +60,7 @@ export default function InstructorDailyMonitoringTableView(props) {
                 >
                   <th
                     scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    className="w-16 px-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     {index + 1}
                   </th>
@@ -73,44 +73,50 @@ export default function InstructorDailyMonitoringTableView(props) {
                   <td className="px-6 py-4 truncate text-left">
                     {item.kelompok_bimbingan?.guru_pembimbing?.nama}
                   </td>
-                  <td className="px-3 py-2">
-                    <Button
-                      outline={true}
-                      onClick={() => initStaticModal(item)}
-                    >
-                      Tampilkan
-                    </Button>
-                  </td>
-                  <td className="px-6 py-4">
-                    {item.catatan_pembimbing ? (
+                  <td className="w-32 px-3">
+                    <div className="flex items-center justify-center">
                       <Button
                         outline={true}
-                        onClick={() => initStaticModal1(item)}
+                        onClick={() => initStaticModal(item)}
                       >
-                        Tampilkan
+                        <i className="fa-solid fa-eye mr-2"></i>Lihat
                       </Button>
-                    ) : (
-                      "Tidak ada catatan"
-                    )}
+                    </div>
                   </td>
-                  <td className="px-6 py-4">
-                    {item.catatan_instruktur ? (
-                      <Button
-                        outline={true}
-                        onClick={() => initStaticModal1(item)}
-                      >
-                        Tampilkan
+                  <td className="w-32 px-3">
+                    <div className="flex items-center justify-center">
+                      {item.catatan_pembimbing ? (
+                        <Button
+                          outline={true}
+                          onClick={() => initStaticModal1(item)}
+                        >
+                          <i className="fa-solid fa-eye mr-2"></i>Lihat
+                        </Button>
+                      ) : (
+                        "Tidak ada catatan"
+                      )}
+                    </div>
+                  </td>
+                  <td className="w-32 px-3">
+                    <div className="flex items-center justify-center">
+                      {item.catatan_instruktur ? (
+                        <Button
+                          outline={true}
+                          onClick={() => initStaticModal1(item)}
+                        >
+                          <i className="fa-solid fa-eye mr-2"></i>Lihat
+                        </Button>
+                      ) : (
+                        "Tidak ada catatan"
+                      )}
+                    </div>
+                  </td>
+                  <td className="w-16 px-3">
+                    <div className="flex items-center justify-center">
+                      <Button onClick={() => updateDrawer(item)}>
+                        <i className="fa-solid fa-comment-medical"></i>
                       </Button>
-                    ) : (
-                      "Tidak ada catatan"
-                    )}
-                  </td>
-                  <td className="flex items-center justify-center px-3 py-2">
-                    <Button onClick={() => updateDrawer(item)}>
-                      {item.catatan_instruktur
-                        ? "Edit Catatan"
-                        : "Berikan Catatan"}
-                    </Button>
+                    </div>
                   </td>
                 </tr>
               ))

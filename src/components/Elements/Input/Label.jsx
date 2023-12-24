@@ -7,7 +7,7 @@ export default function Label(props) {
       htmlFor={id}
       className={`block mb-2 text-sm font-medium ${
         error ? "text-red-700" : "text-gray-900"
-      } dark:text-white`}
+      } dark:text-white ${!children && "hidden"}`}
     >
       {children}
     </label>

@@ -85,7 +85,9 @@ export default function InstructorDataAddDrawerView(props) {
 
   return (
     <>
-      <Button onClick={() => initDrawer()}>Tambah Instruktur Baru</Button>
+      <Button onClick={() => initDrawer()}>
+        <i className="fa-solid fa-plus mr-2"></i>Tambah
+      </Button>
       <Drawer title="Tambah Instruktur Baru" id={id}>
         {message != "success" ? (
           <form

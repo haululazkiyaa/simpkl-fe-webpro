@@ -166,9 +166,9 @@ export default function GuidanceGroupAddDrawerView(props) {
   return (
     <>
       <Button onClick={() => initDrawer()}>
-        Tambah Kelompok Bimbingan Siswa Baru
+        <i className="fa-solid fa-plus mr-2"></i>Tambah
       </Button>
-      <Drawer title="Tambah Kelompok Bimbingan Siswa Baru" id={id}>
+      <Drawer title="Tambah Kelompok Bimbingan" id={id}>
         {message != "success" ? (
           <form
             className="space-y-4 md:space-y-6"

@@ -1,7 +1,6 @@
 import { AuthContext } from "../../../context/AuthContext.jsx";
 import Button from "../../../components/Elements/Button/index.jsx";
 import ConfirmModal from "../../../components/Elements/ConfirmModal/index.jsx";
-import Dropdown from "../../../components/Elements/Dropdown/index.jsx";
 import Logout from "../../../components/Elements/Logout/index.js";
 import PropTypes from "prop-types";
 import { refreshToken } from "../../../services/auth/auth.service.js";
@@ -67,10 +66,10 @@ export default function InstructorDataTableView(props) {
     });
   };
 
-  const initModal = (item) => {
-    setSelected(item);
-    document.getElementById("init-modal").click();
-  };
+  // const initModal = (item) => {
+  //   setSelected(item);
+  //   document.getElementById("init-modal").click();
+  // };
 
   const updateDrawer = (item) => {
     setSelected(item);
@@ -83,7 +82,7 @@ export default function InstructorDataTableView(props) {
         <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="w-16 px-3">
                 No.
               </th>
               <th scope="col" className="px-6 py-3">
@@ -98,11 +97,11 @@ export default function InstructorDataTableView(props) {
               <th scope="col" className="px-6 py-3">
                 Password Sementara
               </th>
-              <th scope="col" className="px-6 py-3">
-                Siswa Bimbingan
+              <th scope="col" className="w-32 px-3">
+                Daftar Siswa Bimbingan
               </th>
-              <th scope="col" className="px-6 py-3">
-                Aksi
+              <th scope="col" className="w-16 px-3">
+                Edit
               </th>
             </tr>
           </thead>
@@ -115,7 +114,7 @@ export default function InstructorDataTableView(props) {
                 >
                   <th
                     scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    className="w-16 px-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     {index + 1}
                   </th>
@@ -123,36 +122,23 @@ export default function InstructorDataTableView(props) {
                   <td className="px-6 py-4 truncate text-left">{item.no_hp}</td>
                   <td className="px-6 py-4">{item.user?.username}</td>
                   <td className="px-6 py-4">{item.user?.temp_password}</td>
-                  <td className="px-3 py-2">
+                  <td className="w-32 px-3">
                     <Button
                       outline={true}
                       onClick={() => navigate(`${item.id}`)}
                     >
-                      Tampilkan
+                      <i className="fa-solid fa-eye mr-2"></i>Lihat
                     </Button>
                   </td>
-                  <td className="flex items-center justify-center px-3 py-2">
-                    <Dropdown
-                      index={index}
-                      listMenu={[
-                        {
-                          variant: "default",
-                          onClick: () => updateDrawer(item),
-                          label: "Edit",
-                        },
-                        {
-                          variant: `${
-                            item.status_aktif ? "danger" : "default"
-                          }`,
-                          onClick: () => initModal(item),
-                          label: `${
-                            item.status_aktif ? "Non-aktifkan" : "Aktifkan"
-                          }`,
-                        },
-                      ]}
-                    >
-                      Aksi
-                    </Dropdown>
+                  <td className="w-16 px-3">
+                    <div className="flex items-center justify-center">
+                      <Button
+                        variant="yellow"
+                        onClick={() => updateDrawer(item)}
+                      >
+                        <i className="fa-solid fa-pen"></i>
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               ))

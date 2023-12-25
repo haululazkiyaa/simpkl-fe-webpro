@@ -4,6 +4,7 @@ import { AuthContext } from "../../../../context/AuthContext.jsx";
 import Button from "../../../../components/Elements/Button/index.jsx";
 import ConfirmModal from "../../../../components/Elements/ConfirmModal/index.jsx";
 import Logout from "../../../../components/Elements/Logout/index.js";
+import NotFound from "../../../../components/Elements/EmptyState/NotFound.jsx";
 import PropTypes from "prop-types";
 import { refreshToken } from "../../../../services/auth/auth.service.js";
 import { setTahunAjaran } from "../../../../services/school-admin/year-settings.service.js";
@@ -80,7 +81,7 @@ export default function YearSettingsTableView(props) {
                 Status
               </th>
               <th scope="col" className="px-6 py-3">
-                Aksi
+                Aktifkan
               </th>
             </tr>
           </thead>
@@ -112,26 +113,32 @@ export default function YearSettingsTableView(props) {
                       )}
                     </div>
                   </td>
-                  <td className="flex items-center justify-center px-3 pt-2">
-                    {!item.status ? (
-                      <>
+                  <td className="w-16 px-3">
+                    <div className="flex items-center justify-center">
+                      {!item.status ? (
                         <Button
+                          variant="green"
                           onClick={() => {
                             initModal(item);
                           }}
                         >
-                          Aktifkan
+                          <i className="fa-solid fa-power-off"></i>
                         </Button>
-                      </>
-                    ) : (
-                      <></>
-                    )}
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                   </td>
                 </tr>
               ))
             ) : (
-              <tr className="px-6 py-4">
-                <td colSpan={3}>Tidak ada data</td>
+              <tr>
+                <td colSpan={8}>
+                  <NotFound />
+                  <h3 className="text-xl text-black font-bold mb-5">
+                    Opps! Belum ada data apapun!
+                  </h3>
+                </td>
               </tr>
             )}
           </tbody>

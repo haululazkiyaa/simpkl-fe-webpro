@@ -87,8 +87,10 @@ export default function SupervisorDataAddDrawerView(props) {
 
   return (
     <>
-      <Button onClick={() => initDrawer()}>Tambah Pembimbing Baru</Button>
-      <Drawer title="Tambah Pembimbing Baru" id={id}>
+      <Button onClick={() => initDrawer()}>
+        <i className="fa-solid fa-plus mr-2"></i>Tambah
+      </Button>
+      <Drawer title="Tambah Data Pembimbing" id={id}>
         {message != "success" ? (
           <form
             className="space-y-4 md:space-y-6"

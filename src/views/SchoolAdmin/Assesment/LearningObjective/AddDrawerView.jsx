@@ -1,20 +1,21 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 
-import Alert from "../../../components/Elements/Alert/index.jsx";
-import { AuthContext } from "../../../context/AuthContext.jsx";
-import Button from "../../../components/Elements/Button/index.jsx";
-import Drawer from "../../../components/Elements/Drawer/index.jsx";
-import Logout from "../../../components/Elements/Logout/index.js";
+import Alert from "../../../../components/Elements/Alert/index.jsx";
+import { AuthContext } from "../../../../context/AuthContext.jsx";
+import Button from "../../../../components/Elements/Button/index.jsx";
+import Drawer from "../../../../components/Elements/Drawer/index.jsx";
+import Input from "../../../../components/Elements/Input/index.jsx";
+import Logout from "../../../../components/Elements/Logout/index.js";
 import PropTypes from "prop-types";
-import SuccessBadge from "../../../components/Elements/SuccessBadge/index.jsx";
-import TextArea from "../../../components/Elements/TextArea/index.jsx";
-import { addCatatanPembimbing } from "../../../services/supervisor/supervisor-monitoring.service.js";
-import { refreshToken } from "../../../services/auth/auth.service.js";
+import SuccessBadge from "../../../../components/Elements/SuccessBadge/index.jsx";
+import TextArea from "../../../../components/Elements/TextArea/index.jsx";
+import { addTujuanPembelajaran } from "../../../../services/school-admin/learning-objective.service.js";
+import { refreshToken } from "../../../../services/auth/auth.service.js";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-export default function SupervisorMonthlyAssesmentUpdateDrawerView(props) {
-  const { handleDataHarian, selected, id } = props;
+export default function LearningObjectiveAddDrawerView(props) {
+  const { handleTujuanPembelajaran, id } = props;
   const { setProgress } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -22,26 +23,27 @@ export default function SupervisorMonthlyAssesmentUpdateDrawerView(props) {
   const [loading, setLoading] = useState(false);
 
   // handle input
-  const [catatan, setCatatan] = useState("");
+  const [judul, setJudul] = useState("");
+  const [deskripsi, setDeskripsi] = useState("");
 
   // handle message
   const [message, setMessage] = useState("");
 
-  const handleTambahCatatan = (e) => {
+  const handleTambahTujuanPembelajaran = (e) => {
     e.preventDefault();
     setProgress(30);
     setLoading(true);
     setMessage("");
     const data = {
-      id: selected.id,
-      catatan_pembimbing: catatan,
+      judul: judul,
+      deskripsi: deskripsi,
     };
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        addCatatanPembimbing(data, token, (status, message) => {
+        addTujuanPembelajaran(data, token, (status, message) => {
           if (status) {
-            toast.success(`Sukses! penilaian bulanan diperbarui.`, {
+            toast.success(`Sukses! Tujuan pembelajaran ditambahakan.`, {
               autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -49,11 +51,11 @@ export default function SupervisorMonthlyAssesmentUpdateDrawerView(props) {
               draggable: true,
               progress: undefined,
             });
-            handleDataHarian();
+            handleTujuanPembelajaran();
             setMessage("success");
           } else {
             setMessage(message);
-            toast.error("Gagal memperbarui penilaian bulanan!", {
+            toast.error("Gagal menambahkan tujuan pembelajaran!", {
               autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -75,37 +77,40 @@ export default function SupervisorMonthlyAssesmentUpdateDrawerView(props) {
     });
   };
 
-  useEffect(() => {
-    setCatatan(selected?.catatan_pembimbing);
-  }, [selected]);
-
-  const getDetails = () => {
+  const initDrawer = () => {
+    handleTujuanPembelajaran();
+    setMessage("");
     document.getElementById("init-drawer" + id).click();
   };
 
   return (
     <>
-      <button
-        id={"update-drawer" + id}
-        hidden={true}
-        onClick={() => {
-          setMessage("");
-          getDetails();
-        }}
-      ></button>
-      <Drawer title="Catatan Jurnal" id={id}>
+      <Button onClick={() => initDrawer()}>
+        <i className="fa-solid fa-plus mr-2"></i>Tambah
+      </Button>
+      <Drawer title="Tambah Tujuan Pembelajaran" id={id}>
         {message != "success" ? (
           <form
             className="space-y-4 md:space-y-6"
-            onSubmit={(e) => handleTambahCatatan(e)}
+            onSubmit={(e) => handleTambahTujuanPembelajaran(e)}
           >
+            <Input
+              type="text"
+              label="Tujuan Pembelajaran"
+              name="tujuan_pembelajaran"
+              id="tujuan_pembelajaran"
+              placeholder="Masukan tujuan pembelajaran"
+              value={judul}
+              onChange={(e) => setJudul(e.target.value)}
+              required={true}
+            />
             <TextArea
-              label="Catatan Pembimbing"
-              name="catatan"
-              id="catatan"
-              placeholder="Masukan catatan pembimbing"
-              value={catatan}
-              onChange={(e) => setCatatan(e.target.value)}
+              label="Template Deskripsi"
+              name="template_deskirpsi"
+              id="template_deskirpsi"
+              placeholder="Masukan template deskripsi untuk pembimbing"
+              value={deskripsi}
+              onChange={(e) => setDeskripsi(e.target.value)}
               required={true}
             />
             <Alert>{message}</Alert>
@@ -132,21 +137,19 @@ export default function SupervisorMonthlyAssesmentUpdateDrawerView(props) {
                   Loading...
                 </>
               ) : (
-                "Perbarui"
+                "Tambahkan"
               )}
             </Button>
           </form>
         ) : (
-          <SuccessBadge id={id}>Berhasil menambahkan data!</SuccessBadge>
+          <SuccessBadge>Berhasil menambahkan data!</SuccessBadge>
         )}
       </Drawer>
     </>
   );
 }
 
-SupervisorMonthlyAssesmentUpdateDrawerView.propTypes = {
-  data: PropTypes.any,
-  handleDataHarian: PropTypes.func,
-  selected: PropTypes.any,
+LearningObjectiveAddDrawerView.propTypes = {
+  handleTujuanPembelajaran: PropTypes.func,
   id: PropTypes.string,
 };

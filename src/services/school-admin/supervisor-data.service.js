@@ -60,3 +60,19 @@ export const setPembimbing = async (data, token, callback) => {
       callback(false);
     });
 };
+
+export const deletePembimbing = async (data, token, callback) => {
+  await axiosReq
+    .delete(`${import.meta.env.VITE_API_URL}/guru-pembimbing/delete`, {
+      data,
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+    .then((res) => {
+      callback(true, res.data.message);
+    })
+    .catch((error) => {
+      callback(false, error.response.data.message);
+    });
+};

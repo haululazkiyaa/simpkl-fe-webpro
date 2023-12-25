@@ -1,4 +1,5 @@
 import Button from "../../../components/Elements/Button/index.jsx";
+import NotFound from "../../../components/Elements/EmptyState/NotFound.jsx";
 import PropTypes from "prop-types";
 
 export default function SupervisorMonthlyAssesmentTableView(props) {
@@ -9,18 +10,13 @@ export default function SupervisorMonthlyAssesmentTableView(props) {
     document.getElementById("init-static-modal").click();
   };
 
-  const updateDrawer = (item) => {
-    setSelected(item);
-    document.getElementById("update-drawer1").click();
-  };
-
   return (
     <>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="w-16 px-3">
                 No.
               </th>
               <th scope="col" className="px-6 py-3">
@@ -35,11 +31,8 @@ export default function SupervisorMonthlyAssesmentTableView(props) {
               <th scope="col" className="px-6 py-3">
                 Instruktur
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="w-32 px-3">
                 Penialain Bulanan
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Aksi
               </th>
             </tr>
           </thead>
@@ -57,38 +50,37 @@ export default function SupervisorMonthlyAssesmentTableView(props) {
                     {index + 1}
                   </th>
                   <td className="px-6 py-4 truncate text-left">
-                    {item.kelompok_bimbingan?.siswa?.nis} /{" "}
-                    {item.kelompok_bimbingan?.siswa?.nisn}
+                    {item.siswa?.nis} / {item.siswa?.nisn}
                   </td>
                   <td className="px-6 py-4 truncate text-left">
-                    {item.kelompok_bimbingan?.siswa?.nama}
+                    {item.siswa?.nama}
                   </td>
                   <td className="px-6 py-4 truncate text-left">
-                    {item.kelompok_bimbingan?.perusahaan?.nama_perusahaan}
+                    {item.perusahaan?.nama_perusahaan}
                   </td>
                   <td className="px-6 py-4 truncate text-left">
-                    {item.kelompok_bimbingan?.instruktur?.nama}
+                    {item.instruktur?.nama}
                   </td>
-                  <td className="px-3 py-2">
-                    <Button
-                      outline={true}
-                      onClick={() => initStaticModal(item)}
-                    >
-                      Tampilkan
-                    </Button>
-                  </td>
-                  <td className="flex items-center justify-center px-3 py-2">
-                    <Button onClick={() => updateDrawer(item)}>
-                      {item.catatan_pembimbing
-                        ? "Edit Penilaian"
-                        : "Berikan Penilaian"}
-                    </Button>
+                  <td className="w-32 px-3">
+                    <div className="flex items-center justify-center">
+                      <Button
+                        outline={true}
+                        onClick={() => initStaticModal(item)}
+                      >
+                        <i className="fa-solid fa-eye mr-2"></i>Lihat
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               ))
             ) : (
-              <tr className="px-6 py-4">
-                <td colSpan={5}>Tidak ada data</td>
+              <tr>
+                <td colSpan={7}>
+                  <NotFound />
+                  <h3 className="text-xl text-black font-bold mb-5">
+                    Opps! Belum ada data apapun!
+                  </h3>
+                </td>
               </tr>
             )}
           </tbody>

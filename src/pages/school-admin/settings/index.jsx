@@ -50,14 +50,14 @@ export default function SchoolAdminSettingsPage() {
               Anda dapat mengubah tahun ajaran berjalan melalui pengaturan ini.
               Data pada aplikasi akan ditampilkan sesuai tahun yang anda pilih.
             </p>
-            <div className="not-format">
-              <YearSettingsAddDrawerView
-                handleTahunAjaran={handleTahunAjaran}
-              />
-            </div>
           </div>
           <div className="basis-4/6">
             <div className="not-format">
+              <div className="flex justify-between mb-5">
+                <YearSettingsAddDrawerView
+                  handleTahunAjaran={handleTahunAjaran}
+                />
+              </div>
               <YearSettingsTableView
                 data={data}
                 handleTahunAjaran={handleTahunAjaran}

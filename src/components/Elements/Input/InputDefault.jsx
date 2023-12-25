@@ -38,7 +38,7 @@ InputDefault.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
   placeholder: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.any,
   onChange: PropTypes.func,
   required: PropTypes.bool,
   error: PropTypes.bool,

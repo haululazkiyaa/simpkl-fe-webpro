@@ -99,7 +99,7 @@ export default function MajorManagementUpdateDrawerView(props) {
           getDetails();
         }}
       ></button>
-      <Drawer title="Perbarui Data Jurusan" id={id}>
+      <Drawer title="Update Data Jurusan" id={id}>
         {message != "success" ? (
           <form
             className="space-y-4 md:space-y-6"

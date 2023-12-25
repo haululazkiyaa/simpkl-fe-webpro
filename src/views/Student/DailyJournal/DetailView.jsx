@@ -19,7 +19,7 @@ export default function StudentDailyJournalDetailView(props) {
           <img src={detail} alt="Foto Kegiatan" />
         </>
       ) : (
-        <p className="text-center">Tidak ada data</p>
+        <p className="text-center">Tidak Gambar</p>
       )}
     </Modal>
   );

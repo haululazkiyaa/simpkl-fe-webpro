@@ -15,19 +15,25 @@ export default function StudentDailyJournalPage() {
 
   const [data, setData] = useState({});
   const [selected, setSelected] = useState("");
+  const [tanggal, setTanggal] = useState("");
+  const [today, setToday] = useState("");
 
   const handleDataHarian = useCallback(() => {
-    const today = new Date();
-    const dd = String(today.getDate()).padStart(2, "0");
-    const mm = String(today.getMonth() + 1).padStart(2, "0");
-    const yyyy = today.getFullYear();
-    const filterDate = yyyy + "-" + mm + "-" + dd;
+    if (tanggal == "") {
+      const date = new Date();
+      const dd = String(date.getDate()).padStart(2, "0");
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const yyyy = date.getFullYear();
+      const dateString = yyyy + "-" + mm + "-" + dd;
+      setTanggal(dateString);
+      setToday(dateString);
+    }
 
     setProgress(30);
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        getJurnalHarian(filterDate, token, (status, data) => {
+        getJurnalHarian(tanggal, token, (status, data) => {
           if (status) {
             setData(data);
           }
@@ -41,11 +47,12 @@ export default function StudentDailyJournalPage() {
       }
       setProgress(100);
     });
-  }, [setProgress, navigate]);
+  }, [setProgress, navigate, setTanggal, tanggal]);
 
   useEffect(() => {
+    setData({});
     handleDataHarian();
-  }, [handleDataHarian]);
+  }, [handleDataHarian, tanggal]);
 
   return (
     <>
@@ -63,8 +70,12 @@ export default function StudentDailyJournalPage() {
             <div className="not-format">
               <StudentDailyJournalTableView
                 handleDataHarian={handleDataHarian}
+                setData={setData}
                 data={data}
                 setSelected={setSelected}
+                tanggal={tanggal}
+                setTanggal={setTanggal}
+                today={today}
               />
               <StudentDailyJournalUpdateDrawerView
                 handleDataHarian={handleDataHarian}

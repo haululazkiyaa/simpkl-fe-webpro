@@ -54,8 +54,8 @@ export const deleteKelBimbingan = async (data, token, callback) => {
         Authorization: "Bearer " + token,
       },
     })
-    .then(() => {
-      callback(true);
+    .then((res) => {
+      callback(true, res.data.message);
     })
     .catch((error) => {
       callback(false, error.response.data.message);

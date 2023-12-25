@@ -102,7 +102,7 @@ export default function SupervisorDataUpdateDrawerView(props) {
           getDetails();
         }}
       ></button>
-      <Drawer title="Perbarui Data Pembimbing" id={id}>
+      <Drawer title="Update Data Pembimbing" id={id}>
         {message != "success" ? (
           <form
             className="space-y-4 md:space-y-6"

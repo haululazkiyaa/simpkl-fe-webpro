@@ -1,4 +1,5 @@
 import Button from "../../../components/Elements/Button/index.jsx";
+import NotFound from "../../../components/Elements/EmptyState/NotFound.jsx";
 import PropTypes from "prop-types";
 
 export default function CompanyGuidanceGroupTableView(props) {
@@ -15,7 +16,7 @@ export default function CompanyGuidanceGroupTableView(props) {
         <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="w-16 px-3">
                 No.
               </th>
               <th scope="col" className="px-6 py-3">
@@ -37,7 +38,7 @@ export default function CompanyGuidanceGroupTableView(props) {
                 Status
               </th>
               <th scope="col" className="px-6 py-3">
-                Aksi
+                Pilih Instruktur
               </th>
             </tr>
           </thead>
@@ -50,7 +51,7 @@ export default function CompanyGuidanceGroupTableView(props) {
                 >
                   <th
                     scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    className="w-16 px-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     {index + 1}
                   </th>
@@ -84,16 +85,26 @@ export default function CompanyGuidanceGroupTableView(props) {
                       )}
                     </div>
                   </td>
-                  <td className="flex items-center justify-center px-3 py-2">
-                    <Button onClick={() => updateDrawer(item)}>
-                      Pilih Instruktur
-                    </Button>
+                  <td className="w-16 px-3">
+                    <div className="flex items-center justify-center">
+                      <Button
+                        variant="default"
+                        onClick={() => updateDrawer(item)}
+                      >
+                        <i className="fa-solid fa-user-plus"></i>
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               ))
             ) : (
-              <tr className="px-6 py-4">
-                <td colSpan={5}>Tidak ada data</td>
+              <tr>
+                <td colSpan={8}>
+                  <NotFound />
+                  <h3 className="text-xl text-black font-bold mb-5">
+                    Opps! Belum ada data apapun!
+                  </h3>
+                </td>
               </tr>
             )}
           </tbody>

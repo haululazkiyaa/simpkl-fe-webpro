@@ -153,7 +153,7 @@ export default function StudentDataUpdateDrawerView(props) {
           getDetails();
         }}
       ></button>
-      <Drawer title="Perbarui Data Siswa" id={id}>
+      <Drawer title="Update Data Siswa" id={id}>
         {message != "success" ? (
           <form
             className="space-y-4 md:space-y-6"

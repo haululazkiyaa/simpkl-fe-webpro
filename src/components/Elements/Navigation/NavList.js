@@ -18,6 +18,11 @@ export const NavList = [
         icon: "fa-list-ul",
       },
       {
+        label: "Data Perusahaan",
+        href: "/school-admin/company-data",
+        icon: "fa-building",
+      },
+      {
         label: "Data Pembimbing",
         href: "/school-admin/supervisor-data",
         icon: "fa-user-tie",
@@ -31,6 +36,11 @@ export const NavList = [
         label: "Kelompok Bimbingan",
         href: "/school-admin/guidance-group",
         icon: "fa-users",
+      },
+      {
+        label: "Penilaian",
+        href: "/school-admin/assesment",
+        icon: "fa-chart-simple",
       },
     ],
   },
@@ -83,6 +93,11 @@ export const NavList = [
         icon: "fa-calendar-check",
       },
       {
+        label: "Kehadiran",
+        href: "/supervisor/presence",
+        icon: "fa-clipboard-check",
+      },
+      {
         label: "Penilaian Bulanan",
         href: "/supervisor/monthly-assesment",
         icon: "fa-chart-simple",
@@ -108,7 +123,12 @@ export const NavList = [
         icon: "fa-calendar-check",
       },
       {
-        label: "Penilaian Pembimbing",
+        label: "Kehadiran",
+        href: "/student/presence",
+        icon: "fa-clipboard-check",
+      },
+      {
+        label: "Penilaian Bulanan",
         href: "/student/monthly-grade",
         icon: "fa-chart-simple",
       },

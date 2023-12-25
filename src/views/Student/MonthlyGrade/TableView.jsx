@@ -1,45 +1,66 @@
-import Button from "../../../components/Elements/Button/index.jsx";
+import NotFound from "../../../components/Elements/EmptyState/NotFound.jsx";
 import PropTypes from "prop-types";
+import SelectInput from "../../../components/Elements/SelectInput/index.jsx";
 
 export default function StudentMonthlyGradeTableView(props) {
-  const { data, setSelected } = props;
+  const { data, bulan, setBulan, tahun, setTahun } = props;
 
-  const initStaticModal = (item) => {
-    setSelected(item);
-    document.getElementById("init-static-modal").click();
-  };
+  const opsiBulan = [
+    { value: "1", label: "Januari" },
+    { value: "2", label: "Februari" },
+    { value: "3", label: "Maret" },
+    { value: "4", label: "April" },
+    { value: "5", label: "Mei" },
+    { value: "6", label: "Juni" },
+    { value: "7", label: "Juli" },
+    { value: "8", label: "Agustus" },
+    { value: "9", label: "September" },
+    { value: "10", label: "Oktober" },
+    { value: "11", label: "November" },
+    { value: "12", label: "Desember" },
+  ];
 
-  const updateDrawer = (item) => {
-    setSelected(item);
-    document.getElementById("update-drawer1").click();
-  };
+  const opsiTahun = [
+    { value: new Date().getFullYear(), label: new Date().getFullYear() },
+    {
+      value: new Date().getFullYear() + 1,
+      label: new Date().getFullYear() + 1,
+    },
+  ];
 
   return (
     <>
+      {!(bulan === "" && tahun === "") && (
+        <div className="flex justify-start items-center space-x-2 mb-5">
+          <SelectInput
+            options={opsiBulan}
+            id="pilih_bulan"
+            onChange={(e) => setBulan(e.value)}
+            defaultValue={opsiBulan.find(({ value }) => value == bulan)}
+          />
+          <SelectInput
+            options={opsiTahun}
+            id="pilih_tahun"
+            onChange={(e) => setTahun(e.value)}
+            defaultValue={opsiTahun.find(({ value }) => value === tahun)}
+          />
+        </div>
+      )}
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="w-16 px-3">
                 No.
               </th>
               <th scope="col" className="px-6 py-3">
-                NIS / NISN
+                Tujuan Pembelajaran
               </th>
               <th scope="col" className="px-6 py-3">
-                Nama Siswa
+                Skor (1-100)
               </th>
               <th scope="col" className="px-6 py-3">
-                Perusahaan
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Instruktur
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Penialain Bulanan
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Aksi
+                Deskripsi Penilaian
               </th>
             </tr>
           </thead>
@@ -52,43 +73,25 @@ export default function StudentMonthlyGradeTableView(props) {
                 >
                   <th
                     scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    className="w-16 px-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     {index + 1}
                   </th>
-                  <td className="px-6 py-4 truncate text-left">
-                    {item.kelompok_bimbingan?.siswa?.nis} /{" "}
-                    {item.kelompok_bimbingan?.siswa?.nisn}
+                  <td className="px-6 py-4 text-left">
+                    {item.tujuan_pembelajaran?.judul}
                   </td>
-                  <td className="px-6 py-4 truncate text-left">
-                    {item.kelompok_bimbingan?.siswa?.nama}
-                  </td>
-                  <td className="px-6 py-4 truncate text-left">
-                    {item.kelompok_bimbingan?.perusahaan?.nama_perusahaan}
-                  </td>
-                  <td className="px-6 py-4 truncate text-left">
-                    {item.kelompok_bimbingan?.instruktur?.nama}
-                  </td>
-                  <td className="px-3 py-2">
-                    <Button
-                      outline={true}
-                      onClick={() => initStaticModal(item)}
-                    >
-                      Tampilkan
-                    </Button>
-                  </td>
-                  <td className="flex items-center justify-center px-3 py-2">
-                    <Button onClick={() => updateDrawer(item)}>
-                      {item.catatan_pembimbing
-                        ? "Edit Penilaian"
-                        : "Berikan Penilaian"}
-                    </Button>
-                  </td>
+                  <td className="px-6 py-4 truncate">{item.nilai}</td>
+                  <td className="px-6 py-4 text-left">{item.deskripsi}</td>
                 </tr>
               ))
             ) : (
-              <tr className="px-6 py-4">
-                <td colSpan={5}>Tidak ada data</td>
+              <tr>
+                <td colSpan={7}>
+                  <NotFound />
+                  <h3 className="text-xl text-black font-bold mb-5">
+                    Opps! Belum ada data apapun!
+                  </h3>
+                </td>
               </tr>
             )}
           </tbody>
@@ -102,4 +105,8 @@ StudentMonthlyGradeTableView.propTypes = {
   data: PropTypes.any,
   setSelected: PropTypes.any,
   id: PropTypes.string,
+  bulan: PropTypes.any,
+  setBulan: PropTypes.any,
+  tahun: PropTypes.any,
+  setTahun: PropTypes.any,
 };

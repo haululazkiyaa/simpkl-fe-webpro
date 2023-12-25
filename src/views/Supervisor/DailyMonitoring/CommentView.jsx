@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Modal from "../../../components/Elements/Modal/index.jsx";
+import NotFound from "../../../components/Elements/EmptyState/NotFound.jsx";
 import PropTypes from "prop-types";
 
 export default function SupervisorDailyMonitoringCommentView(props) {
@@ -13,7 +14,7 @@ export default function SupervisorDailyMonitoringCommentView(props) {
   }, [data, selected]);
 
   return (
-    <Modal title="Catatan Pembimbing / Instruktur" id={id}>
+    <Modal title="Catatan dari Pembimbing dan Instruktur" id={id}>
       <div className="relative overflow-x-auto">
         <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400">
           <tbody>
@@ -24,7 +25,7 @@ export default function SupervisorDailyMonitoringCommentView(props) {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 dark:text-white text-left"
                   >
-                    Catatan Pembimbing
+                    Catatan Anda
                   </th>
                   <td className="px-6 py-4 text-left">
                     : {detail.catatan_pembimbing || "Tidak ada catatan"}
@@ -43,8 +44,13 @@ export default function SupervisorDailyMonitoringCommentView(props) {
                 </tr>
               </>
             ) : (
-              <tr className="px-6 py-4 text-left">
-                <td colSpan={3}>Tidak ada data</td>
+              <tr>
+                <td colSpan={8}>
+                  <NotFound />
+                  <h3 className="text-xl text-black font-bold mb-5">
+                    Opps! Belum ada data apapun!
+                  </h3>
+                </td>
               </tr>
             )}
           </tbody>

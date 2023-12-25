@@ -85,7 +85,9 @@ export default function MajorManagementAddDrawerView(props) {
 
   return (
     <>
-      <Button onClick={() => initDrawer()}>Tambah Jurusan Baru</Button>
+      <Button onClick={() => initDrawer()}>
+        <i className="fa-solid fa-plus mr-2"></i>Tambah
+      </Button>
       <Drawer title="Tambah Jurusan Baru" id={id}>
         {message != "success" ? (
           <form

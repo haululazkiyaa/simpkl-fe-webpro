@@ -1,3 +1,4 @@
+import NotFound from "../../../../components/Elements/EmptyState/NotFound";
 import PropTypes from "prop-types";
 
 export default function InstructorStudentDataTableView(props) {
@@ -9,7 +10,7 @@ export default function InstructorStudentDataTableView(props) {
         <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="w-16 px-3">
                 No.
               </th>
               <th scope="col" className="px-6 py-3">
@@ -38,7 +39,7 @@ export default function InstructorStudentDataTableView(props) {
                 >
                   <th
                     scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    className="w-16 px-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     {index + 1}
                   </th>
@@ -72,8 +73,13 @@ export default function InstructorStudentDataTableView(props) {
                 </tr>
               ))
             ) : (
-              <tr className="px-6 py-4">
-                <td colSpan={5}>Tidak ada data</td>
+              <tr>
+                <td colSpan={6}>
+                  <NotFound />
+                  <h3 className="text-xl text-black font-bold mb-5">
+                    Opps! Belum ada data apapun!
+                  </h3>
+                </td>
               </tr>
             )}
           </tbody>

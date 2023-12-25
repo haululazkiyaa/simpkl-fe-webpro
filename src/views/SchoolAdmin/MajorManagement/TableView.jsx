@@ -1,10 +1,11 @@
 import { AuthContext } from "../../../context/AuthContext.jsx";
+import Button from "../../../components/Elements/Button/index.jsx";
 import ConfirmModal from "../../../components/Elements/ConfirmModal/index.jsx";
-import Dropdown from "../../../components/Elements/Dropdown/index.jsx";
 import Logout from "../../../components/Elements/Logout/index.js";
+import NotFound from "../../../components/Elements/EmptyState/NotFound.jsx";
 import PropTypes from "prop-types";
+import { deleteJurusan } from "../../../services/school-admin/major-management.service.js";
 import { refreshToken } from "../../../services/auth/auth.service.js";
-import { setTahunAjaran } from "../../../services/school-admin/year-settings.service.js";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,27 +19,23 @@ export default function MajorManagementTableView(props) {
     setProgress(30);
     const data = {
       id: selected.id,
-      status: true,
     };
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        setTahunAjaran(data, token, (status) => {
+        deleteJurusan(data, token, (status, message) => {
           if (status) {
-            toast.success(
-              `Sukses! Tahun ajaran ${selected?.tahun_ajaran} sudah aktif.`,
-              {
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              }
-            );
+            toast.success(message, {
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
             handleJurusan();
           } else {
-            toast.error("Gagal mengganti tahun ajaran!", {
+            toast.error(message, {
               autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -64,13 +61,18 @@ export default function MajorManagementTableView(props) {
     document.getElementById("update-drawer1").click();
   };
 
+  const initModal = (item) => {
+    setSelected(item);
+    document.getElementById("init-modal").click();
+  };
+
   return (
     <>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="w-16 px-3">
                 No.
               </th>
               <th scope="col" className="px-6 py-3">
@@ -82,8 +84,11 @@ export default function MajorManagementTableView(props) {
               <th scope="col" className="px-6 py-3">
                 Kompetensi Keahlian (INTI)
               </th>
-              <th scope="col" className="px-6 py-3">
-                Aksi
+              <th scope="col" className="w-16 px-3">
+                Edit
+              </th>
+              <th scope="col" className="w-16 px-3">
+                Hapus
               </th>
             </tr>
           </thead>
@@ -96,7 +101,7 @@ export default function MajorManagementTableView(props) {
                 >
                   <th
                     scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    className="w-16 px-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     {index + 1}
                   </th>
@@ -109,37 +114,40 @@ export default function MajorManagementTableView(props) {
                   <td className="px-6 py-4 truncate text-left">
                     {item.kompetensi_keahlian}
                   </td>
-                  <td className="flex items-center justify-center px-3 py-2">
-                    <Dropdown
-                      index={index}
-                      listMenu={[
-                        {
-                          variant: "default",
-                          onClick: () => updateDrawer(item),
-                          label: "Edit",
-                        },
-                        {
-                          variant: "danger",
-                          onClick: () => {},
-                          label: "Hapus",
-                        },
-                      ]}
-                    >
-                      Aksi
-                    </Dropdown>
+                  <td className="w-16 px-3">
+                    <div className="flex items-center justify-center">
+                      <Button
+                        variant="yellow"
+                        onClick={() => updateDrawer(item)}
+                      >
+                        <i className="fa-solid fa-pen"></i>
+                      </Button>
+                    </div>
+                  </td>
+                  <td className="w-16 px-3">
+                    <div className="flex items-center justify-center">
+                      <Button variant="red" onClick={() => initModal(item)}>
+                        <i className="fa-solid fa-trash"></i>
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               ))
             ) : (
-              <tr className="px-6 py-4">
-                <td colSpan={5}>Tidak ada data</td>
+              <tr>
+                <td colSpan={6}>
+                  <NotFound />
+                  <h3 className="text-xl text-black font-bold mb-5">
+                    Opps! Belum ada data apapun!
+                  </h3>
+                </td>
               </tr>
             )}
           </tbody>
         </table>
       </div>
       <ConfirmModal
-        desc={`Apakah anda yakin ingin menghapus jurusan ${selected?.bidang_keahlian}?`}
+        desc={`Apakah anda yakin ingin jurusan ${selected.kompetensi_keahlian}?`}
         labelOk="Ya"
         labelCancel="Tidak"
         onClick={() => handleDeleteJurusan()}

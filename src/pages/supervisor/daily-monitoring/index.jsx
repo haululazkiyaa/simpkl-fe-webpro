@@ -16,19 +16,24 @@ export default function SupervisorDailyMonitoringPage() {
 
   const [data, setData] = useState([]);
   const [selected, setSelected] = useState("");
+  const [tanggal, setTanggal] = useState("");
 
   const handleDataHarian = useCallback(() => {
-    const today = new Date();
-    const dd = String(today.getDate()).padStart(2, "0");
-    const mm = String(today.getMonth() + 1).padStart(2, "0");
-    const yyyy = today.getFullYear();
-    const filterDate = yyyy + "-" + mm + "-" + dd;
+    setData([]);
+    if (tanggal == "") {
+      const today = new Date();
+      const dd = String(today.getDate()).padStart(2, "0");
+      const mm = String(today.getMonth() + 1).padStart(2, "0");
+      const yyyy = today.getFullYear();
+      const dateString = yyyy + "-" + mm + "-" + dd;
+      setTanggal(dateString);
+    }
 
     setProgress(30);
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        getJurnalPembimbing(filterDate, token, (status, data) => {
+        getJurnalPembimbing(tanggal, token, (status, data) => {
           if (status) {
             setData(data);
           }
@@ -42,7 +47,7 @@ export default function SupervisorDailyMonitoringPage() {
       }
       setProgress(100);
     });
-  }, [setProgress, navigate]);
+  }, [setProgress, navigate, tanggal]);
 
   useEffect(() => {
     handleDataHarian();
@@ -61,6 +66,8 @@ export default function SupervisorDailyMonitoringPage() {
           <SupervisorDailyMonitoringTableView
             data={data}
             setSelected={setSelected}
+            tanggal={tanggal}
+            setTanggal={setTanggal}
           />
           <SupervisorDailyMonitoringUpdateDrawerView
             handleDataHarian={handleDataHarian}

@@ -93,7 +93,7 @@ export default function InstructorDailyMonitoringUpdateDrawerView(props) {
           getDetails();
         }}
       ></button>
-      <Drawer title="Catatan Jurnal" id={id}>
+      <Drawer title="Berikan Catatan" id={id}>
         {message != "success" ? (
           <form
             className="space-y-4 md:space-y-6"

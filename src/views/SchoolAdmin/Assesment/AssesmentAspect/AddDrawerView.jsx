@@ -22,7 +22,7 @@ export default function AssesmentAspectAddDrawerView(props) {
   const [loading, setLoading] = useState(false);
 
   // handle input
-  const [kode, setKode] = useState("");
+  const [kelompokPenilaian, setKelompokPenilaian] = useState("");
   const [judul, setJudul] = useState("");
 
   // handle message
@@ -34,7 +34,7 @@ export default function AssesmentAspectAddDrawerView(props) {
     setLoading(true);
     setMessage("");
     const data = {
-      kode: kode,
+      kelompok_penilaian: kelompokPenilaian,
       judul: judul,
     };
     refreshToken((status, token) => {
@@ -99,8 +99,8 @@ export default function AssesmentAspectAddDrawerView(props) {
               name="aspek_penilaian"
               id="aspek_penilaian"
               placeholder="Masukan aspek penilaian"
-              value={kode}
-              onChange={(e) => setKode(e.target.value)}
+              value={kelompokPenilaian}
+              onChange={(e) => setKelompokPenilaian(e.target.value)}
               required={true}
             />
             <Input

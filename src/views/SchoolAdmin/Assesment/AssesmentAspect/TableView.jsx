@@ -1,4 +1,5 @@
 import Button from "../../../../components/Elements/Button/index.jsx";
+import NotFound from "../../../../components/Elements/EmptyState/NotFound.jsx";
 import PropTypes from "prop-types";
 
 export default function AssesmentAspectTableView(props) {
@@ -44,7 +45,7 @@ export default function AssesmentAspectTableView(props) {
                   </th>
                   <td className="px-3 py-4">
                     <div className="flex items-center justify-start text-left">
-                      {item.kode}
+                      {item.kelompok_penilaian}
                     </div>
                   </td>
                   <td className="px-3 py-4">
@@ -65,8 +66,13 @@ export default function AssesmentAspectTableView(props) {
                 </tr>
               ))
             ) : (
-              <tr className="px-3 py-4">
-                <td colSpan={3}>Tidak ada data</td>
+              <tr>
+                <td colSpan={4}>
+                  <NotFound />
+                  <h3 className="text-xl text-black font-bold mb-5">
+                    Opps! Belum ada data apapun!
+                  </h3>
+                </td>
               </tr>
             )}
           </tbody>

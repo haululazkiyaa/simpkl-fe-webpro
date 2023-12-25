@@ -4,7 +4,6 @@ import { AuthContext } from "../../../context/AuthContext";
 import Logout from "../../../components/Elements/Logout";
 import SupervisorMonthlyAssesmentGradeView from "../../../views/Supervisor/MonthlyAssesment/GradeView";
 import SupervisorMonthlyAssesmentTableView from "../../../views/Supervisor/MonthlyAssesment/TableView";
-import SupervisorMonthlyAssesmentUpdateDrawerView from "../../../views/Supervisor/MonthlyAssesment/UpdateDrawerView";
 import { getKelBimbinganPembimbing } from "../../../services/supervisor/supervisor-monthly-grade.service";
 import { refreshToken } from "../../../services/auth/auth.service";
 import { useNavigate } from "react-router-dom";
@@ -53,11 +52,6 @@ export default function SupervisorMonthlyAssesmentPage() {
           <SupervisorMonthlyAssesmentTableView
             data={data}
             setSelected={setSelected}
-          />
-          <SupervisorMonthlyAssesmentUpdateDrawerView
-            handleDataHarian={handleDataHarian}
-            selected={selected}
-            id="1"
           />
           <SupervisorMonthlyAssesmentGradeView
             data={data}

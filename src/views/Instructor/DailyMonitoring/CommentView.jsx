@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Modal from "../../../components/Elements/Modal/index.jsx";
+import NotFound from "../../../components/Elements/EmptyState/NotFound.jsx";
 import PropTypes from "prop-types";
 
 export default function InstructorDailyMonitoringCommentView(props) {
@@ -43,8 +44,13 @@ export default function InstructorDailyMonitoringCommentView(props) {
                 </tr>
               </>
             ) : (
-              <tr className="px-6 py-4 text-left">
-                <td colSpan={3}>Tidak ada data</td>
+              <tr>
+                <td colSpan={8}>
+                  <NotFound />
+                  <h3 className="text-xl text-black font-bold mb-5">
+                    Opps! Belum ada data apapun!
+                  </h3>
+                </td>
               </tr>
             )}
           </tbody>

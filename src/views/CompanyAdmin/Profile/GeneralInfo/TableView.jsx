@@ -1,3 +1,4 @@
+import NotFound from "../../../../components/Elements/EmptyState/NotFound";
 import PropTypes from "prop-types";
 
 export default function CompanyProfileTableView(props) {
@@ -78,8 +79,13 @@ export default function CompanyProfileTableView(props) {
                 </tr>
               </>
             ) : (
-              <tr className="px-6 py-4 text-left">
-                <td colSpan={3}>Tidak ada data</td>
+              <tr>
+                <td colSpan={8}>
+                  <NotFound />
+                  <h3 className="text-xl text-black font-bold mb-5">
+                    Opps! Belum ada data apapun!
+                  </h3>
+                </td>
               </tr>
             )}
           </tbody>

@@ -32,6 +32,7 @@ import StudentFinalGradePage from "./pages/student/final-grade/index.jsx";
 import StudentMonthlyGradePage from "./pages/student/monthly-grade/index.jsx";
 import StudentMonthlyJournalPage from "./pages/student/monthly-journal/index.jsx";
 import StudentPage from "./pages/student/index.jsx";
+import StudentPresencePage from "./pages/student/presence/index.jsx";
 import SupervisorDailyMonitoringPage from "./pages/supervisor/daily-monitoring/index.jsx";
 import SupervisorFinalAssesmentPage from "./pages/supervisor/final-assesment/index.jsx";
 import SupervisorMonthlyAssesmentPage from "./pages/supervisor/monthly-assesment/index.jsx";
@@ -145,6 +146,10 @@ const router = createBrowserRouter([
       {
         path: "student/monthly-journal",
         element: <StudentMonthlyJournalPage />,
+      },
+      {
+        path: "student/presence",
+        element: <StudentPresencePage />,
       },
       {
         path: "student/monthly-grade",

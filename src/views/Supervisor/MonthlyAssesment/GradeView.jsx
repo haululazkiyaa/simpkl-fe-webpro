@@ -185,7 +185,7 @@ export default function SupervisorMonthlyAssesmentGradeView(props) {
           <SelectInput
             options={opsiTahun}
             id="pilih_tahun"
-            onChange={(e) => setBulan(e.value)}
+            onChange={(e) => setTahun(e.value)}
             defaultValue={opsiTahun.find(({ value }) => value === tahun)}
           />
         </div>

@@ -11,7 +11,7 @@ import SuccessBadge from "../../../components/Elements/SuccessBadge/index.jsx";
 import { getInstruktur } from "../../../services/instructor/instructor.service.js";
 import { refreshToken } from "../../../services/auth/auth.service.js";
 import { toast } from "react-toastify";
-import { updateKelBimbingan } from "../../../services/school-admin/guidance-group.service.js";
+import { updateInstrukturSiswa } from "../../../services/company-admin/company-guidance-group.service.js";
 import { useNavigate } from "react-router-dom";
 
 export default function CompanyGuidanceGroupUpdateDrawerView(props) {
@@ -71,7 +71,7 @@ export default function CompanyGuidanceGroupUpdateDrawerView(props) {
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        updateKelBimbingan(data, token, (status, message) => {
+        updateInstrukturSiswa(data, token, (status, message) => {
           if (status) {
             toast.success(`Sukses! Instruktur siswa diperbarui.`, {
               autoClose: 3000,

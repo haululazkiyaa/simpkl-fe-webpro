@@ -39,3 +39,22 @@ export const getKelBimbinganPerusahaanByInstruktur = async (
       callback(false);
     });
 };
+
+export const updateInstrukturSiswa = async (data, token, callback) => {
+  await axiosReq
+    .put(
+      `${import.meta.env.VITE_API_URL}/kelompok-bimbingan/update-instruktur`,
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    )
+    .then(() => {
+      callback(true);
+    })
+    .catch((error) => {
+      callback(false, error.response.data.message);
+    });
+};

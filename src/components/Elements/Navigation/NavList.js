@@ -128,7 +128,7 @@ export const NavList = [
         icon: "fa-clipboard-check",
       },
       {
-        label: "Penilaian Pembimbing",
+        label: "Penilaian Bulanan",
         href: "/student/monthly-grade",
         icon: "fa-chart-simple",
       },

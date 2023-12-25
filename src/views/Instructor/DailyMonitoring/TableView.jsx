@@ -1,9 +1,10 @@
 import Button from "../../../components/Elements/Button/index.jsx";
+import Input from "../../../components/Elements/Input/index.jsx";
 import NotFound from "../../../components/Elements/EmptyState/NotFound.jsx";
 import PropTypes from "prop-types";
 
 export default function InstructorDailyMonitoringTableView(props) {
-  const { data, setSelected } = props;
+  const { data, setSelected, tanggal, setTanggal } = props;
 
   const initStaticModal = (item) => {
     setSelected(item);
@@ -22,6 +23,20 @@ export default function InstructorDailyMonitoringTableView(props) {
 
   return (
     <>
+      <div className={`md:flex justify-between`}>
+        <div className="space-x-2 flex items-center justify-center mb-5">
+          <label className="text-black font-bold">Pilih Tanggal:</label>
+          <Input
+            type="date"
+            name="tanggal"
+            id="tanggal"
+            placeholder="Masukan tanggal jurnal"
+            value={tanggal}
+            onChange={(e) => setTanggal(e.target.value)}
+            required={true}
+          />
+        </div>
+      </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -142,4 +157,6 @@ InstructorDailyMonitoringTableView.propTypes = {
   data: PropTypes.any,
   setSelected: PropTypes.any,
   id: PropTypes.string,
+  tanggal: PropTypes.any,
+  setTanggal: PropTypes.any,
 };

@@ -58,17 +58,16 @@ export default function SupervisorMonthlyAssesmentTableView(props) {
                     {index + 1}
                   </th>
                   <td className="px-6 py-4 truncate text-left">
-                    {item.kelompok_bimbingan?.siswa?.nis} /{" "}
-                    {item.kelompok_bimbingan?.siswa?.nisn}
+                    {item.siswa?.nis} / {item.siswa?.nisn}
                   </td>
                   <td className="px-6 py-4 truncate text-left">
-                    {item.kelompok_bimbingan?.siswa?.nama}
+                    {item.siswa?.nama}
                   </td>
                   <td className="px-6 py-4 truncate text-left">
-                    {item.kelompok_bimbingan?.perusahaan?.nama_perusahaan}
+                    {item.perusahaan?.nama_perusahaan}
                   </td>
                   <td className="px-6 py-4 truncate text-left">
-                    {item.kelompok_bimbingan?.instruktur?.nama}
+                    {item.instruktur?.nama}
                   </td>
                   <td className="px-3 py-2">
                     <Button

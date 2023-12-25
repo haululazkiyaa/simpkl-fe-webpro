@@ -5,7 +5,7 @@ import Logout from "../../../components/Elements/Logout";
 import SupervisorMonthlyAssesmentGradeView from "../../../views/Supervisor/MonthlyAssesment/GradeView";
 import SupervisorMonthlyAssesmentTableView from "../../../views/Supervisor/MonthlyAssesment/TableView";
 import SupervisorMonthlyAssesmentUpdateDrawerView from "../../../views/Supervisor/MonthlyAssesment/UpdateDrawerView";
-import { getNilaiBulananPembimbing } from "../../../services/supervisor/supervisor-monthly-grade.service";
+import { getKelBimbinganPembimbing } from "../../../services/supervisor/supervisor-monthly-grade.service";
 import { refreshToken } from "../../../services/auth/auth.service";
 import { useNavigate } from "react-router-dom";
 
@@ -17,24 +17,15 @@ export default function SupervisorMonthlyAssesmentPage() {
   const [selected, setSelected] = useState("");
 
   const handleDataHarian = useCallback(() => {
-    const today = new Date();
-    const filterMonth = String(today.getMonth() + 1);
-    const filterYear = today.getFullYear();
-
     setProgress(30);
     refreshToken((status, token) => {
       if (status) {
         setProgress(60);
-        getNilaiBulananPembimbing(
-          filterMonth,
-          filterYear,
-          token,
-          (status, data) => {
-            if (status) {
-              setData(data);
-            }
+        getKelBimbinganPembimbing(token, (status, data) => {
+          if (status) {
+            setData(data);
           }
-        );
+        });
       } else {
         Logout((status) => {
           if (status) {

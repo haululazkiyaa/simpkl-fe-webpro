@@ -1,19 +1,57 @@
-import { useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
+import { AuthContext } from "../../../context/AuthContext.jsx";
+import Logout from "../../../components/Elements/Logout/index.js";
 import Modal from "../../../components/Elements/Modal/index.jsx";
 import PropTypes from "prop-types";
+import { getNilaiBulananPembimbing } from "../../../services/supervisor/supervisor-monthly-grade.service.js";
+import { refreshToken } from "../../../services/auth/auth.service.js";
+import { useNavigate } from "react-router-dom";
 
 export default function SupervisorMonthlyAssesmentGradeView(props) {
-  const { data, selected } = props;
+  const { setProgress } = useContext(AuthContext);
+  const { selected } = props;
+  const navigate = useNavigate();
 
   const [detail, setDetail] = useState({});
 
+  const handleNilaiBulanan = useCallback(() => {
+    const today = new Date();
+    const filterMonth = String(today.getMonth() + 1);
+    const filterYear = today.getFullYear();
+
+    setProgress(30);
+    refreshToken((status, token) => {
+      if (status) {
+        setProgress(60);
+        getNilaiBulananPembimbing(
+          selected?.id,
+          filterMonth,
+          filterYear,
+          token,
+          (status, data) => {
+            if (status) {
+              setDetail(data);
+            }
+          }
+        );
+      } else {
+        Logout((status) => {
+          if (status) {
+            navigate("/login");
+          }
+        });
+      }
+      setProgress(100);
+    });
+  }, [setProgress, navigate, selected]);
+
   useEffect(() => {
-    setDetail(data?.find(({ id }) => id === selected?.id));
-  }, [data, selected]);
+    handleNilaiBulanan();
+  }, [handleNilaiBulanan, selected]);
 
   return (
-    <Modal title="Detail Jurnal Harian Siswa">
+    <Modal title="Detail Nilai Bulanan Siswa">
       <div className="relative overflow-x-auto">
         <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400">
           <tbody>
@@ -134,6 +172,6 @@ export default function SupervisorMonthlyAssesmentGradeView(props) {
 }
 
 SupervisorMonthlyAssesmentGradeView.propTypes = {
-  data: PropTypes.any,
+  setProgress: PropTypes.any,
   selected: PropTypes.any,
 };

@@ -230,7 +230,6 @@ export default function GuidanceGroupUpdateDrawerView(props) {
             {opsiInstruktur.length != 0 ? (
               <SelectInput
                 options={opsiInstruktur}
-                ur
                 label="Pilih Instruktur"
                 id="pilih_instruktur"
                 onChange={(e) => setIDInstruktur(e.value)}

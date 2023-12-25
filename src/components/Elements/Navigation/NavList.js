@@ -93,6 +93,11 @@ export const NavList = [
         icon: "fa-calendar-check",
       },
       {
+        label: "Kehadiran",
+        href: "/supervisor/presence",
+        icon: "fa-clipboard-check",
+      },
+      {
         label: "Penilaian Bulanan",
         href: "/supervisor/monthly-assesment",
         icon: "fa-chart-simple",
@@ -116,6 +121,11 @@ export const NavList = [
         label: "Jurnal Bulanan",
         href: "/student/monthly-journal",
         icon: "fa-calendar-check",
+      },
+      {
+        label: "Kehadiran",
+        href: "/student/presence",
+        icon: "fa-clipboard-check",
       },
       {
         label: "Penilaian Pembimbing",

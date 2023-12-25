@@ -29,9 +29,6 @@ export default function CompanyGuidanceGroupTableView(props) {
                 Guru Pembimbing
               </th>
               <th scope="col" className="px-6 py-3">
-                Perusahaan
-              </th>
-              <th scope="col" className="px-6 py-3">
                 Instruktur
               </th>
               <th scope="col" className="px-6 py-3">
@@ -63,9 +60,6 @@ export default function CompanyGuidanceGroupTableView(props) {
                   </td>
                   <td className="px-6 py-4 truncate text-left">
                     {item.guru_pembimbing?.nama}
-                  </td>
-                  <td className="px-6 py-4 truncate">
-                    {item.perusahaan?.nama_perusahaan}
                   </td>
                   <td className="px-6 py-4 truncate text-left">
                     {item.instruktur?.nama}

@@ -57,6 +57,7 @@ export default function SupervisorMonthlyAssesmentGradeView(props) {
   ];
 
   const handleNilaiBulanan = useCallback(() => {
+    setDetail([]);
     if (bulan === "" && tahun === "") {
       const today = new Date();
       setBulan(today.getMonth() + 1);

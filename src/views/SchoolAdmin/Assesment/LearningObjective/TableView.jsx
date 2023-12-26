@@ -20,10 +20,10 @@ export default function LearningObjectiveTableView(props) {
                 No
               </th>
               <th scope="col" className="px-3 py-3">
-                Aspek Penilaian
+                Tujuan Pembelajaran
               </th>
               <th scope="col" className="px-3 py-3">
-                Sub Aspek Penialaian
+                Deskripsi
               </th>
               <th scope="col" className="w-16 px-3">
                 Edit

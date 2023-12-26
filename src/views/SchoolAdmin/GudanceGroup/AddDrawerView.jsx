@@ -133,6 +133,10 @@ export default function GuidanceGroupAddDrawerView(props) {
             );
             handleKelBimbingan();
             setMessage("success");
+            setIDSiswa("");
+            setIDPembimbing("");
+            setIDPerusahaan("");
+            setIDInstruktur("");
           } else {
             setMessage(message);
             toast.error("Gagal menambahkan siswa kedalam kelompok bimbingan!", {

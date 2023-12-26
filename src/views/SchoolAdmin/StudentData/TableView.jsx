@@ -273,7 +273,7 @@ export default function StudentDataTableView(props) {
         onClick={() => handleStatusSiswa()}
       />
       <ConfirmModal
-        desc={`Apakah anda yakin ingin mengapus kelompok bimbingan siswa a.n. ${selected.nama}?`}
+        desc={`Apakah anda yakin ingin mengapus siswa a.n. ${selected.nama}?`}
         labelOk="Ya"
         labelCancel="Tidak"
         onClick={() => handleDeleteSiswa()}

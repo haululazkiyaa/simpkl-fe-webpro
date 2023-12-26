@@ -52,6 +52,8 @@ export default function AssesmentAspectAddDrawerView(props) {
             });
             handleAspekPenilaian();
             setMessage("success");
+            setKelompokPenilaian("");
+            setJudul("");
           } else {
             setMessage(message);
             toast.error("Gagal menambahkan tujuan pembelajaran!", {

@@ -1,6 +1,7 @@
 import AddDataFirst from "../../../components/Elements/EmptyState/AddDataFirst.jsx";
 import { AuthContext } from "../../../context/AuthContext.jsx";
 import Button from "../../../components/Elements/Button/index.jsx";
+import ConfirmModal from "../../../components/Elements/ConfirmModal/index.jsx";
 import Input from "../../../components/Elements/Input/index.jsx";
 import Logout from "../../../components/Elements/Logout/index.js";
 import NotFound from "../../../components/Elements/EmptyState/NotFound.jsx";
@@ -15,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 export default function StudentDailyJournalTableView(props) {
   const {
     handleDataHarian,
+    selected,
     data,
     setData,
     setSelected,
@@ -25,7 +27,7 @@ export default function StudentDailyJournalTableView(props) {
   const { setProgress } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleDeleteJurnalHarian = (selected) => {
+  const handleDeleteJurnalHarian = () => {
     setProgress(30);
     const data = {
       id: selected.id,
@@ -75,6 +77,12 @@ export default function StudentDailyJournalTableView(props) {
   const updateDrawer = (item) => {
     setSelected(item);
     document.getElementById("update-drawer1").click();
+  };
+
+  const initModal1 = (data) => {
+    setSelected(data);
+
+    document.getElementById("init-modal1").click();
   };
 
   return (
@@ -129,10 +137,7 @@ export default function StudentDailyJournalTableView(props) {
               <i className="fa-solid fa-pen mr-2"></i>
               Edit
             </Button>
-            <Button
-              variant="red"
-              onClick={() => handleDeleteJurnalHarian(data)}
-            >
+            <Button variant="red" onClick={() => initModal1(data)}>
               <i className="fa-solid fa-trash mr-2"></i>
               Hapus
             </Button>
@@ -202,10 +207,15 @@ export default function StudentDailyJournalTableView(props) {
                   </th>
                   <td className="px-6 py-4 text-left">
                     :{" "}
-                    {new Date(data.jam_mulai).toLocaleTimeString("id-ID", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}{" "}
+                    {String(new Date(data.jam_mulai).getUTCHours()).padStart(
+                      2,
+                      "0"
+                    )}
+                    .
+                    {String(new Date(data.jam_mulai).getUTCMinutes()).padStart(
+                      2,
+                      "0"
+                    )}{" "}
                     WIB
                   </td>
                 </tr>
@@ -218,10 +228,14 @@ export default function StudentDailyJournalTableView(props) {
                   </th>
                   <td className="px-6 py-4 text-left">
                     :{" "}
-                    {new Date(data.jam_selesai).toLocaleTimeString("id-ID", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}{" "}
+                    {String(new Date(data.jam_selesai).getUTCHours()).padStart(
+                      2,
+                      "0"
+                    )}
+                    .
+                    {String(
+                      new Date(data.jam_selesai).getUTCMinutes()
+                    ).padStart(2, "0")}{" "}
                     WIB
                   </td>
                 </tr>
@@ -277,6 +291,13 @@ export default function StudentDailyJournalTableView(props) {
           </tbody>
         </table>
       </div>
+      <ConfirmModal
+        desc={`Apakah anda yakin ingin mengapus jurnal hari ini?`}
+        labelOk="Ya"
+        labelCancel="Tidak"
+        onClick={() => handleDeleteJurnalHarian()}
+        id="1"
+      />
     </>
   );
 }
@@ -289,4 +310,5 @@ StudentDailyJournalTableView.propTypes = {
   setTanggal: PropTypes.any,
   tanggal: PropTypes.any,
   today: PropTypes.any,
+  selected: PropTypes.any,
 };

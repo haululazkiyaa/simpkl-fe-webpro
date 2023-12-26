@@ -54,6 +54,9 @@ export default function InstructorDataAddDrawerView(props) {
             });
             handleDataInstruktur();
             setMessage("success");
+            setUsername("");
+            setNama("");
+            setNoHP("");
           } else {
             setMessage(message);
             toast.error("Gagal menambahkan instruktur!", {

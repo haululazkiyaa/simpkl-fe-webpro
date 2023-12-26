@@ -76,6 +76,7 @@ export default function StudentDailyJournalPage() {
                 tanggal={tanggal}
                 setTanggal={setTanggal}
                 today={today}
+                selected={selected}
               />
               <StudentDailyJournalUpdateDrawerView
                 handleDataHarian={handleDataHarian}

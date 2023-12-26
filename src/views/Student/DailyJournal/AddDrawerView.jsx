@@ -95,6 +95,16 @@ export default function StudentDailyJournalAddDrawerView(props) {
             });
             handleDataHarian();
             setMessage("success");
+            setHari("");
+            setTanggal("");
+            setJenisPekerjaan("");
+            setDeskripsiPekerjaan("");
+            setBentuKegiatan("");
+            setJamMulai("");
+            setJamSelesai("");
+            setStaff("");
+            setFoto("");
+            setPreviewFoto("");
           } else {
             setMessage(message);
             toast.error("Gagal menambahkan jurnal harian!", {

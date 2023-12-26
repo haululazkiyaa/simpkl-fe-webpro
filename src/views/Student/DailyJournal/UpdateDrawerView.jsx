@@ -137,20 +137,14 @@ export default function StudentDailyJournalUpdateDrawerView(props) {
     }
     setDeskripsiPekerjaan(selected.deskripsi_pekerjaan);
     setJamMulai(
-      new Date(selected.jam_mulai)
-        .toLocaleTimeString("id-ID", {
-          hour: "2-digit",
-          minute: "2-digit",
-        })
-        .replace(".", ":")
+      String(new Date(selected.jam_mulai).getUTCHours()).padStart(2, "0") +
+        ":" +
+        String(new Date(selected.jam_mulai).getUTCMinutes()).padStart(2, "0")
     );
     setJamSelesai(
-      new Date(selected.jam_selesai)
-        .toLocaleTimeString("id-ID", {
-          hour: "2-digit",
-          minute: "2-digit",
-        })
-        .replace(".", ":")
+      String(new Date(selected.jam_selesai).getUTCHours()).padStart(2, "0") +
+        ":" +
+        String(new Date(selected.jam_selesai).getUTCMinutes()).padStart(2, "0")
     );
     setStaff(selected.staf);
     setPreviewFoto(selected.foto);

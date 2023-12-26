@@ -1,9 +1,38 @@
+import { useEffect, useState } from "react";
+
 import Button from "../../../../components/Elements/Button/index.jsx";
 import NotFound from "../../../../components/Elements/EmptyState/NotFound.jsx";
 import PropTypes from "prop-types";
 
 export default function AssesmentAspectTableView(props) {
   const { aspekPenilaian, setSelected } = props;
+
+  const [groupData, setGroupData] = useState([]);
+
+  useEffect(() => {
+    let category = [];
+    let list = [];
+
+    for (let item of aspekPenilaian) {
+      if (!category.includes(item.kelompok_penilaian)) {
+        category.push(item.kelompok_penilaian);
+      }
+    }
+
+    for (let item of category) {
+      let child_list = [];
+      for (let data of aspekPenilaian) {
+        if (item === data.kelompok_penilaian) {
+          child_list.push(data);
+        }
+      }
+      list.push({
+        kategori: item,
+        data: child_list,
+      });
+    }
+    setGroupData(list);
+  }, [aspekPenilaian]);
 
   const updateDrawer = (item) => {
     setSelected(item);
@@ -31,39 +60,64 @@ export default function AssesmentAspectTableView(props) {
             </tr>
           </thead>
           <tbody>
-            {aspekPenilaian.length != 0 ? (
-              aspekPenilaian.map((item, index) => (
-                <tr
-                  key={index}
-                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                >
-                  <th
-                    scope="row"
-                    className="w-16 px-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            {groupData.length != 0 ? (
+              groupData.map((item, index) => (
+                <>
+                  <tr
+                    key={index}
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                   >
-                    {index + 1}
-                  </th>
-                  <td className="px-3 py-4">
-                    <div className="flex items-center justify-start text-left">
-                      {item.kelompok_penilaian}
-                    </div>
-                  </td>
-                  <td className="px-3 py-4">
-                    <div className="flex items-center justify-start text-left">
-                      {item.judul}
-                    </div>
-                  </td>
-                  <td className="w-16 px-3">
-                    <div className="flex items-center justify-center">
-                      <Button
-                        variant="yellow"
-                        onClick={() => updateDrawer(item)}
-                      >
-                        <i className="fa-solid fa-pen"></i>
-                      </Button>
-                    </div>
-                  </td>
-                </tr>
+                    <th
+                      scope="row"
+                      className="w-16 px-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      rowSpan={item.data?.length}
+                    >
+                      {index + 1}
+                    </th>
+                    <td className="px-3 py-4" rowSpan={item.data?.length}>
+                      <div className="flex items-center justify-start text-left">
+                        {item.kategori}
+                      </div>
+                    </td>
+                    <td className="px-3 py-4">
+                      <div className="flex items-center justify-start text-left">
+                        {item.data[0]?.judul}
+                      </div>
+                    </td>
+                    <td className="w-16 px-3">
+                      <div className="flex items-center justify-center">
+                        <Button
+                          variant="yellow"
+                          onClick={() => updateDrawer(item.data[0])}
+                        >
+                          <i className="fa-solid fa-pen"></i>
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                  {item.data?.slice(1).map((item, index) => (
+                    <tr
+                      key={index}
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td className="px-3 py-4">
+                        <div className="flex items-center justify-start text-left">
+                          {item.judul}
+                        </div>
+                      </td>
+                      <td className="w-16 px-3">
+                        <div className="flex items-center justify-center">
+                          <Button
+                            variant="yellow"
+                            onClick={() => updateDrawer(item)}
+                          >
+                            <i className="fa-solid fa-pen"></i>
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </>
               ))
             ) : (
               <tr>

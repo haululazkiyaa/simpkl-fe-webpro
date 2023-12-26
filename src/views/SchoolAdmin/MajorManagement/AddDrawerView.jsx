@@ -54,6 +54,9 @@ export default function MajorManagementAddDrawerView(props) {
             });
             handleJurusan();
             setMessage("success");
+            setBidangKeahlian("");
+            setProgramKeahlian("");
+            setKompetensiKeahlian("");
           } else {
             setMessage(message);
             toast.error("Gagal menambahkan jurusan!", {

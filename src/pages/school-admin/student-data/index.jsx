@@ -46,9 +46,8 @@ export default function SchoolAdminStudentDataPage() {
       <div className="format max-w-none mb-5">
         <h1 className="dark:text-white">Data Siswa</h1>
         <p>
-          Anda dapat meilhat data siswa yang ada atau menambahkan data siswa
-          baru atau mengubah data siswa yang ada. Namun, anda tidak dapat
-          menghapus data siswa yang sudah ditambahkan.
+          Anda dapat melihat data Siswa yang sudah ada, menambahkan, mengubah
+          data dan status aktif, serta menghapus data Siswa
         </p>
         <div className="not-format">
           <div className="mb-5">

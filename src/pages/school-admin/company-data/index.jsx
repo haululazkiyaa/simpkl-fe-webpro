@@ -46,9 +46,8 @@ export default function SchoolAdminCompanyDataPage() {
       <div className="format max-w-none mb-5">
         <h1 className="dark:text-white">Data Perusahaan</h1>
         <p>
-          Anda dapat meilhat data siswa yang ada atau menambahkan data siswa
-          baru atau mengubah data siswa yang ada. Namun, anda tidak dapat
-          menghapus data siswa yang sudah ditambahkan.
+          Anda dapat melihat data perusahaan, menambahkan, mengubah data dan
+          status aktif, serta mengkonfirmasi status pendaftaran perusahaan.
         </p>
         <div className="not-format">
           <div className="mb-5">

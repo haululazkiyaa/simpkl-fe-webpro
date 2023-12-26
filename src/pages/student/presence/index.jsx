@@ -53,10 +53,11 @@ export default function StudentPresencePage() {
         <h1 className="dark:text-white">Kehadiran Siswa</h1>
         <div className="flex-none flex-row lg:flex">
           <div className="basis-2/6 lg:mr-5">
-            <h2>Statistik Kehadiran</h2>
+            <h2 className="dark:text-white">Statistik Kehadiran</h2>
             <p>
-              Anda dapat meilhat journal harian siswa yang ada dan menambahkan
-              komentar untuk setiap journal harian siswa yang ada.
+              Anda dapat melihat jumlah kehadiran selama magang disini. Harap
+              diingat bahwa ketika anda membuat jurnal harian, maka status
+              kehadiran otomatis akan diisi “Hadir” oleh sistem.
             </p>
           </div>
           <div className="basis-4/6">
@@ -99,11 +100,11 @@ export default function StudentPresencePage() {
         <hr className="border-slate-100" />
         <div className="flex-none flex-row lg:flex">
           <div className="basis-2/6 lg:mr-5">
-            <h2>Riwayat Presensi</h2>
+            <h2 className="dark:text-white">Riwayat Presensi</h2>
             <p>
-              Anda dapat meilhat journal harian siswa yang ada dan menambahkan
-              komentar untuk setiap journal harian siswa yang ada. Namun, anda
-              tidak dapat mengubah jurnal harian siswa yang ada.
+              Anda dapat melihat riwayat kehadiran magang dalam rentang satu
+              bulan. Hubungi Guru Pembimbing Anda jika ada status kehadiran yang
+              belum dikirim.
             </p>
           </div>
           <div className="basis-4/6">

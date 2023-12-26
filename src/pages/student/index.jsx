@@ -6,8 +6,7 @@ import { useContext } from "react";
 
 export default function StudentPage() {
   const { profile } = useContext(AuthContext);
-  {
-  }
+
   return (
     <DashboardLayout>
       {profile.role === "SISWA" ? (

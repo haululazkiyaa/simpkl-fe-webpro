@@ -45,9 +45,9 @@ export default function CompanyAdminGuidanceGroupPage() {
       <div className="format max-w-none mb-5">
         <h1 className="dark:text-white">Kelompok Bimbingan</h1>
         <p>
-          Anda dapat meilhat kelompok bimbingan yang ada atau menambahkan data
-          pembimbing baru atau mengubah kelompok bimbingan yang ada. Namun, anda
-          tidak dapat menghapus kelompok bimbingan yang sudah ditambahkan.
+          Anda dapat melihat data Kelompok Bimbingan berdasarkan tahun ajaran
+          yang sedang aktif. Anda juga dapat memilih Instruktur untuk Kelompok
+          Bimbingan tertentu.
         </p>
         <div className="not-format">
           <CompanyGuidanceGroupTableView

@@ -19,7 +19,7 @@ export default function DropdownUser(props) {
             <span className="sr-only">Open user menu</span>
             <img
               className="w-8 h-8 rounded-full"
-              src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              src="/images/no-profile.jpg"
               alt="user photo"
             />
             <span className="hidden sm:inline sm:mx-3">

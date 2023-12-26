@@ -46,9 +46,8 @@ export default function SchoolAdminSupervisorDataPage() {
       <div className="format max-w-none mb-5">
         <h1 className="dark:text-white">Data Pembimbing</h1>
         <p>
-          Anda dapat meilhat data pembimbing yang ada atau menambahkan data
-          pembimbing baru atau mengubah data pembimbing yang ada. Namun, anda
-          tidak dapat menghapus data pembimbing yang sudah ditambahkan.
+          Anda dapat melihat data Guru Pembimbing yang sudah ada, menambahkan,
+          mengubah data dan status aktif, serta menghapus data Guru Pembimbing.
         </p>
         <div className="not-format">
           <div className="mb-5">

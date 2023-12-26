@@ -17,7 +17,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 export default function StudentDailyJournalAddDrawerView(props) {
-  const { handleDataHarian, id } = props;
+  const { handleDataHarian, id, setConfetti } = props;
   const { setProgress } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -105,6 +105,7 @@ export default function StudentDailyJournalAddDrawerView(props) {
             setStaff("");
             setFoto("");
             setPreviewFoto("");
+            setConfetti(true);
           } else {
             setMessage(message);
             toast.error("Gagal menambahkan jurnal harian!", {
@@ -117,6 +118,8 @@ export default function StudentDailyJournalAddDrawerView(props) {
             });
           }
         });
+        setProgress(100);
+        setLoading(false);
       } else {
         Logout((status) => {
           if (status) {
@@ -124,8 +127,6 @@ export default function StudentDailyJournalAddDrawerView(props) {
           }
         });
       }
-      setProgress(100);
-      setLoading(false);
     });
   };
 
@@ -301,4 +302,5 @@ StudentDailyJournalAddDrawerView.propTypes = {
   selected: PropTypes.string,
   setSelected: PropTypes.func,
   id: PropTypes.string,
+  setConfetti: PropTypes.any,
 };

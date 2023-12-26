@@ -46,9 +46,10 @@ export default function CompanyAdminInstructorDataPage() {
       <div className="format max-w-none mb-5">
         <h1 className="dark:text-white">Data Instruktur</h1>
         <p>
-          Anda dapat meilhat data instruktur yang ada atau menambahkan data
-          instruktur baru atau mengubah data instruktur yang ada. Namun, anda
-          tidak dapat menghapus data instruktur yang sudah ditambahkan.
+          Anda dapat melihat data Instruktur yang bekerja di perusahaan Anda,
+          menambahkan serta mengubah data Instruktur. Anda juga dapat melihat
+          siswa bimbingan dari instruktur tersebut. Namun Anda belum dapat
+          menghapus data Instruktur saat ini.
         </p>
         <div className="not-format">
           <div className="mb-5">

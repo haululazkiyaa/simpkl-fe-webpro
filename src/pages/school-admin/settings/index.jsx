@@ -45,7 +45,7 @@ export default function SchoolAdminSettingsPage() {
         <h1 className="dark:text-white">Pengaturan</h1>
         <div className="flex-none flex-row lg:flex">
           <div className="basis-2/6 lg:mr-5">
-            <h2>Tahun Ajaran</h2>
+            <h2 className="dark:text-white">Tahun Ajaran</h2>
             <p>
               Anda dapat mengubah tahun ajaran berjalan melalui pengaturan ini.
               Data pada aplikasi akan ditampilkan sesuai tahun yang anda pilih.

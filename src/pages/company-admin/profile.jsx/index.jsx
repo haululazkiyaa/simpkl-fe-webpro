@@ -48,7 +48,7 @@ export default function CompanyAdminProfilePage() {
         <h1 className="dark:text-white">Profil Perusaahaan</h1>
         <div className="flex-none flex-row lg:flex">
           <div className="basis-2/6 lg:mr-5">
-            <h2>Informasi Umum</h2>
+            <h2 className="dark:text-white">Informasi Umum</h2>
             <p>
               Anda dapat mengubah profil perusahaan melalui halaman ini. Data
               pada aplikasi akan ditampilkan sesuai data yang anda inputkan.

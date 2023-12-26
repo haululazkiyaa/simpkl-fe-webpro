@@ -46,7 +46,7 @@ export default function CompanyAdminInstructorStudentDataPage() {
   return (
     <>
       <div className="format max-w-none mb-5">
-        <h1>Daftar Siswa Bimbingan</h1>
+        <h1 className="dark:text-white">Daftar Siswa Bimbingan</h1>
         <p>
           Anda dapat meilhat data instruktur yang ada atau menambahkan data
           instruktur baru atau mengubah data instruktur yang ada. Namun, anda

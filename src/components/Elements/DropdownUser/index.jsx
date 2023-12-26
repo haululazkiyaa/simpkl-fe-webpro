@@ -42,7 +42,7 @@ export default function DropdownUser(props) {
             }
             role={identifyRole(profile?.role)}
           />
-          <ListMenu menu={[{ href: "/", label: "Edit Profil" }]} />
+          <ListMenu menu={[]} />
         </div>
       </div>
     </div>

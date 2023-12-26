@@ -17,7 +17,7 @@ export default function SupervisorPresenceTableView(props) {
 
   const handleStatusKehadiran = (item, status) => {
     const newData = data.map((data) => {
-      if (data.id === item.id) {
+      if (data.id_bimbingan === item.id_bimbingan) {
         return { ...data, status: status };
       }
       return data;
@@ -79,7 +79,9 @@ export default function SupervisorPresenceTableView(props) {
     <>
       <div className={`md:flex justify-between`}>
         <div className="space-x-2 flex items-center justify-center mb-5">
-          <label className="text-black font-bold">Pilih Tanggal:</label>
+          <label className="text-black font-bold dark:text-white">
+            Pilih Tanggal:
+          </label>
           <Input
             type="date"
             name="tanggal"
@@ -150,7 +152,7 @@ export default function SupervisorPresenceTableView(props) {
                     <div className="flex">
                       <div className="flex items-center">
                         <input
-                          id="hadir"
+                          id={"hadir" + index}
                           type="radio"
                           value="HADIR"
                           name={"kehadiran" + index}
@@ -161,7 +163,7 @@ export default function SupervisorPresenceTableView(props) {
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
                         <label
-                          htmlFor="hadir"
+                          htmlFor={"hadir" + index}
                           className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >
                           Hadir
@@ -173,7 +175,7 @@ export default function SupervisorPresenceTableView(props) {
                     <div className="flex">
                       <div className="flex items-center">
                         <input
-                          id="izin"
+                          id={"izin" + index}
                           type="radio"
                           value="IZIN"
                           name={"kehadiran" + index}
@@ -184,7 +186,7 @@ export default function SupervisorPresenceTableView(props) {
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
                         <label
-                          htmlFor="izin"
+                          htmlFor={"izin" + index}
                           className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >
                           Izin
@@ -196,7 +198,7 @@ export default function SupervisorPresenceTableView(props) {
                     <div className="flex">
                       <div className="flex items-center">
                         <input
-                          id="sakit"
+                          id={"sakit" + index}
                           type="radio"
                           value="SAKIT"
                           name={"kehadiran" + index}
@@ -207,7 +209,7 @@ export default function SupervisorPresenceTableView(props) {
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
                         <label
-                          htmlFor="sakit"
+                          htmlFor={"sakit" + index}
                           className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >
                           Sakit
@@ -219,7 +221,7 @@ export default function SupervisorPresenceTableView(props) {
                     <div className="flex">
                       <div className="flex items-center">
                         <input
-                          id="alpa"
+                          id={"alpa" + index}
                           type="radio"
                           value="ALPA"
                           name={"kehadiran" + index}
@@ -230,7 +232,7 @@ export default function SupervisorPresenceTableView(props) {
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
                         <label
-                          htmlFor="alpa"
+                          htmlFor={"alpa" + index}
                           className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >
                           Alpa
@@ -244,7 +246,7 @@ export default function SupervisorPresenceTableView(props) {
               <tr>
                 <td colSpan={8}>
                   <NotFound />
-                  <h3 className="text-xl text-black font-bold mb-5">
+                  <h3 className="text-xl text-black font-bold mb-5 dark:text-white">
                     Opps! Belum ada data apapun!
                   </h3>
                 </td>

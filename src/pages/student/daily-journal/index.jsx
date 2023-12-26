@@ -57,7 +57,7 @@ export default function StudentDailyJournalPage() {
   return (
     <>
       <div className="format max-w-none mb-5">
-        <h1>Jurnal Harian</h1>
+        <h1 className="dark:text-white">Jurnal Harian</h1>
         <div className="flex-none flex-row lg:flex">
           <div className="basis-2/6 lg:mr-5">
             <p>

@@ -76,7 +76,7 @@ export default function InstructorStudentDataTableView(props) {
               <tr>
                 <td colSpan={6}>
                   <NotFound />
-                  <h3 className="text-xl text-black font-bold mb-5">
+                  <h3 className="text-xl text-black font-bold mb-5 dark:text-white">
                     Opps! Belum ada data apapun!
                   </h3>
                 </td>

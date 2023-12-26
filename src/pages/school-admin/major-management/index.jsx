@@ -44,7 +44,7 @@ export default function SchoolAdminMajorManagementPage() {
   return (
     <>
       <div className="format max-w-none mb-5">
-        <h1>Kelola Jurusan</h1>
+        <h1 className="dark:text-white">Kelola Jurusan</h1>
         <p>
           Anda dapat meilhat data jurusan yang ada atau menambahkan data jurusan
           baru atau mengubah data jurusan yang ada. Namun, anda tidak dapat

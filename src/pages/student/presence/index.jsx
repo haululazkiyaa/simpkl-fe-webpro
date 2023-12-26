@@ -50,7 +50,7 @@ export default function StudentPresencePage() {
   return (
     <>
       <div className="format max-w-none mb-5">
-        <h1>Kehadiran Siswa</h1>
+        <h1 className="dark:text-white">Kehadiran Siswa</h1>
         <div className="flex-none flex-row lg:flex">
           <div className="basis-2/6 lg:mr-5">
             <h2>Statistik Kehadiran</h2>

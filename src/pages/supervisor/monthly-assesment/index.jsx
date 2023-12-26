@@ -43,7 +43,7 @@ export default function SupervisorMonthlyAssesmentPage() {
   return (
     <>
       <div className="format max-w-none mb-5">
-        <h1>Penilaian Bulanan</h1>
+        <h1 className="dark:text-white">Penilaian Bulanan</h1>
         <p>
           Anda dapat meilhat nilai bulanan siswa yang ada atau menambahkan nilai
           bulanan siswa yang ada atau mengubah nilai bulanan siswa yang ada.

@@ -94,7 +94,7 @@ export default function StudentPresenceTableView(props) {
                     <div className="flex">
                       <div className="flex items-center">
                         <input
-                          id="hadir"
+                          id={"hadir" + index}
                           type="radio"
                           value="HADIR"
                           name={"kehadiran" + index}
@@ -103,7 +103,7 @@ export default function StudentPresenceTableView(props) {
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
                         <label
-                          htmlFor="hadir"
+                          htmlFor={"hadir" + index}
                           className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >
                           Hadir
@@ -115,7 +115,7 @@ export default function StudentPresenceTableView(props) {
                     <div className="flex">
                       <div className="flex items-center">
                         <input
-                          id="izin"
+                          id={"izin" + index}
                           type="radio"
                           value="IZIN"
                           name={"kehadiran" + index}
@@ -124,7 +124,7 @@ export default function StudentPresenceTableView(props) {
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
                         <label
-                          htmlFor="izin"
+                          htmlFor={"izin" + index}
                           className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >
                           Izin
@@ -136,7 +136,7 @@ export default function StudentPresenceTableView(props) {
                     <div className="flex">
                       <div className="flex items-center">
                         <input
-                          id="sakit"
+                          id={"sakit" + index}
                           type="radio"
                           value="SAKIT"
                           name={"kehadiran" + index}
@@ -145,7 +145,7 @@ export default function StudentPresenceTableView(props) {
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
                         <label
-                          htmlFor="sakit"
+                          htmlFor={"sakit" + index}
                           className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >
                           Sakit
@@ -157,7 +157,7 @@ export default function StudentPresenceTableView(props) {
                     <div className="flex">
                       <div className="flex items-center">
                         <input
-                          id="alpa"
+                          id={"alpa" + index}
                           type="radio"
                           value="ALPA"
                           name={"kehadiran" + index}
@@ -166,7 +166,7 @@ export default function StudentPresenceTableView(props) {
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
                         <label
-                          htmlFor="alpa"
+                          htmlFor={"alpa" + index}
                           className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >
                           Alpa
@@ -180,7 +180,7 @@ export default function StudentPresenceTableView(props) {
               <tr>
                 <td colSpan={8}>
                   <NotFound />
-                  <h3 className="text-xl text-black font-bold mb-5">
+                  <h3 className="text-xl text-black font-bold mb-5 dark:text-white">
                     Opps! Belum ada data apapun!
                   </h3>
                 </td>

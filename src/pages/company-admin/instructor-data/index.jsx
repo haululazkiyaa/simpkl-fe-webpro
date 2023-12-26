@@ -44,7 +44,7 @@ export default function CompanyAdminInstructorDataPage() {
   return (
     <>
       <div className="format max-w-none mb-5">
-        <h1>Data Instruktur</h1>
+        <h1 className="dark:text-white">Data Instruktur</h1>
         <p>
           Anda dapat meilhat data instruktur yang ada atau menambahkan data
           instruktur baru atau mengubah data instruktur yang ada. Namun, anda

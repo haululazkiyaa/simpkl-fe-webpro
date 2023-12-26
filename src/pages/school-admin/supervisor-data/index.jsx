@@ -44,7 +44,7 @@ export default function SchoolAdminSupervisorDataPage() {
   return (
     <>
       <div className="format max-w-none mb-5">
-        <h1>Data Pembimbing</h1>
+        <h1 className="dark:text-white">Data Pembimbing</h1>
         <p>
           Anda dapat meilhat data pembimbing yang ada atau menambahkan data
           pembimbing baru atau mengubah data pembimbing yang ada. Namun, anda

@@ -153,7 +153,7 @@ export default function SupervisorPresenceTableView(props) {
                           id="hadir"
                           type="radio"
                           value="HADIR"
-                          name="kehadiran"
+                          name={"kehadiran" + index}
                           checked={item.status === "HADIR"}
                           onChange={(e) =>
                             handleStatusKehadiran(item, e.target.value)
@@ -176,7 +176,7 @@ export default function SupervisorPresenceTableView(props) {
                           id="izin"
                           type="radio"
                           value="IZIN"
-                          name="kehadiran"
+                          name={"kehadiran" + index}
                           checked={item.status === "IZIN"}
                           onChange={(e) =>
                             handleStatusKehadiran(item, e.target.value)
@@ -199,7 +199,7 @@ export default function SupervisorPresenceTableView(props) {
                           id="sakit"
                           type="radio"
                           value="SAKIT"
-                          name="kehadiran"
+                          name={"kehadiran" + index}
                           checked={item.status === "SAKIT"}
                           onChange={(e) =>
                             handleStatusKehadiran(item, e.target.value)
@@ -222,7 +222,7 @@ export default function SupervisorPresenceTableView(props) {
                           id="alpa"
                           type="radio"
                           value="ALPA"
-                          name="kehadiran"
+                          name={"kehadiran" + index}
                           checked={item.status === "ALPA"}
                           onChange={(e) =>
                             handleStatusKehadiran(item, e.target.value)

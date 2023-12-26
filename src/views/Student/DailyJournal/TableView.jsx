@@ -23,6 +23,7 @@ export default function StudentDailyJournalTableView(props) {
     tanggal,
     setTanggal,
     today,
+    setConfetti,
   } = props;
   const { setProgress } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -97,6 +98,7 @@ export default function StudentDailyJournalTableView(props) {
               </h3>
               <StudentDailyJournalAddDrawerView
                 handleDataHarian={handleDataHarian}
+                setConfetti={setConfetti}
                 id="0"
               />
               <p className="mt-5">Ganti Tanggal:</p>
@@ -313,4 +315,5 @@ StudentDailyJournalTableView.propTypes = {
   tanggal: PropTypes.any,
   today: PropTypes.any,
   selected: PropTypes.any,
+  setConfetti: PropTypes.any,
 };

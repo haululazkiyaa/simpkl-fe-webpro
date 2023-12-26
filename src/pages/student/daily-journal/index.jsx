@@ -2,19 +2,23 @@ import { useCallback, useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../../../context/AuthContext";
 import Logout from "../../../components/Elements/Logout";
+import ReactConfetti from "react-confetti";
 import StudentDailyJournalDetailView from "../../../views/Student/DailyJournal/DetailView";
 import StudentDailyJournalTableView from "../../../views/Student/DailyJournal/TableView";
 import StudentDailyJournalUpdateDrawerView from "../../../views/Student/DailyJournal/UpdateDrawerView";
 import { getJurnalHarian } from "../../../services/student/daily-journal.service";
 import { refreshToken } from "../../../services/auth/auth.service";
 import { useNavigate } from "react-router-dom";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 export default function StudentDailyJournalPage() {
   const { setProgress } = useContext(AuthContext);
+  const { width, height } = useWindowSize();
   const navigate = useNavigate();
 
   const [data, setData] = useState({});
   const [selected, setSelected] = useState("");
+  const [confetti, setConfetti] = useState(false);
   const [tanggal, setTanggal] = useState("");
   const [today, setToday] = useState("");
 
@@ -54,6 +58,14 @@ export default function StudentDailyJournalPage() {
     handleDataHarian();
   }, [handleDataHarian, tanggal]);
 
+  useEffect(() => {
+    if (confetti) {
+      setTimeout(() => {
+        setConfetti(false);
+      }, 5000);
+    }
+  }, [confetti]);
+
   return (
     <>
       <div className="format max-w-none mb-5">
@@ -79,6 +91,7 @@ export default function StudentDailyJournalPage() {
                 setTanggal={setTanggal}
                 today={today}
                 selected={selected}
+                setConfetti={setConfetti}
               />
               <StudentDailyJournalUpdateDrawerView
                 handleDataHarian={handleDataHarian}
@@ -86,6 +99,13 @@ export default function StudentDailyJournalPage() {
                 id="1"
               />
               <StudentDailyJournalDetailView data={data} selected={selected} />
+              {confetti && (
+                <ReactConfetti
+                  width={width - 20}
+                  height={height}
+                  recycle={false}
+                />
+              )}
             </div>
           </div>
         </div>

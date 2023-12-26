@@ -153,7 +153,7 @@ export default function StudentDailyJournalTableView(props) {
                   </th>
                   <td className="px-6 py-4 text-left">
                     : {data.hari},{" "}
-                    {new Date(data.tanggal).toLocaleString("id-ID", {
+                    {new Date(data.tanggal).toLocaleString("en-US", {
                       day: "numeric",
                       month: "long",
                       year: "numeric",
@@ -202,10 +202,15 @@ export default function StudentDailyJournalTableView(props) {
                   </th>
                   <td className="px-6 py-4 text-left">
                     :{" "}
-                    {new Date(data.jam_mulai).toLocaleTimeString("id-ID", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}{" "}
+                    {String(new Date(data.jam_mulai).getUTCHours()).padStart(
+                      2,
+                      "0"
+                    )}
+                    .
+                    {String(new Date(data.jam_mulai).getUTCMinutes()).padStart(
+                      2,
+                      "0"
+                    )}{" "}
                     WIB
                   </td>
                 </tr>
@@ -218,10 +223,14 @@ export default function StudentDailyJournalTableView(props) {
                   </th>
                   <td className="px-6 py-4 text-left">
                     :{" "}
-                    {new Date(data.jam_selesai).toLocaleTimeString("id-ID", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}{" "}
+                    {String(new Date(data.jam_selesai).getUTCHours()).padStart(
+                      2,
+                      "0"
+                    )}
+                    .
+                    {String(
+                      new Date(data.jam_selesai).getUTCMinutes()
+                    ).padStart(2, "0")}{" "}
                     WIB
                   </td>
                 </tr>

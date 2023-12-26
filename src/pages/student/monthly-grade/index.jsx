@@ -55,8 +55,9 @@ export default function StudentMonthlyGradePage() {
       <div className="format max-w-none mb-5">
         <h1 className="dark:text-white">Penilaian Bulanan</h1>
         <p>
-          Anda dapat meilhat nilai bulanan siswa yang ada atau menambahkan nilai
-          bulanan siswa yang ada atau mengubah nilai bulanan siswa yang ada.
+          Anda dapat melihat nilai bulanan yang sudah diberikan oleh Guru
+          Pembimbing Anda di akhir bulan. Jika data nilai belum tersedia,
+          hubungi Guru Pembimbing Anda untuk memastikannya.
         </p>
         <div className="not-format">
           <StudentMonthlyGradeTableView

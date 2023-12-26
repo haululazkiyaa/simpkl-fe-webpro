@@ -53,9 +53,10 @@ export default function SupervisorPresencePage() {
       <div className="format max-w-none mb-5">
         <h1 className="dark:text-white">Kehadiran Siswa</h1>
         <p>
-          Anda dapat meilhat journal harian siswa yang ada dan menambahkan
-          komentar untuk setiap journal harian siswa yang ada. Namun, anda tidak
-          dapat mengubah jurnal harian siswa yang ada.
+          Anda dapat melakukan submit kehadiran Siswa bimbingan Anda. Siswa akan
+          otomatis “Hadir” jika sudah membuat jurnal harian dalam sistem. Jika
+          status Siswa masih “Alpa”, hubungi Siswa Bimbingan Anda untuk
+          memastikan status kehadirannya.
         </p>
         <div className="not-format">
           <SupervisorPresenceTableView

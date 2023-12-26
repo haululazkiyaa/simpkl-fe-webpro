@@ -76,9 +76,9 @@ export default function SchoolAdminAssesmentPage() {
           <div className="basis-2/6 lg:mr-5">
             <h2 className="dark:text-white">Penilaian Bulanan</h2>
             <p>
-              Anda dapat mengubah tahun ajaran berjalan melalui pengaturan ini.
-              tujuanPembelajaran pada aplikasi akan ditampilkan sesuai tahun
-              yang anda pilih.
+              Anda dapat melihat data Tujuan Pembelajaran yang sudah ada,
+              menambahkan serta mengubah data Tujuan Pembelajaran. Namun Anda
+              belum dapat menghapus data Tujuan Pembelajaran saat ini..
             </p>
           </div>
           <div className="basis-4/6">
@@ -107,9 +107,9 @@ export default function SchoolAdminAssesmentPage() {
           <div className="basis-2/6 lg:mr-5">
             <h2 className="dark:text-white">Penilaian Akhir</h2>
             <p>
-              Anda dapat mengubah tahun ajaran berjalan melalui pengaturan ini.
-              tujuanPembelajaran pada aplikasi akan ditampilkan sesuai tahun
-              yang anda pilih.
+              Anda dapat melihat data Aspek Penilaian yang sudah ada,
+              menambahkan serta mengubah data Aspek Penilaian. Namun Anda belum
+              dapat menghapus data Aspek Penilaian saat ini..
             </p>
           </div>
           <div className="basis-4/6">

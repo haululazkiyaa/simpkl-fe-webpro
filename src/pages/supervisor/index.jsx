@@ -6,8 +6,7 @@ import { useContext } from "react";
 
 export default function SupervisorPage() {
   const { profile } = useContext(AuthContext);
-  {
-  }
+
   return (
     <DashboardLayout>
       {profile.role === "PEMBIMBING" ? (

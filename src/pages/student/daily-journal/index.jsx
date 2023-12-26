@@ -61,9 +61,11 @@ export default function StudentDailyJournalPage() {
         <div className="flex-none flex-row lg:flex">
           <div className="basis-2/6 lg:mr-5">
             <p>
-              Anda dapat meilhat journal harian yang ada atau menambahkan
-              komentar untuk setiap journal harian yang ada atau mengubah jurnal
-              harian yang ada.
+              Anda dapat melihat Jurnal harian yang sudah Anda buat,
+              menambahkan, mengubah dan menghapus jurnal harian. Namun Anda
+              hanya dibatasi untuk membuat satu jurnal per hari. Anda juga dapat
+              melihat komentar yang diberikan oleh Guru Pembimbing dan
+              Instruktur disini.
             </p>
           </div>
           <div className="basis-4/6">

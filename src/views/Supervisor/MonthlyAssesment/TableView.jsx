@@ -64,10 +64,10 @@ export default function SupervisorMonthlyAssesmentTableView(props) {
                   <td className="w-32 px-3">
                     <div className="flex items-center justify-center">
                       <Button
-                        outline={true}
+                        variant="yellow"
                         onClick={() => initStaticModal(item)}
                       >
-                        <i className="fa-solid fa-eye mr-2"></i>Lihat
+                        <i className="fa-solid fa-pen"></i>
                       </Button>
                     </div>
                   </td>

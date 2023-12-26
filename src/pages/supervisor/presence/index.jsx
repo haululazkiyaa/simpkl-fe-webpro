@@ -51,7 +51,7 @@ export default function SupervisorPresencePage() {
   return (
     <>
       <div className="format max-w-none mb-5">
-        <h1>Kehadiran Siswa</h1>
+        <h1 className="dark:text-white">Kehadiran Siswa</h1>
         <p>
           Anda dapat meilhat journal harian siswa yang ada dan menambahkan
           komentar untuk setiap journal harian siswa yang ada. Namun, anda tidak

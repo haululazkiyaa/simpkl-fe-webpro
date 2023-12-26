@@ -71,7 +71,7 @@ export default function SchoolAdminAssesmentPage() {
   return (
     <>
       <div className="format max-w-none mb-5">
-        <h1>Penilaian</h1>
+        <h1 className="dark:text-white">Penilaian</h1>
         <div className="flex-none flex-row lg:flex">
           <div className="basis-2/6 lg:mr-5">
             <h2>Penilaian Bulanan</h2>

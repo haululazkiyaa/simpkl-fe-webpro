@@ -44,7 +44,7 @@ export default function SchoolAdminGuidanceGroupPage() {
   return (
     <>
       <div className="format max-w-none mb-5">
-        <h1>Kelompok Bimbingan</h1>
+        <h1 className="dark:text-white">Kelompok Bimbingan</h1>
         <p>
           Anda dapat meilhat kelompok bimbingan yang ada atau menambahkan data
           pembimbing baru atau mengubah kelompok bimbingan yang ada. Namun, anda

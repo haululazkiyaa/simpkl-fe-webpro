@@ -44,7 +44,7 @@ export default function SchoolAdminStudentDataPage() {
   return (
     <>
       <div className="format max-w-none mb-5">
-        <h1>Data Siswa</h1>
+        <h1 className="dark:text-white">Data Siswa</h1>
         <p>
           Anda dapat meilhat data siswa yang ada atau menambahkan data siswa
           baru atau mengubah data siswa yang ada. Namun, anda tidak dapat

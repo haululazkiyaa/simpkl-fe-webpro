@@ -92,7 +92,7 @@ export default function StudentDailyJournalTableView(props) {
           {tanggal == today ? (
             <div className="text-center">
               <AddDataFirst />
-              <h3 className="text-xl text-black font-bold mb-5">
+              <h3 className="text-xl text-black font-bold mb-5 dark:text-white">
                 Opps! Kamu belum submit jurnal hari ini!
               </h3>
               <StudentDailyJournalAddDrawerView
@@ -104,7 +104,7 @@ export default function StudentDailyJournalTableView(props) {
           ) : (
             <div className="text-center">
               <NotFound />
-              <h3 className="text-xl text-black font-bold mb-5">
+              <h3 className="text-xl text-black font-bold mb-5 dark:text-white">
                 Opps! Tidak ada jurnal yang kamu submit di tanggal ini.
               </h3>
               <p>Ganti Tanggal:</p>
@@ -119,7 +119,9 @@ export default function StudentDailyJournalTableView(props) {
       >
         <div className="space-x-2 flex items-center justify-center mb-5">
           {Object.keys(data).length != 0 && (
-            <label className="text-black font-bold">Pilih Tanggal:</label>
+            <label className="text-black font-bold dark:text-white">
+              Pilih Tanggal:
+            </label>
           )}
           <Input
             type="date"

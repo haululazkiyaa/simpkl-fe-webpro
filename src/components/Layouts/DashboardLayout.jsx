@@ -54,6 +54,28 @@ export default function DashboardLayout(props) {
     });
   }, [setProgress, setLoading, handleGetProfile, navigate]);
 
+  const changeTheme = () => {
+    // if set via local storage previously
+    if (localStorage.getItem("color-theme")) {
+      if (localStorage.getItem("color-theme") === "light") {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("color-theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("color-theme", "light");
+      }
+      // if NOT set via local storage previously
+    } else {
+      if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("color-theme", "light");
+      } else {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("color-theme", "dark");
+      }
+    }
+  };
+
   useEffect(() => {
     handleRefreshToken();
   }, [handleRefreshToken]);
@@ -94,7 +116,18 @@ export default function DashboardLayout(props) {
               </button>
               <Logo />
             </div>
-            <DropdownUser profile={profile} />
+            <div className="flex">
+              <button
+                onClick={() => changeTheme()}
+                id="theme-toggle"
+                type="button"
+                className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-2xl text-sm"
+              >
+                <i className="fa-solid fa-sun my-1 mx-2 dark:hidden"></i>
+                <i className="fa-solid fa-moon my-1 mx-2.5 hidden dark:block"></i>
+              </button>
+              <DropdownUser profile={profile} />
+            </div>
           </div>
         </div>
       </nav>
@@ -107,7 +140,7 @@ export default function DashboardLayout(props) {
           <Navigation />
         </div>
       </aside>
-      <div className="p-4 sm:ml-64 flex flex-col min-h-screen">
+      <div className="p-4 sm:ml-64 flex flex-col min-h-screen dark:text-white dark:bg-gray-900">
         <div className="flex-none">
           <div className="p-4 mt-14">{children}</div>
         </div>

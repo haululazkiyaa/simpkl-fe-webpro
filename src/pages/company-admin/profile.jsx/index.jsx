@@ -45,7 +45,7 @@ export default function CompanyAdminProfilePage() {
   return (
     <>
       <div className="format max-w-none mb-5">
-        <h1>Profil Perusaahaan</h1>
+        <h1 className="dark:text-white">Profil Perusaahaan</h1>
         <div className="flex-none flex-row lg:flex">
           <div className="basis-2/6 lg:mr-5">
             <h2>Informasi Umum</h2>

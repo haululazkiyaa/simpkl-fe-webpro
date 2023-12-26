@@ -56,7 +56,7 @@ export default function InstructorDailyMonitoringPage() {
   return (
     <>
       <div className="format max-w-none mb-5">
-        <h1>Monitoring Harian</h1>
+        <h1 className="dark:text-white">Monitoring Harian</h1>
         <p>
           Anda dapat meilhat journal harian siswa yang ada dan menambahkan
           komentar untuk setiap journal harian siswa yang ada. Namun, anda tidak

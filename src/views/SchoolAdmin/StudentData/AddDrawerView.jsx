@@ -97,6 +97,14 @@ export default function StudentDataAddDrawerView(props) {
             });
             handleDataSiswa();
             setMessage("success");
+            setIDJurusan("");
+            setNis("");
+            setNisn("");
+            setNama("");
+            setAlamat("");
+            setNoHP("");
+            setTempatLahir("");
+            setTanggalLahir("");
           } else {
             setMessage(message);
             toast.error("Gagal menambahkan siswa!", {

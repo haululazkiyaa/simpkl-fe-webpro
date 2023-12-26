@@ -56,6 +56,10 @@ export default function SupervisorDataAddDrawerView(props) {
             });
             handleDataPembimbing();
             setMessage("success");
+            setNIP("");
+            setNama("");
+            setAlamat("");
+            setNoHP("");
           } else {
             setMessage(message);
             toast.error("Gagal menambahkan pembimbing!", {

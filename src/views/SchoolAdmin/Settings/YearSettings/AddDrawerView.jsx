@@ -50,6 +50,7 @@ export default function YearSettingsAddDrawerView(props) {
             });
             handleTahunAjaran();
             setMessage("success");
+            setTahunAjaran("");
           } else {
             setMessage(message);
             toast.error("Gagal menambahkan tahun ajaran!", {

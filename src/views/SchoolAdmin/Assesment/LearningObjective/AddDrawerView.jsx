@@ -53,6 +53,8 @@ export default function LearningObjectiveAddDrawerView(props) {
             });
             handleTujuanPembelajaran();
             setMessage("success");
+            setJudul("");
+            setDeskripsi("");
           } else {
             setMessage(message);
             toast.error("Gagal menambahkan tujuan pembelajaran!", {

@@ -65,6 +65,13 @@ export default function CompanyDataAddDrawerView(props) {
             );
             handleDataPerusahaan();
             setMessage("success");
+            setUsername("");
+            setNamaPerusahaan("");
+            setPimpinan("");
+            setNoHP("");
+            setAlamat("");
+            setEmail("");
+            setWeb("");
           } else {
             setMessage(message);
             toast.error("Gagal menambahkan perusahaan!", {

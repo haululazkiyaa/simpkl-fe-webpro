@@ -1,5 +1,4 @@
 import DashboardLayout from "../../components/Layouts/DashboardLayout";
-import NotFound from "../../components/Elements/EmptyState/NotFound";
 import PropTypes from "prop-types";
 
 export default function DashboardPage() {

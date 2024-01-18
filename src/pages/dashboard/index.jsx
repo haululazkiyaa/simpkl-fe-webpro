@@ -19,7 +19,7 @@ export default function DashboardPage() {
                     data-carousel-item
                   >
                     <img
-                      src="https://is3.cloudhost.id/tplum/slide-1.png"
+                      src={import.meta.env.VITE_SLIDER_CONTENT}
                       className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                       alt="..."
                     />
@@ -29,7 +29,7 @@ export default function DashboardPage() {
                     data-carousel-item
                   >
                     <img
-                      src="https://is3.cloudhost.id/tplum/slide-1.png"
+                      src={import.meta.env.VITE_SLIDER_CONTENT}
                       className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                       alt="..."
                     />
@@ -39,7 +39,7 @@ export default function DashboardPage() {
                     data-carousel-item
                   >
                     <img
-                      src="https://is3.cloudhost.id/tplum/slide-1.png"
+                      src={import.meta.env.VITE_SLIDER_CONTENT}
                       className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                       alt="..."
                     />
@@ -49,7 +49,7 @@ export default function DashboardPage() {
                     data-carousel-item
                   >
                     <img
-                      src="https://is3.cloudhost.id/tplum/slide-1.png"
+                      src={import.meta.env.VITE_SLIDER_CONTENT}
                       className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                       alt="..."
                     />
@@ -59,7 +59,7 @@ export default function DashboardPage() {
                     data-carousel-item
                   >
                     <img
-                      src="https://is3.cloudhost.id/tplum/slide-1.png"
+                      src={import.meta.env.VITE_SLIDER_CONTENT}
                       className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                       alt="..."
                     />
@@ -119,7 +119,7 @@ export default function DashboardPage() {
           <div className="basis-2/6">
             <div className="rounded-lg p-3 bg-white border border-gray-200 shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 border-t-4 border-t-blue-500">
               <h2 className="font-bold text-lg">Pemberitahuan</h2>
-              <p className="text-gray-500 dark:text-white border-b border-neutral-100 my-2 pb-2">
+              {/* <p className="text-gray-500 dark:text-white border-b border-neutral-100 my-2 pb-2">
                 <span className="text-black">28 Desember 2023</span> - Peserta
                 magang harap segera melakukan konfirmasi kepada guru pembimbing
                 terkait perusahaannya.
@@ -128,6 +128,11 @@ export default function DashboardPage() {
                 <span className="text-black">23 Desember 2023</span> - Peserta
                 magang harap segera melakukan konfirmasi kepada guru pembimbing
                 terkait perusahaannya.
+              </p> */}
+              <p className="text-gray-500 dark:text-white my-2 pb-2">
+                {import.meta.env.VITE_DASHOBARD_INFO
+                  ? import.meta.env.VITE_DASHOBARD_INFO
+                  : "Tidak ada pemberitahuan"}
               </p>
             </div>
           </div>

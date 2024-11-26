@@ -26,7 +26,6 @@ import SchoolAdminPage from "./pages/school-admin/index.jsx";
 import SchoolAdminSettingsPage from "./pages/school-admin/settings/index.jsx";
 import SchoolAdminStudentDataPage from "./pages/school-admin/student-data/index.jsx";
 import SchoolAdminSupervisorDataPage from "./pages/school-admin/supervisor-data/index.jsx";
-import StudentDailyJournalPage from "./pages/student/daily-journal/index.jsx";
 import StudentFinalGradePage from "./pages/student/final-grade/index.jsx";
 import StudentMonthlyGradePage from "./pages/student/monthly-grade/index.jsx";
 import StudentMonthlyJournalPage from "./pages/student/monthly-journal/index.jsx";
@@ -108,10 +107,6 @@ const router = createBrowserRouter([
   {
     element: <StudentPage />,
     children: [
-      {
-        path: "student/daily-journal",
-        element: <StudentDailyJournalPage />,
-      },
       {
         path: "student/monthly-journal",
         element: <StudentMonthlyJournalPage />,

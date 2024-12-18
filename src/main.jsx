@@ -32,6 +32,7 @@ import StudentMonthlyJournalPage from "./pages/student/monthly-journal/index.jsx
 import StudentPage from "./pages/student/index.jsx";
 import StudentPresencePage from "./pages/student/presence/index.jsx";
 import SupervisorPage from "./pages/supervisor/index.jsx";
+import StudentDailyJournalPage from "./pages/student/daily-journal/index.jsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <DashboardPage />, errorElement: <ErrorPage /> },
@@ -107,6 +108,10 @@ const router = createBrowserRouter([
   {
     element: <StudentPage />,
     children: [
+      {
+        path: "student/daily-journal",
+        element: <StudentDailyJournalPage />,
+      },
       {
         path: "student/monthly-journal",
         element: <StudentMonthlyJournalPage />,

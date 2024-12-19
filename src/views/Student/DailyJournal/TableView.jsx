@@ -46,7 +46,7 @@ export default function StudentDailyJournalTableView(props) {
               draggable: true,
               progress: undefined,
             });
-            setData({});
+            setData([]);
             handleDataHarian();
           } else {
             toast.error("Gagal menghapus jurnal harian!", {

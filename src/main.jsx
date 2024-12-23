@@ -21,6 +21,7 @@ import ReactDOM from "react-dom/client";
 import RegisterPage from "./pages/auth/regsiter.jsx";
 import SchoolAdminAssesmentPage from "./pages/school-admin/assesment/index.jsx";
 import SchoolAdminCompanyDataPage from "./pages/school-admin/company-data/index.jsx";
+import SchoolAdminGuidanceGroupPage from "./pages/school-admin/guidance-group/index.jsx";
 import SchoolAdminMajorManagementPage from "./pages/school-admin/major-management/index.jsx";
 import SchoolAdminPage from "./pages/school-admin/index.jsx";
 import SchoolAdminSettingsPage from "./pages/school-admin/settings/index.jsx";
@@ -33,8 +34,8 @@ import StudentMonthlyJournalPage from "./pages/student/monthly-journal/index.jsx
 import StudentPage from "./pages/student/index.jsx";
 import StudentPresencePage from "./pages/student/presence/index.jsx";
 import SupervisorFinalAssesmentPage from "./pages/supervisor/final-assesment/index.jsx";
+import SupervisorMonthlyAssesmentPage from "./pages/supervisor/monthly-assesment/index.jsx";
 import SupervisorPage from "./pages/supervisor/index.jsx";
-import SchoolAdminGuidanceGroupPage from "./pages/school-admin/guidance-group/index.jsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <DashboardPage />, errorElement: <ErrorPage /> },
@@ -113,6 +114,10 @@ const router = createBrowserRouter([
       {
         path: "supervisor/final-assesment",
         element: <SupervisorFinalAssesmentPage />,
+      },
+      {
+        path: "supervisor/monthly-assesment",
+        element: <SupervisorMonthlyAssesmentPage />,
       },
     ],
   },

@@ -154,7 +154,7 @@ export default function SupervisorPresenceTableView(props) {
                         <input
                           id={"hadir" + index}
                           type="radio"
-                          value="HADIR"
+                          value="Hadir"
                           name={"kehadiran" + index}
                           checked={item.status === "Hadir"}
                           onChange={(e) =>
@@ -177,7 +177,7 @@ export default function SupervisorPresenceTableView(props) {
                         <input
                           id={"izin" + index}
                           type="radio"
-                          value="IZIN"
+                          value="Izin"
                           name={"kehadiran" + index}
                           checked={item.status === "Izin"}
                           onChange={(e) =>
@@ -200,7 +200,7 @@ export default function SupervisorPresenceTableView(props) {
                         <input
                           id={"sakit" + index}
                           type="radio"
-                          value="SAKIT"
+                          value="Sakit"
                           name={"kehadiran" + index}
                           checked={item.status === "Sakit"}
                           onChange={(e) =>
@@ -223,7 +223,7 @@ export default function SupervisorPresenceTableView(props) {
                         <input
                           id={"alpa" + index}
                           type="radio"
-                          value="ALPA"
+                          value="Alpa"
                           name={"kehadiran" + index}
                           checked={item.status === "Alpa"}
                           onChange={(e) =>

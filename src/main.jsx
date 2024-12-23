@@ -34,6 +34,7 @@ import StudentPage from "./pages/student/index.jsx";
 import StudentPresencePage from "./pages/student/presence/index.jsx";
 import SupervisorFinalAssesmentPage from "./pages/supervisor/final-assesment/index.jsx";
 import SupervisorPage from "./pages/supervisor/index.jsx";
+import SchoolAdminGuidanceGroupPage from "./pages/school-admin/guidance-group/index.jsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <DashboardPage />, errorElement: <ErrorPage /> },
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "school-admin/student-data",
         element: <SchoolAdminStudentDataPage />,
+      },
+      {
+        path: "school-admin/guidance-group",
+        element: <SchoolAdminGuidanceGroupPage />,
       },
       {
         path: "school-admin/assesment",

@@ -19,7 +19,7 @@ export default function DashboardPage() {
                     data-carousel-item
                   >
                     <img
-                      src={import.meta.env.VITE_SLIDER_CONTENT}
+                      src="https://masulyablog.sirv.com/slider.png"
                       className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                       alt="..."
                     />
@@ -29,7 +29,7 @@ export default function DashboardPage() {
                     data-carousel-item
                   >
                     <img
-                      src={import.meta.env.VITE_SLIDER_CONTENT}
+                      src="https://masulyablog.sirv.com/slider.png"
                       className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                       alt="..."
                     />
@@ -39,7 +39,7 @@ export default function DashboardPage() {
                     data-carousel-item
                   >
                     <img
-                      src={import.meta.env.VITE_SLIDER_CONTENT}
+                      src="https://masulyablog.sirv.com/slider.png"
                       className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                       alt="..."
                     />
@@ -49,7 +49,7 @@ export default function DashboardPage() {
                     data-carousel-item
                   >
                     <img
-                      src={import.meta.env.VITE_SLIDER_CONTENT}
+                      src="https://masulyablog.sirv.com/slider.png"
                       className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                       alt="..."
                     />
@@ -59,7 +59,7 @@ export default function DashboardPage() {
                     data-carousel-item
                   >
                     <img
-                      src={import.meta.env.VITE_SLIDER_CONTENT}
+                      src="https://masulyablog.sirv.com/slider.png"
                       className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                       alt="..."
                     />

@@ -36,6 +36,7 @@ import StudentPresencePage from "./pages/student/presence/index.jsx";
 import SupervisorFinalAssesmentPage from "./pages/supervisor/final-assesment/index.jsx";
 import SupervisorMonthlyAssesmentPage from "./pages/supervisor/monthly-assesment/index.jsx";
 import SupervisorPage from "./pages/supervisor/index.jsx";
+import SupervisorPresencePage from "./pages/supervisor/presence/index.jsx";
 import SupervisorDailyMonitoringPage from "./pages/supervisor/daily-monitoring/index.jsx"
 
 const router = createBrowserRouter([
@@ -119,6 +120,10 @@ const router = createBrowserRouter([
       {
         path: "supervisor/monthly-assesment",
         element: <SupervisorMonthlyAssesmentPage />,
+      },
+      {
+        path: "supervisor/presence",
+        element: <SupervisorPresencePage />,
       },
       {
         path: "supervisor/daily-monitoring",

@@ -1,6 +1,7 @@
 import Button from "../../../components/Elements/Button/index.jsx";
 import Input from "../../../components/Elements/Input/index.jsx";
 import NotFound from "../../../components/Elements/EmptyState/NotFound.jsx";
+import Logout from "../../../components/Elements/Logout/index.js";
 import PropTypes from "prop-types";
 import ConfirmModal from "../../../components/Elements/ConfirmModal/index.jsx";
 import { setStatusJurnal } from "../../../services/supervisor/supervisor-monitoring.service.js";
@@ -76,10 +77,10 @@ export default function SupervisorDailyMonitoringTableView(props) {
     document.getElementById("init-modal2").click();
   };
 
-  const initStaticModal1 = (item) => {
-    setSelected(item);
-    document.getElementById("init-static-modal1").click();
-  };
+  // const initStaticModal1 = (item) => {
+  //   setSelected(item);
+  //   document.getElementById("init-static-modal1").click();
+  // };
 
   const updateDrawer = (item) => {
     setSelected(item);
@@ -233,5 +234,6 @@ SupervisorDailyMonitoringTableView.propTypes = {
   id: PropTypes.string,
   tanggal: PropTypes.any,
   setTanggal: PropTypes.any,
-  handleDataHarian: PropTypes.func
+  handleDataHarian: PropTypes.func,
+  selected: PropTypes.any
 };

@@ -34,7 +34,7 @@ export default function SupervisorDailyMonitoringUpdateDrawerView(props) {
     setMessage("");
     const data = {
       id: selected.id,
-      catatan_pembimbing: catatan,
+      catatan: catatan,
     };
     refreshToken((status, token) => {
       if (status) {

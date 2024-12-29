@@ -3,7 +3,7 @@ import { axiosReq } from "../axios.service";
 // services setting tahun ajaran
 export const getTahunAjaran = async (token, callback) => {
   await axiosReq
-    .get(`${import.meta.env.VITE_API_URL}/tahun-ajaran/all`, {
+    .get(`${import.meta.env.VITE_API_LARAVEL_URL}/tahun-ajaran/all`, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -18,7 +18,7 @@ export const getTahunAjaran = async (token, callback) => {
 
 export const setTahunAjaran = async (data, token, callback) => {
   await axiosReq
-    .put(`${import.meta.env.VITE_API_URL}/tahun-ajaran/status`, data, {
+    .put(`${import.meta.env.VITE_API_LARAVEL_URL}/tahun-ajaran/status`, data, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -33,7 +33,7 @@ export const setTahunAjaran = async (data, token, callback) => {
 
 export const addTahunAjaran = async (data, token, callback) => {
   await axiosReq
-    .post(`${import.meta.env.VITE_API_URL}/tahun-ajaran/create`, data, {
+    .post(`${import.meta.env.VITE_API_LARAVEL_URL}/tahun-ajaran/create`, data, {
       headers: {
         Authorization: "Bearer " + token,
       },

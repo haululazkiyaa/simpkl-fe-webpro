@@ -39,6 +39,7 @@ import SupervisorPage from "./pages/supervisor/index.jsx";
 import SupervisorPresencePage from "./pages/supervisor/presence/index.jsx";
 import SupervisorDailyMonitoringPage from "./pages/supervisor/daily-monitoring/index.jsx"
 import SchoolAdminAnnouncementDataPage from "./pages/school-admin/announcement/index.jsx"
+import SupervisorMonthlyMonitoringPage from "./pages/instructor/monthly-monitoring/index.jsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <DashboardPage />, errorElement: <ErrorPage /> },
@@ -133,6 +134,10 @@ const router = createBrowserRouter([
       {
         path: "supervisor/daily-monitoring",
         element: <SupervisorDailyMonitoringPage />,
+      },
+      {
+        path: "supervisor/monthly-monitoring",
+        element: <SupervisorMonthlyMonitoringPage />,
       },
     ],
   },

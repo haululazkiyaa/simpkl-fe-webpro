@@ -1,6 +1,6 @@
 import OnDev from "../../../components/Elements/EmptyState/OnDev";
 
-export default function SupervisorMonthlyMonitoringPage() {
+export default function InstructorMonthlyMonitoringPage() {
   return (
     <>
       <div className="format max-w-none mb-5">

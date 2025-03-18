@@ -5,7 +5,7 @@ export const getKehadiranPembimbing = async (filterDate, token, callback) => {
   await axiosReq
     .get(
       `${
-        import.meta.env.VITE_API_LARAVEL_URL
+        import.meta.env.VITE_API_URL
       }/absensi/get/pembimbing?tanggal=${filterDate}`,
       {
         headers: {
@@ -23,7 +23,7 @@ export const getKehadiranPembimbing = async (filterDate, token, callback) => {
 
 export const submitKehadiran = async (data, token, callback) => {
   await axiosReq
-    .post(`${import.meta.env.VITE_API_LARAVEL_URL}/absensi/submit`, data, {
+    .post(`${import.meta.env.VITE_API_URL}/absensi/submit`, data, {
       headers: {
         Authorization: "Bearer " + token,
       },

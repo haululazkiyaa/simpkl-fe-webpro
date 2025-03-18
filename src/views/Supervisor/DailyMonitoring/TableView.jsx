@@ -171,7 +171,7 @@ export default function SupervisorDailyMonitoringTableView(props) {
                     </div>
                   </td>
                   <td className="px-6 py-4 truncate text-left">
-                    {item.status === "Menunggu" ? (
+                    {(item.status === "Menunggu" || item.status === "MENUNGGU")  ? (
                         <div className="flex items-center justify-center space-x-2">
                             <Button
                                 variant="green"

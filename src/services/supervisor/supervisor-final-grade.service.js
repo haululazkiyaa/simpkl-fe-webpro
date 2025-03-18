@@ -17,7 +17,7 @@ export const getKelBimbinganPembimbing = async (token, callback) => {
 };
 export const getNilaiAkhirPembimbing = async (id, token, callback) => {
   await axiosReq
-    .get(`${import.meta.env.VITE_API_LARAVEL_URL}/nilai-akhir?id_siswa=${id}`, {
+    .get(`${import.meta.env.VITE_API_URL}/nilai-akhir?id_siswa=${id}`, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -32,7 +32,7 @@ export const getNilaiAkhirPembimbing = async (id, token, callback) => {
 
 export const addNilaiAkhirPembimbing = async (data, token, callback) => {
   await axiosReq
-    .post(`${import.meta.env.VITE_API_LARAVEL_URL}/nilai-akhir/create`, data, {
+    .post(`${import.meta.env.VITE_API_URL}/nilai-akhir/create`, data, {
       headers: {
         Authorization: "Bearer " + token,
       },

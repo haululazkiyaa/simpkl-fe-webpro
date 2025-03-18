@@ -38,7 +38,6 @@ export default function StudentDailyJournalPage() {
       if (status) {
         setProgress(60);
         getJurnalHarian(tanggal, token, (status, data) => {
-          console.log(data)
           if (status) {
             setData(data);
           }

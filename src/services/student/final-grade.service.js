@@ -3,7 +3,7 @@ import { axiosReq } from "../axios.service";
 // services setting tahun ajaran
 export const getNilaiAkhirSiswa = async (token, callback) => {
   await axiosReq
-    .get(`${import.meta.env.VITE_API_LARAVEL_URL}/nilai-akhir/siswa`, {
+    .get(`${import.meta.env.VITE_API_URL}/nilai-akhir/siswa`, {
       headers: {
         Authorization: "Bearer " + token,
       },

@@ -3,7 +3,7 @@ import { axiosReq } from "../axios.service";
 // services setting tahun ajaran
 export const getJurusan = async (token, callback) => {
   await axiosReq
-    .get(`${import.meta.env.VITE_API_LARAVEL_URL}/jurusan/all`, {
+    .get(`${import.meta.env.VITE_API_URL}/jurusan/all`, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -18,7 +18,7 @@ export const getJurusan = async (token, callback) => {
 
 export const addJurusan = async (data, token, callback) => {
   await axiosReq
-    .post(`${import.meta.env.VITE_API_LARAVEL_URL}/jurusan/create`, data, {
+    .post(`${import.meta.env.VITE_API_URL}/jurusan/create`, data, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -33,7 +33,7 @@ export const addJurusan = async (data, token, callback) => {
 
 export const updateJurusan = async (data, token, callback) => {
   await axiosReq
-    .put(`${import.meta.env.VITE_API_LARAVEL_URL}/jurusan/update`, data, {
+    .put(`${import.meta.env.VITE_API_URL}/jurusan/update`, data, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -48,7 +48,7 @@ export const updateJurusan = async (data, token, callback) => {
 
 export const deleteJurusan = async (data, token, callback) => {
   await axiosReq
-    .delete(`${import.meta.env.VITE_API_LARAVEL_URL}/jurusan/delete`, {
+    .delete(`${import.meta.env.VITE_API_URL}/jurusan/delete`, {
       data,
       headers: {
         Authorization: "Bearer " + token,

@@ -3,7 +3,7 @@ import { axiosReq } from "../axios.service";
 // services setting tahun ajaran
 export const getKelBimbingan = async (token, callback) => {
   await axiosReq
-    .get(`${import.meta.env.VITE_API_LARAVEL_URL}/kelompok-bimbingan/all`, {
+    .get(`${import.meta.env.VITE_API_URL}/kelompok-bimbingan/all`, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -18,7 +18,7 @@ export const getKelBimbingan = async (token, callback) => {
 
 export const addKelBimbingan = async (data, token, callback) => {
   await axiosReq
-    .post(`${import.meta.env.VITE_API_LARAVEL_URL}/kelompok-bimbingan/create`, data, {
+    .post(`${import.meta.env.VITE_API_URL}/kelompok-bimbingan/create`, data, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -33,7 +33,7 @@ export const addKelBimbingan = async (data, token, callback) => {
 
 export const updateKelBimbingan = async (data, token, callback) => {
   await axiosReq
-    .put(`${import.meta.env.VITE_API_LARAVEL_URL}/kelompok-bimbingan/update`, data, {
+    .put(`${import.meta.env.VITE_API_URL}/kelompok-bimbingan/update`, data, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -48,7 +48,7 @@ export const updateKelBimbingan = async (data, token, callback) => {
 
 export const deleteKelBimbingan = async (data, token, callback) => {
   await axiosReq
-    .delete(`${import.meta.env.VITE_API_LARAVEL_URL}/kelompok-bimbingan/delete`, {
+    .delete(`${import.meta.env.VITE_API_URL}/kelompok-bimbingan/delete`, {
       data,
       headers: {
         Authorization: "Bearer " + token,
